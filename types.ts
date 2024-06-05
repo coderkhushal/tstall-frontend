@@ -37,3 +37,13 @@ type User ={
     "following": string[],
     "bookmarks": string[]
 }
+export type CommentType = {
+    id: string; 
+    articleId: string;
+    userId: string;
+    content: string;
+    publishTime: string;
+    commentId?: string;
+    messageType : number; // 0 for comment, 1 for reply
+    url: string;
+}

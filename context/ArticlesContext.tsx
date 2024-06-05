@@ -21,7 +21,7 @@ const ArticleState = ({children}:{children:React.ReactNode})=>{
     const fetchArticles=async(pageNo: number)=>{
         
         let newArticles= await getArticles(pageNo)
-        console.log(Object.keys(newArticles[0]))
+        
         setarticles([...articles,...newArticles ])
         setoffset((value)=>offset+1)
       }

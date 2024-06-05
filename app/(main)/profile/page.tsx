@@ -1,18 +1,22 @@
 "use client"
 import { Button } from '@/components/ui/button'
 import { LogOut } from 'lucide-react'
-import { signOut, useSession } from 'next-auth/react'
+
 import Image from 'next/image'
 import React from 'react'
 import { LuLogOut } from 'react-icons/lu'
 
 const ProfilePage = () => {
-  const session = useSession()
-  const user = session.data?.user
+
+  const user = {
+    name: "John Doe",
+    email: "",
+    image: "",
+  }
 
   return (
     <div className='h-full bg-primary w-full relative '>
-<Button className='absolute top-2 right-2' onClick={()=>signOut()} ><LuLogOut className='text-black size-5'/></Button>
+<Button className='absolute top-2 right-2'  ><LuLogOut className='text-black size-5'/></Button>
       <div className='lg:w-1/2 mx-auto flex flex-col space-y-4 h-2/3 bg-primary'>
         <h1 className=' font-extrabold w-full h-10 items-center flex justify-center'>{user?.name ? user.name : "User"}</h1>
         <div className='flex  justify-between space-x-2 items-center w-full lg:mx-auto px-6'>

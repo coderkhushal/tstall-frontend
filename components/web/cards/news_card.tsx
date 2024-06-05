@@ -50,7 +50,7 @@ const NewsCard = () => {
           )
         }
       })}
-      <div ref={ref} className='relative'><Loading/></div>
+      <div ref={ref} className='relative h-full w-full'><Loading/></div>
     </div>
   )
 }

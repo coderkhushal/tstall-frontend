@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import MobileNavigation from "@/components/web/navigation/mobile_navigation";
-import DeskTopNavigation from "@/components/web/navigation/desktop_navigation";
-import { SessionProvider } from "next-auth/react";
+
 import ArticleState from "@/context/ArticlesContext";
 
 
@@ -20,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <SessionProvider>
+
       <ArticleState>
 
     <html lang="en">
@@ -31,6 +30,6 @@ export default function RootLayout({
         </body>
     </html>
       </ArticleState>
-    </SessionProvider>
+  
   );
 }

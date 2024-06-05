@@ -18,8 +18,8 @@ const NewsCardItemShort = ({ id, title, content, src }: { id: string, title: str
         <div className='h-2/5  flex overflow-x-hidden my-2 lg:hidden md:flex '>
           { content.substring(0,40)+"..."}
         </div>
-        <div className='h-2/5 text-2xl  overflow-x-hidden my-2 hidden md:hidden lg:flex '>
-          { content.substring(0,300)+"..."}
+        <div className='h-2/5 text-xl  overflow-x-hidden my-2 hidden md:hidden lg:flex '>
+          { content.substring(0,220)+"..."}
         </div>
 
         <NewsCardInteractions />

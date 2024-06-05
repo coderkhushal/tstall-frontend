@@ -1,3 +1,5 @@
+import { useGetAuthHeaders } from "@/hooks/useGetAuthHeaders"
+
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string
 export const getArticles = async (page: number) => {
     const res = await fetch(`${BASE_URL}/newsapp/unauth/getTrendingHeadlinesPaginated?page=${page}&size=9`,
@@ -9,7 +11,7 @@ export const getArticles = async (page: number) => {
         }
     )
     const data = await res.json()
-    console.log(data)
+
     return data
 }
 export const getArticleById = async (id: string) => {
@@ -21,6 +23,17 @@ export const getArticleById = async (id: string) => {
             }
         }
 
+    )
+    const data = await res.json()
+    return data
+}
+
+export const getArticlesComments = async({id}: {id: string})=>{
+    const res = await fetch(`${BASE_URL}/newsapp/auth/getCommentsForArticle?articleId=${id}`,
+        {
+            method: 'GET',
+            headers: useGetAuthHeaders()
+        }
     )
     const data = await res.json()
     return data

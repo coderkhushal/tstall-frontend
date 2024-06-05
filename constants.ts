@@ -1,6 +1,6 @@
 import { Bookmark, FileText, Home } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
-import { ArticleType, RoutesType } from "./types";
+import { ArticleType, CommentType, RoutesType } from "./types";
 
 export const routes:RoutesType[] = [
     {
@@ -245,3 +245,52 @@ export const articles: ArticleType[] = [
       topics: ["championship", "sports"]
     }
   ];
+export const comments: CommentType[] = [
+  {
+      id: "c1",
+      articleId: "a1",
+      userId: "u1",
+      content: "This is a great article! Very informative.",
+      publishTime: "2024-06-01T10:00:00Z",
+      messageType: 0, // comment
+      url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  },
+  {
+      id: "c2",
+      articleId: "a1",
+      userId: "u2",
+      content: "I agree with the points made in this article.",
+      publishTime: "2024-06-01T11:00:00Z",
+      commentId: "c1",
+      messageType: 1, // reply
+      url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  },
+  {
+      id: "c3",
+      articleId: "a2",
+      userId: "u3",
+      content: "I found some errors in the article.",
+      publishTime: "2024-06-02T09:30:00Z",
+      messageType: 0, // comment
+      url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  },
+  {
+      id: "c4",
+      articleId: "a2",
+      userId: "u4",
+      content: "Can you point out the errors? I'd like to understand more.",
+      publishTime: "2024-06-02T10:00:00Z",
+      commentId: "c3",
+      messageType: 1, // reply
+      url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  },
+  {
+      id: "c5",
+      articleId: "a3",
+      userId: "u5",
+      content: "This article helped me a lot. Thanks for sharing!",
+      publishTime: "2024-06-03T08:00:00Z",
+      messageType: 0, // comment
+      url: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
+  }
+];

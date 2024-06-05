@@ -1,29 +1,58 @@
 "use client"
 import { getArticleById } from '@/actions/articles'
+import { DrawerTrigger } from '@/components/ui/drawer'
 import Loading from '@/components/ui/loading'
+import Comments from '@/components/web/comments/comments'
 import { articles } from '@/constants'
 import { useArticleContext } from '@/context/ArticlesContext'
 import { ArticleType } from '@/types'
 import React, { useEffect, useState } from 'react'
 import { FaBookmark, FaComment, FaShare, FaThumbsDown, FaThumbsUp } from 'react-icons/fa'
 import { SlCalender } from 'react-icons/sl'
+import { Drawer } from "@/components/ui/drawer"
+import { useRemoveToken } from '@/hooks/useRemoveToken'
+import { useIsTokenExpired } from '@/hooks/useIsTokenExpired'
+import { useGetToken } from '@/hooks/useGetToken'
+import { useRouter } from 'next/navigation'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [article, setarticle] = useState<ArticleType | null>(null)
-
+  const router = useRouter()
   useEffect(() => {
     const getSingleArticle = async () => {
       const article = await getArticleById(params.id)
 
       setarticle(article[0])
     }
-    getSingleArticle()
+   
+      const checkTokenAndRefresh = async () => {
+
+          const token = useGetToken()
+
+          if (token && useIsTokenExpired(token)) {
+              
+                  router.push("/auth/login")
+
+              
+          }
+          else if (!token) {
+              router.push("/auth/login")
+          }
+          else{
+            getSingleArticle()
+          }
+      }
+
+      checkTokenAndRefresh()
+  
+    
   }, [])
   if (!article) {
     return <Loading />
   }
   else
     return (
+      <Drawer>
       <section className=" light relative  py-14 md:py-24 bg-secondary  text-zinc-900 h-full w-full overflow-y-auto  ">
         <div className='rounded-2xl bg-orange-400 p-2 absolute lg:left-6 lg:text-2xl top-2 left-2'>{article.category}</div>
         <div className="container px-4 w-full">
@@ -33,7 +62,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
               <h2 className="text-2xl w-full leading-none font-bold md:text-6xl md:leading-none mb-6">
                 {article?.title}
               </h2>
-              <FaShare className='cursor-pointer transition-all hover:scale-110 size-10 absolute right-10 top-10' />
+
 
             </div>
 
@@ -58,9 +87,9 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
                       By<b> {article?.author}</b>
                     </p>
                   </div>
-                  <div className="opacity-75 flex mx-2  items-center">
-                    <SlCalender className='mr-2' />
-                    <div className='flex space-x-4'>
+                  <div className="opacity-75 flex-col space-y-2 lg:flex-row flex mx-2 space-x-4 items-center">
+                    <div className='flex items-center space-x-2'>
+                      <SlCalender className='mr-2' />
 
                       <span>
                         {article?.publishTime.split("T")[0]}
@@ -69,12 +98,21 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
 
                         {article?.publishTime.split("T")[1].substring(0, 8)}
                       </span>
+                    </div>
+                    <div className='flex space-x-4'>
 
                       <FaThumbsUp className='cursor-pointer transition-all hover:scale-110 size-4' />
                       <FaBookmark className='cursor-pointer transition-all hover:scale-110 size-4' />
                       <FaThumbsDown className='cursor-pointer transition-all hover:scale-110 size-4' />
-                      <FaShare className='cursor-pointer transition-all hover:scale-110   size-4'/>
-                      <FaComment className='cursor-pointer transition-all hover:scale-110  size-4'/>
+                      <FaShare className='cursor-pointer transition-all hover:scale-110   size-4' />
+                    
+                        <DrawerTrigger>
+
+                          <FaComment className='cursor-pointer transition-all hover:scale-110  size-4' />
+                        </DrawerTrigger>
+                        <Comments id={params.id} />
+                 
+
                     </div>
                   </div>
                 </div>
@@ -90,8 +128,11 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
               </div>
             </div>
           </div>
+
         </div>
       </section>
+      </Drawer>
+
     )
 }
 
