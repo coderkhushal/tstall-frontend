@@ -18,18 +18,24 @@ import { useRouter } from 'next/navigation'
 const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [article, setarticle] = useState<ArticleType | null>(null)
   const router = useRouter()
+
   useEffect(() => {
     const getSingleArticle = async () => {
       const article = await getArticleById(params.id)
 
       setarticle(article[0])
     }
+    const token = useGetToken()
+    if(!token){
+      router.push("/auth/login")
+      return;
+    }
+    const isExpired = useIsTokenExpired(token)
    
       const usecheckTokenAndRefresh = async () => {
 
-          const token = useGetToken()
 
-          if (token && useIsTokenExpired(token)) {
+          if (token && isExpired) {
               
                   router.push("/auth/login")
 
