@@ -25,7 +25,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
       setarticle(article[0])
     }
    
-      const checkTokenAndRefresh = async () => {
+      const usecheckTokenAndRefresh = async () => {
 
           const token = useGetToken()
 
@@ -43,7 +43,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
           }
       }
 
-      checkTokenAndRefresh()
+      usecheckTokenAndRefresh()
   
     
   }, [])
