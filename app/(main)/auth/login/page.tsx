@@ -26,7 +26,7 @@ import { useRouter } from 'next/navigation'
 import { login } from '@/actions/login'
 import { getSetToken } from '@/hooks/getSetToken'
 const LoginPage = () => {
-
+    const router = useRouter()
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
     const [Pending, setPending] = useState(false)
@@ -52,6 +52,9 @@ const LoginPage = () => {
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)
+            if(result.success){
+                router.push('/')
+            }
 
         }
         catch (err) {
