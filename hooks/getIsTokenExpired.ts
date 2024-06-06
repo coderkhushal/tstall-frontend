@@ -1,7 +1,8 @@
+"use client"
 import {jwtDecode} from 'jwt-decode'
 
 
-export const useIsTokenExpired= (token: string) => {
+export const getIsTokenExpired= (token: string) => {
     
     if (token) {
         try{

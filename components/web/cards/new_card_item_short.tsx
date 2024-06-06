@@ -1,4 +1,4 @@
-
+"use client"
 import React from 'react'
 
 import NewsCardInteractions from './news_card_interactions'

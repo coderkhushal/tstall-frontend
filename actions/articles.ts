@@ -1,4 +1,4 @@
-import { useGetAuthHeaders } from "@/hooks/useGetAuthHeaders"
+import { getGetAuthHeaders } from "@/hooks/getGetAuthHeaders"
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string
 export const getArticles = async (page: number) => {
@@ -32,7 +32,7 @@ export const getArticlesComments = async({id}: {id: string})=>{
     const res = await fetch(`${BASE_URL}/newsapp/auth/getCommentsForArticle?articleId=${id}`,
         {
             method: 'GET',
-            headers: useGetAuthHeaders()
+            headers: getGetAuthHeaders()
         }
     )
     const data = await res.json()

@@ -3,16 +3,15 @@ import { getArticleById } from '@/actions/articles'
 import { DrawerTrigger } from '@/components/ui/drawer'
 import Loading from '@/components/ui/loading'
 import Comments from '@/components/web/comments/comments'
-import { articles } from '@/constants'
-import { useArticleContext } from '@/context/ArticlesContext'
+
 import { ArticleType } from '@/types'
 import React, { useEffect, useState } from 'react'
 import { FaBookmark, FaComment, FaShare, FaThumbsDown, FaThumbsUp } from 'react-icons/fa'
 import { SlCalender } from 'react-icons/sl'
 import { Drawer } from "@/components/ui/drawer"
-import { useRemoveToken } from '@/hooks/useRemoveToken'
-import { useIsTokenExpired } from '@/hooks/useIsTokenExpired'
-import { useGetToken } from '@/hooks/useGetToken'
+
+import { getIsTokenExpired } from '@/hooks/getIsTokenExpired'
+import { getGetToken } from '@/hooks/getGetToken'
 import { useRouter } from 'next/navigation'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
@@ -25,12 +24,12 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
 
       setarticle(article[0])
     }
-    const token = useGetToken()
+    const token = getGetToken()
     if(!token){
       router.push("/auth/login")
       return;
     }
-    const isExpired = useIsTokenExpired(token)
+    const isExpired = getIsTokenExpired(token)
    
       const usecheckTokenAndRefresh = async () => {
 

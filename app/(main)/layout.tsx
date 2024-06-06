@@ -1,6 +1,6 @@
-
+"use client"
 import DeskTopNavigation from "@/components/web/navigation/desktop_navigation"
-import Topbar from "@/components/web/topbar/topbar"
+
 
 
 

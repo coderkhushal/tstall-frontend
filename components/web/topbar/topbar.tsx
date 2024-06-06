@@ -2,10 +2,10 @@
 import React from 'react'
 import TopbarStories from './topbar_stories'
 import { SearchIcon } from 'lucide-react'
-import { CgProfile } from 'react-icons/cg'
+
 import { FaUserCircle } from 'react-icons/fa'
 
-import Image from 'next/image'
+
 
 const Topbar = () => {
 
@@ -15,7 +15,7 @@ const Topbar = () => {
       <div className='flex px-3 h-full items-center  justify-between'>
         <SearchIcon className='size-8' />
         <h1 className='w-full text-center specialtext h-full py-2'>TSTALL</h1>
-        { <FaUserCircle className='size-8'/>}
+        <FaUserCircle className='size-8'/>
       </div>
         
         <TopbarStories/>

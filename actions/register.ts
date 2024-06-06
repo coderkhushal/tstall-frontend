@@ -12,13 +12,13 @@ export const register = async (values: z.infer<typeof RegisterSchema>) => {
     return { error: "Invalids Fields!" };
   }
 
-  const { name, email, password } = validatedFields.data;
+  const { userName, mailId, password } = validatedFields.data;
   let res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}newsapp/onboard/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({mailId: email , userName: name, password:  password }),
+    body: JSON.stringify({mailId , userName, password }),
   });
   const data = await res.json();
 

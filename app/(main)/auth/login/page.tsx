@@ -24,7 +24,7 @@ import Social from '@/components/web/auth/social'
 
 import { useRouter } from 'next/navigation'
 import { login } from '@/actions/login'
-import { useSetToken } from '@/hooks/useSetToken'
+import { getSetToken } from '@/hooks/getSetToken'
 const LoginPage = () => {
 
     const [error, seterror] = useState<string | undefined>(undefined)
@@ -48,7 +48,7 @@ const LoginPage = () => {
 
         try {
             let result = await login({userName: values.userName , password: values.password})
-            useSetToken(result.token)
+            getSetToken(result.token)
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)
