@@ -1,9 +1,10 @@
 "use client"
 import {jwtDecode} from 'jwt-decode'
+import { getGetToken } from './getGetToken'
 
 
-export const getUserId= (token: string) => {
-    
+export const getUserId= (): string | null => {
+    let token = getGetToken()
     if (token) {
         try{
 
@@ -18,9 +19,9 @@ export const getUserId= (token: string) => {
         }
         catch(err){
             console.log("token decode error")
-            return false;
+            return null;
         }
     }
     console.log("token not found")
-    return false;
+    return null;
 }

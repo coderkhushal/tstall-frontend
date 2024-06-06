@@ -1,14 +1,18 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 
 import NewsCardInteractions from './news_card_interactions'
 import Link from 'next/link'
+import { getGetToken } from '@/hooks/getGetToken'
 
-const NewsCardItemShort = ({ id, title, content, src }: { id: string, title: string, src: string, content: string }) => {
+
+const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked }: { id: string, title: string, src: string, content: string, publishTime :string, userLiked: string[] }) => {
 
   return (
 
-    <div className={` border-2 pb-10   border-black rounded-sm p-2 relative bg-gray-200 "w-full flex-1 h-[70vh]" `}>
+
+    <div className={` border-2 pb-10   border-black rounded-sm p-2 relative bg-gray-200 "w-full flex-1 h-[70vh] " `}>
+      
       <Link href={"article/" + id}>
 
         <h1 className='h-1/4 p-2 w-full lg:text-3xl overflow-x-auto font-extrabold'>
@@ -22,9 +26,10 @@ const NewsCardItemShort = ({ id, title, content, src }: { id: string, title: str
           { content.substring(0,220)+"..."}
         </div>
 
-        <NewsCardInteractions />
       </Link>
+        <NewsCardInteractions articleid={id} userLiked={userLiked}  />
     </div>
+   
 
   )
 }

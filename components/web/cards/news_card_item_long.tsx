@@ -4,7 +4,7 @@ import React from 'react'
 import NewsCardInteractions from './news_card_interactions'
 import Link from 'next/link'
 
-const NewsCardItemLong = ({ id, title, content, src }: { id: string, title: string, src: string, content: string}) => {
+const NewsCardItemLong = ({ id, title, content, src ,userLiked }: { id: string, title: string, src: string, content: string, userLiked: string[]}) => {
 
   return (
 
@@ -27,7 +27,7 @@ const NewsCardItemLong = ({ id, title, content, src }: { id: string, title: stri
     //   </Link>
     // </div>
     <article>
-			<div className="grid grid-cols-12 bg-gray-200 border-4 items-center gap-6">
+			<div className="grid grid-cols-12 relative bg-gray-200 border-4 items-center gap-6">
 				<div className="col-span-12 lg:col-span-7 lg:order-2">
 					<img
 						src={src}
@@ -46,6 +46,7 @@ const NewsCardItemLong = ({ id, title, content, src }: { id: string, title: stri
 						
 					</div>
 				</div>
+      <NewsCardInteractions articleid={id} userLiked={userLiked}/>
 			</div>
 		</article>
 

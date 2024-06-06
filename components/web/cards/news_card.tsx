@@ -31,10 +31,10 @@ const NewsCard = () => {
         if(index%3 ==0 ){
           let item2= articles[index+1]
           return(
-            <div key={index} className="flex space-x-2 my-4  lg:my-6 lg:space-x-7 h-full">
+            <div key={index} className="grid grid-cols-2 space-x-2 my-4  lg:my-6 lg:space-x-7 h-full">
 
-            <NewsCardItemShort id={item.id} title={item.title} src={item.urlToImage? item.urlToImage : "https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}   content={item.content ? item.content : ""} />
-            <NewsCardItemShort id={item2.id} title={item2.title} src={item2.urlToImage? item2.urlToImage :"https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}  content={item2.content ? item2.content:""} />
+            <NewsCardItemShort publishTime={item.publishTime} id={item.id} title={item.title} src={item.urlToImage? item.urlToImage : "https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}   content={item.content ? item.content : ""} userLiked={item2.usersLiked} />
+            <NewsCardItemShort publishTime={item2.publishTime} id={item2.id} title={item2.title} src={item2.urlToImage? item2.urlToImage :"https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"}  content={item2.content ? item2.content:""} userLiked={item2.usersLiked} />
             </div>
           )
         }
@@ -45,7 +45,7 @@ const NewsCard = () => {
         }
         else{ 
           return (
-            <NewsCardItemLong id={item.id} title={item.title} src={item.urlToImage ? item.urlToImage :"https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} key={index} content={item.content ?  item.content : ""} />
+            <NewsCardItemLong id={item.id} userLiked={item.usersLiked} title={item.title} src={item.urlToImage ? item.urlToImage :"https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} key={index} content={item.content ?  item.content : ""} />
 
           )
         }
