@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { getGetToken } from '@/hooks/getGetToken'
 
 
-const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked }: { id: string, title: string, src: string, content: string, publishTime :string, userLiked: string[] }) => {
+const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked , userDisliked}: { id: string, title: string, src: string, content: string, publishTime :string, userLiked: string[], userDisliked: string[] }) => {
 
   return (
 
@@ -27,7 +27,10 @@ const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked }:
         </div>
 
       </Link>
-        <NewsCardInteractions articleid={id} userLiked={userLiked}  />
+      <div className='absolute w-full left-0 bottom-1 text-xl'>
+
+        <NewsCardInteractions articleid={id} userLiked={userLiked } userDisliked={userDisliked}  />
+      </div>
     </div>
    
 

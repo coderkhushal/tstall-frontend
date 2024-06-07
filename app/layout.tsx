@@ -5,6 +5,7 @@ import "./globals.css";
 import MobileNavigation from "@/components/web/navigation/mobile_navigation";
 
 import ArticleState from "@/context/ArticlesContext";
+import AuthState from "@/context/AuthContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,7 +22,9 @@ export default function RootLayout({
 }>) {
   return (
 
+      <AuthState>
       <ArticleState>
+
 
     <html lang="en">
       <body className="cantata-one-regular overflow-x-hidden">
@@ -31,6 +34,7 @@ export default function RootLayout({
         </body>
     </html>
       </ArticleState>
+      </AuthState>
   
   );
 }

@@ -22,6 +22,6 @@ export const getUserId= (): string | null => {
             return null;
         }
     }
-    console.log("token not found")
+ 
     return null;
 }

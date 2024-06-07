@@ -13,6 +13,7 @@ import { Drawer } from "@/components/ui/drawer"
 import { getIsTokenExpired } from '@/hooks/getIsTokenExpired'
 import { getGetToken } from '@/hooks/getGetToken'
 import { useRouter } from 'next/navigation'
+import NewsCardInteractions from '@/components/web/cards/news_card_interactions'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [article, setarticle] = useState<ArticleType | null>(null)
@@ -104,18 +105,18 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
                         {article?.publishTime.split("T")[1].substring(0, 8)}
                       </span>
                     </div>
-                    <div className='flex space-x-4'>
+                    <div className='flex space-x-4 items-center '>
+                      <div className='relative '>
 
-                      <FaThumbsUp className='cursor-pointer transition-all hover:scale-110 size-4' />
-                      <FaBookmark className='cursor-pointer transition-all hover:scale-110 size-4' />
-                      <FaThumbsDown className='cursor-pointer transition-all hover:scale-110 size-4' />
-                      <FaShare className='cursor-pointer transition-all hover:scale-110   size-4' />
+                      <NewsCardInteractions articleid={params.id} userDisliked={article.usersDisliked} userLiked={article.usersLiked} classname='space-x-2'/>
+                      </div>
+                      <FaShare className='cursor-pointer transition-all hover:scale-110' />
                     
                         <DrawerTrigger>
 
                           <FaComment className='cursor-pointer transition-all hover:scale-110  size-4' />
                         </DrawerTrigger>
-                        <Comments id={params.id} />
+                        <Comments articleId={params.id} />
                  
 
                     </div>

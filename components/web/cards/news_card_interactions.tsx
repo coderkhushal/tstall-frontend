@@ -1,39 +1,70 @@
 "use client"
-import { likeArticle } from '@/actions/articles'
+import { bookmarkArticle, dislikeArticle, likeArticle } from '@/actions/articles'
+import { useAuthContext } from '@/context/AuthContext'
 import { getUserId } from '@/hooks/getUserId'
 import React, { Suspense, useEffect, useState } from 'react'
 import { FaBookmark, FaThumbsDown, FaThumbsUp } from 'react-icons/fa'
 
-const NewsCardInteractions = ({articleid ,userLiked }:{articleid:string, userLiked: string[]}) => {
+const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}: {classname?:string,  articleid: string, userLiked: string[], userDisliked: string[] }) => {
+  const {user} = useAuthContext()
   const [liked, setliked] = useState(false)
-  useEffect(()=>{
-    let userId= getUserId()
-    if(!userId){
+  const [disliked, setdisliked] = useState(false)
+  const [bookmarked, setbookmarked] = useState(false)
+  useEffect(() => {
+
+    let userId = getUserId()
+    if (!userId) {
       return;
     }
-    if(userLiked.includes(userId)){
+    if (userLiked.includes(userId)) {
       setliked(true)
     }
+    if (userDisliked.includes(userId)) {
+      setdisliked(true)
+    }
+    if(user?.bookmarks.includes(articleid)){
+      setbookmarked(true)
+    }
   }, [])
- 
-  const  handleClick= async ({type}:{type:"LIKE"|"DISLIKE"|"BOOKMARK"}) => {
+
+  const handleClick = async ({ type }: { type: "LIKE" | "DISLIKE" | "BOOKMARK" }) => {
 
     let userId = getUserId()
     console.log(userId, articleid)
-    if(!userId){
+    if (!userId) {
       alert("user id not found");
-      return ;
+      return;
     }
-    switch(type){
+    let result;
+    switch (type) {
       case "LIKE":
-        const result = await likeArticle({articleId: articleid , userId: userId})
-        if(result.success){
+        result = await likeArticle({ articleId: articleid, userId: userId })
+        if (result.success) {
           setliked(true)
+        }
+        else {
+          alert(result.error)
         }
         break;
       case "DISLIKE":
+        result = await dislikeArticle({ articleId: articleid, userId: userId })
+        if (result.success) {
+          setdisliked(true)
+        }
+        else {
+          alert(result.error)
+        }
         break;
+
       case "BOOKMARK":
+        result = await bookmarkArticle({ articleId: articleid, userId: userId })
+        console.log(result)
+        if (result.success) {
+          setbookmarked(true)
+        }
+        else {
+          alert(result.error)
+        }
         break;
     }
 
@@ -42,12 +73,12 @@ const NewsCardInteractions = ({articleid ,userLiked }:{articleid:string, userLik
   return (
     <Suspense>
 
-    <div className='flex text-xl   w-full justify-around absolute bottom-2 left-0'>
+      <div className={` ${classname} flex  bg-secondary  justify-around  py-2 `}>
 
-    <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked &&  " text-red-400"}`} onClick={()=>handleClick({type:"LIKE"})}/>
-    <FaBookmark className='cursor-pointer transition-all hover:scale-110' onClick={()=>handleClick({type:"BOOKMARK"})}/>
-    <FaThumbsDown className='cursor-pointer transition-all hover:scale-110' onClick={()=>handleClick({type:"DISLIKE"})}/>
-    </div>
+        <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
+        <FaBookmark className={`cursor-pointer transition-all hover:scale-110 ${bookmarked && " text-yellow-700"}`}  onClick={() => handleClick({ type: "BOOKMARK" })} />
+        <FaThumbsDown className={`cursor-pointer transition-all hover:scale-110 ${disliked && " text-red-400"}`} onClick={() => handleClick({ type: "DISLIKE" })} />
+      </div>
     </Suspense>
   )
 }

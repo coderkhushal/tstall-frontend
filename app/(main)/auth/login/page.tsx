@@ -25,7 +25,9 @@ import Social from '@/components/web/auth/social'
 import { useRouter } from 'next/navigation'
 import { login } from '@/actions/login'
 import { getSetToken } from '@/hooks/getSetToken'
+import { useAuthContext } from '@/context/AuthContext'
 const LoginPage = () => {
+    const {fetchUser} = useAuthContext()
     const router = useRouter()
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
@@ -49,6 +51,7 @@ const LoginPage = () => {
         try {
             let result = await login({userName: values.userName , password: values.password})
             getSetToken(result.token)
+            fetchUser()
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)

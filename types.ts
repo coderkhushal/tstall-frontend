@@ -23,7 +23,7 @@ export type ArticleType={
     topics: string[];
 }
 
-type User ={
+export type UserType ={
     "id": string,
     "mailId": string,
     "dateOfBirth": string,
@@ -39,11 +39,11 @@ type User ={
 }
 export type CommentType = {
     id: string; 
-    articleId: string;
-    userId: string;
+    userName: string;
+    urlToImage?: string;
     content: string;
-    publishTime: string;
-    commentId?: string;
-    messageType : number; // 0 for comment, 1 for reply
-    url: string;
+    replyInfo: replyInfoType[]
+   
 }
+
+export type replyInfoType = Pick<CommentType, "id" | "userName" | "content" | "urlToImage">;

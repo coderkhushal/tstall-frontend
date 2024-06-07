@@ -23,9 +23,9 @@ const ArticleState = ({children}:{children:React.ReactNode})=>{
         let newArticles= await getArticles(pageNo)
         
         setarticles([...articles,...newArticles ])
-        setoffset((value)=>offset+1)
+        setoffset((value)=>pageNo+1)
       }
-
+      
     return(
         <ArticleContext.Provider value={{articles,fetchArticles, offset}}>
             {children}

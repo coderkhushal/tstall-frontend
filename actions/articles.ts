@@ -28,16 +28,7 @@ export const getArticleById = async (id: string) => {
     return data
 }
 
-export const getArticlesComments = async({id}: {id: string})=>{
-    const res = await fetch(`${BASE_URL}/newsapp/auth/getCommentsForArticle?articleId=${id}`,
-        {
-            method: 'GET',
-            headers: getGetAuthHeaders()
-        }
-    )
-    const data = await res.json()
-    return data
-}
+
 
 export const likeArticle = async({articleId, userId}: {articleId: string, userId: string})=>{
     const res = await fetch(`${BASE_URL}/newsapp/auth/likeArticle?userId=${userId}&articleId=${articleId}`,
@@ -48,6 +39,40 @@ export const likeArticle = async({articleId, userId}: {articleId: string, userId
     )
     const data = await res.text()
     console.log(data)
+    if(res.status === 200){
+        return {success: true, error: false}
+
+    }
+    else{
+        return {error: data, success: false}
+    }
+}
+export const dislikeArticle = async({articleId, userId}: {articleId: string, userId: string})=>{
+    const res = await fetch(`${BASE_URL}/newsapp/auth/dislikeArticle?userId=${userId}&articleId=${articleId}`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders()
+        }
+    )
+    const data = await res.text()
+    console.log(data)
+    if(res.status === 200){
+        return {success: true, error: false}
+
+    }
+    else{
+        return {error: data, success: false}
+    }
+}
+export const bookmarkArticle = async({articleId, userId}: {articleId: string, userId: string})=>{
+    const res = await fetch(`${BASE_URL}/newsapp/auth/saveBookmark?userId=${userId}&articleId=${articleId}`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders()
+        }
+    )
+    const data = await res.text()
+    
     if(res.status === 200){
         return {success: true, error: false}
 
