@@ -81,3 +81,23 @@ export const bookmarkArticle = async({articleId, userId}: {articleId: string, us
         return {error: data, success: false}
     }
 }
+
+export const getBookmarks = async (userId: string) => {
+    const res = await fetch(`${BASE_URL}/newsapp/auth/getBookmarksForUser?userId=${userId}`,
+        {
+            method: 'GET',
+            headers: getGetAuthHeaders()
+        }
+    )
+    const data = await res.json()
+    
+    if(res.status === 200){
+        return {success: true, error: false, data: data}
+
+    }
+    else{
+        return {error: data, success: false}
+    }
+
+
+}

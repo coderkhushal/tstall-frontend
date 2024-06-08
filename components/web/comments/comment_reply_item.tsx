@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentReply, reference }: { reference: string, replyId: string, userName: string, content: string, Imagesrc?: string, handleCommentReply: ({ content, commentId }: { content: string, commentId: string }) => void }) => {
   const [replies, setreplies] = useState<CommentType[]>([])
   const [replycontent, setreplycontent] = useState<string>("")
+  const [inputhidden, setinputhidden] = useState<boolean> (true)
   useEffect(() => {
     fetchReplies()
   }, [])
@@ -33,19 +34,26 @@ const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentR
               </div>
           </div>
           <p>{content}</p>
+          <div className='flex flex-col'>
+
           <div className="mt-2 flex   items-center">
             <Input
               value={replycontent}
               onChange={(e) => setreplycontent(e.target.value)}
-            />
-            <button className="py-2 px-4 font-medium bg-zinc-900 text-white hover:bg-zinc-800  rounded-lg" onClick={() => handleCommentReply({ content: replycontent, commentId: replyId })}>
+              className={`w-full ${inputhidden ? 'hidden' : 'block'}`}
+              />
+            <button className={`py-2 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-medium rounded-lg ${inputhidden ? 'hidden' : 'block'}`} onClick={() => handleCommentReply({ content: replycontent, commentId: replyId })}>
               Reply
             </button>
-
+              </div>
           </div>
+            <button className=" px-4 font-medium rounded-lg" onClick={()=>setinputhidden(false)} >
+            Reply 
+          </button>
         </div>
       </div>
       {/* reply of replies  */}
+      
       {replies.map((reply, index) => (
         <CommentReplyItem key={index} replyId={reply.id} userName={reply.userId} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
       ))}

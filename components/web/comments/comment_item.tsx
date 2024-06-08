@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input'
 
 const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, handleCommentReply}:{id: string,articleId: string, userName: string,  content: string, Imagesrc?: string, replyInfo: replyInfoType[], handleCommentReply: ({content,commentId}:{content: string, commentId :string})=>void}) => {
   const [replycontent, setreplycontent] = useState<string> ("")
+  const [inputhidden, setinputhidden] = useState<boolean> (true)
   return (
            
     <div className="media flex pb-4">
@@ -19,11 +20,19 @@ const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, ha
 
      
         <div className="mt-2 flex flex-col items-start">
+          <div className="flex">
+
           <Input
           value={replycontent}
           onChange={(e)=>setreplycontent(e.target.value)}
+          className={`w-full ${inputhidden ? 'hidden' : 'block'}`}
           />
-        <button className="py-2 px-4 font-medium rounded-lg" onClick={()=>handleCommentReply({content:replycontent, commentId: id })}>
+
+        <button className={`py-2 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-medium rounded-lg ${inputhidden ? 'hidden' : 'block'}`} onClick={()=>handleCommentReply({content:replycontent, commentId: id })}>
+            Post
+          </button>
+          </div>
+        <button className="pb-4 px-4 font-medium rounded-lg" onClick={()=>setinputhidden(false)} >
             Reply 
           </button>
           <div className='flex flex-col'>
