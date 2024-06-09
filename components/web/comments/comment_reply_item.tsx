@@ -55,7 +55,7 @@ const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentR
       {/* reply of replies  */}
       
       {replies.map((reply, index) => (
-        <CommentReplyItem key={index} replyId={reply.id} userName={reply.userId} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
+        <CommentReplyItem key={index} replyId={reply.id} userName={"replying user"} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
       ))}
     </>
   )

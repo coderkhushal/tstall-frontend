@@ -10,10 +10,10 @@ import NewsCardItemLong from './news_card_item_long'
 import NewsCardItemShort from './new_card_item_short'
 
 const NewsCard = () => {
-   const {articles, fetchArticles,offset} = useArticleContext()
+   const {articles,reload ,fetchArticles,offset} = useArticleContext()
    const { ref, inView } = useInView()
    useEffect(()=>{
-      fetchArticles(offset);
+      reload()
    },[])
    const LoadMore=()=>{
       fetchArticles(offset)

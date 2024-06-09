@@ -3,16 +3,19 @@ import { getArticles } from "@/actions/articles";
 import { ArticleType } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { articles as a } from "@/constants";
+import { set } from "zod";
 type ArticleContextType = {
     articles: ArticleType[]
     offset: number
     fetchArticles: (pageNo:number)=>Promise<void>
+    reload: ()=>Promise<void>
 }
 
 export const ArticleContext = createContext<ArticleContextType>({
     articles:[],
     offset: 1,
-    fetchArticles: async()=>{}
+    fetchArticles: async()=>{},
+    reload: async()=>{}
 })
 
 const ArticleState = ({children}:{children:React.ReactNode})=>{
@@ -25,9 +28,15 @@ const ArticleState = ({children}:{children:React.ReactNode})=>{
         setarticles([...articles,...newArticles ])
         setoffset((value)=>pageNo+1)
       }
-      
+      const reload = async()=>{
+        setoffset( 1)
+        setarticles([])
+        let newArticles= await getArticles(1)
+        setarticles([...newArticles])
+        setoffset((value)=>2)
+      }
     return(
-        <ArticleContext.Provider value={{articles,fetchArticles, offset}}>
+        <ArticleContext.Provider value={{articles,fetchArticles, offset, reload}}>
             {children}
         </ArticleContext.Provider>
     )
