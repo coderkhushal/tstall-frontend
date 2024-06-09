@@ -14,7 +14,7 @@ import {
 import { CommentType } from '@/types'
 import React, { useEffect, useState } from 'react'
 import CommentItem from './comment_item'
-import { comments as newcomments } from '@/constants'
+
 import { getUserId } from '@/hooks/getUserId'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
