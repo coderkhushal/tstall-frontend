@@ -58,7 +58,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
 
       case "BOOKMARK":
         result = await bookmarkArticle({ articleId: articleid, userId: userId })
-        console.log(result)
+        // console.log(result)
         if (result.success) {
           setbookmarked(true)
         }

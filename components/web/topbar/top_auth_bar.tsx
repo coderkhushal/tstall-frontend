@@ -14,7 +14,7 @@ const TopAuthBar = () => {
         <div className="px-7 bg-dark shadow-lg h-24 opacity-80 rounded-2xl mb-2">
             <div className="flex justify-between items-center h-full">
 
-              <Link href="/auth/signup">
+              <Link href="/auth/register">
                <Button variant={"outline"} className='p-6'>
                 Signup
                 </Button>

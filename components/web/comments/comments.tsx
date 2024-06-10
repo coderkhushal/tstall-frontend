@@ -56,9 +56,9 @@ const Comments = ({ articleId }: { articleId: string }) => {
 
     }
     const fetchComments = async () => {
-        console.log("fetching comments")
+        
         let newcomments = await getArticlesComments({ articleId: articleId })
-        console.log(newcomments)
+        
         setcomments([ ...newcomments])
     }
     useEffect(() => {

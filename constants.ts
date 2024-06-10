@@ -1,6 +1,6 @@
 import { Bookmark, FileText, Home } from "lucide-react";
 import { FaUserCircle } from "react-icons/fa";
-import { ArticleType, CommentType, RoutesType } from "./types";
+import { ArticleType, CommentType, RoutesType, StoryDataType } from "./types";
 
 export const routes:RoutesType[] = [
     {
@@ -245,3 +245,55 @@ export const articles: ArticleType[] = [
       topics: ["championship", "sports"]
     }
   ];
+  export const StoryData: StoryDataType[] = [
+    {
+        title: "business",
+        urlToImage: "https://images.shiksha.com/mediadata/images/articles/1708495536phpcWJB6r.jpeg",
+        stories: [
+            {
+                id: "66654c282b165631a1e4a136",
+                publishTime: "2024-06-09T06:31:03.622",
+                author: "Nishant Kumar",
+                title: "Sensex, Nifty 50 settle at fresh closing highs; 5 key factors that drove the market today | Stock Market News - Mint",
+                description: "Stock market today: Sensex closed with a gain of 1,619 points, or 2.16 per cent, at 76,693.36, while the Nifty 50 closed at 23,290.15, up 469 points, or 2.05 per cent.",
+                url: "https://www.livemint.com/market/stock-market-news/stock-market-today-sensex-nifty-50-settle-at-fresh-closing-highs-investors-earn-nearly-7-lakh-crore-in-a-day-11717754433614.html",
+                urlToImage: "https://www.livemint.com/lm-img/img/2024/06/07/1600x900/bsestocks-kUtF--621x414LiveMint_1717755759279_1717755759489.jpg"
+            },
+            {
+                id: "66654c282b165631a1e4a135",
+                publishTime: "2024-06-09T06:31:02.959",
+                author: "Anubhav Maurya",
+                title: "BSE Index Reshuffle June 2024: Mukesh Ambani's Jio Financial Services replaces THESE companies in THESE indices - Details - ET Now",
+                description: "Sanofi India through this demerger process is streamlining its consumer healthcare business to concentrate and accelerate growth in each business.",
+                url: "https://www.etnownews.com/markets/bse-index-reshuffle-june-2024-mukesh-ambanis-jio-financial-services-replaces-these-companies-in-these-indices-details-article-110796071",
+                urlToImage: "https://etstatic.tnn.in/thumb/msid-110796071,width-1280,height-720,resizemode-75/110796071.jpg"
+            },
+            // More stories...
+        ]
+    },
+    {
+        title: "entertainment",
+        urlToImage: "https://cdn.pixabay.com/photo/2017/07/21/23/57/concert-2527495_1280.jpg",
+        stories: [
+            {
+                id: "66654c3a2b165631a1e4a13f",
+                publishTime: "2024-06-09T06:31:20.605",
+                title: "BTS Jin's Brother Makes A Rare Appearance On An Influencer's TikTok - Koreaboo",
+                description: "BTS Jin's brother shocked netizens after making a rare appearance on an influencer's TikTok video, and it was filmed from their restaurant.",
+                url: "https://www.koreaboo.com/news/bts-jin-brother-rare-appearance-influencer-tiktok/",
+                urlToImage: "https://img.koreaboo.com/2024/06/FD2870-4-4.jpg"
+            },
+            {
+                id: "66654c3a2b165631a1e4a13e",
+                publishTime: "2024-06-09T06:31:18.67",
+                author: "Sonali Lambiwala",
+                title: "WATCH: Ekta Kapoor glows in ethnic white as she seeks blessings at Siddhivinayak Temple on her birthday - PINKVILLA",
+                description: "Ekta Kapoor Celebrated Her 49th Birthday On June 7 With A Visit To Mumbai's Siddhivinayak Temple, Where She Sought Divine Blessings. Read On!",
+                url: "https://www.pinkvilla.com/tv/news/watch-ekta-kapoor-glows-in-ethnic-white-as-she-seeks-blessings-at-siddhivinayak-temple-on-her-birthday-1314385",
+                urlToImage: "https://www.pinkvilla.com/images/2024-06/1201968782_fotojet-2024-06-07t181157-533-1.jpg"
+            },
+            // More stories...
+        ]
+    },
+    // More categories...
+];

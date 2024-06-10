@@ -24,6 +24,7 @@ import Social from '@/components/web/auth/social'
 
 import { useRouter } from 'next/navigation'
 import { login } from '@/actions/login'
+import { register } from '@/actions/register'
 const RegisterPage = () => {
 
     const [error, seterror] = useState<string | undefined>(undefined)
@@ -46,7 +47,7 @@ const RegisterPage = () => {
         setPending(true)
 
         try {
-            let result = await login({userName: values.userName , password: values.password})
+            let result = await register({userName: values.userName ,mailId: values.mailId, password: values.password})
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)

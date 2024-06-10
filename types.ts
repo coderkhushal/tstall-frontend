@@ -46,4 +46,19 @@ export type CommentType = {
    
 }
 
+export type Storytype={
+    id: string;
+    title: string;
+    urlToImage?: string;
+    url: string;
+    description: string;
+    author?: string;
+    publishTime: string;
+}
+export type StoryDataType={
+    title: string;
+    urlToImage: string;
+    stories: Storytype[]
+}
+
 export type replyInfoType = Pick<CommentType, "id" | "userName" | "content" | "urlToImage">;
