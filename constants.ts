@@ -27,6 +27,11 @@ export const routes:RoutesType[] = [
     }
 
 ]
+export const PublicRoutes= [
+  "/feed",
+  "/",
+  
+]
 export const articles: ArticleType[] = [
     {
       id: "1",

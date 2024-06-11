@@ -1,11 +1,12 @@
 "use client"
 
-import { getUser } from "@/actions/user";
+import { getUser, getUserByToken } from "@/actions/user";
+import { PublicRoutes } from "@/constants";
 import { getGetToken } from "@/hooks/getGetToken";
 import { getRemoveToken } from "@/hooks/getRemoveToken";
 import { getUserId } from "@/hooks/getUserId";
 import { UserType } from "@/types";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
@@ -21,17 +22,25 @@ export const AuthContext = createContext<AuthContextType>({
 const AuthState = ({children}:{children:React.ReactNode})=>{
     const [user, setuser] = useState<UserType | null>(null)
     const router = useRouter()
+    const pathname = usePathname()
     const fetchUser=async()=>{
-        const userId: string | null = getUserId()
-        if(!userId){
+        if(PublicRoutes.includes(pathname)){
             return;
         }
-        const result: UserType | null = await getUser({id: userId})
-        if(result === null){
-            getRemoveToken()
-            router.push("/auth/login");
+        const token =getGetToken()
+        if( !token){
+            router.push("/auth/login")
+            return;
         }
-        setuser((value)=>result)
+        const user: UserType | null= await getUserByToken({token})
+        if(!user){
+            getRemoveToken()
+            router.push("/auth/login")
+            return;
+        }
+       
+     
+        setuser((value)=>user)
     }
     useEffect(()=>{
         fetchUser()

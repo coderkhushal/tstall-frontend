@@ -108,7 +108,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
                     <div className='flex space-x-4 items-center '>
                       <div className='relative '>
 
-                      <NewsCardInteractions articleid={params.id} userDisliked={article.usersDisliked} userLiked={article.usersLiked} classname='space-x-2'/>
+                      <NewsCardInteractions articleid={params.id} userDisliked={article.usersDisliked} userLiked={article.usersLiked} classname='space-x-4'/>
                       </div>
                       <FaShare className='cursor-pointer transition-all hover:scale-110' />
                     

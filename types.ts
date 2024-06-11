@@ -61,4 +61,5 @@ export type StoryDataType={
     stories: Storytype[]
 }
 
+export type FeedType= ArticleType
 export type replyInfoType = Pick<CommentType, "id" | "userName" | "content" | "urlToImage">;

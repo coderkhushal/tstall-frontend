@@ -6,6 +6,7 @@ import MobileNavigation from "@/components/web/navigation/mobile_navigation";
 
 import ArticleState from "@/context/ArticlesContext";
 import AuthState from "@/context/AuthContext";
+import FeedState from "@/context/FeedContext";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,6 +25,7 @@ export default function RootLayout({
 
       <AuthState>
       <ArticleState>
+      <FeedState>
 
 
     <html lang="en">
@@ -33,6 +35,7 @@ export default function RootLayout({
         <MobileNavigation />
         </body>
     </html>
+      </FeedState>
       </ArticleState>
       </AuthState>
   
