@@ -6,20 +6,25 @@ import { getRemoveToken } from '@/hooks/getRemoveToken'
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { LuLogOut } from 'react-icons/lu'
 
 const ProfilePage = () => {
   const router = useRouter()
-  const { user } = useAuthContext()
-
+  const { user, logout } = useAuthContext()
+  useEffect(()=>{
+    if(!user){
+      router.push('/auth/login')
+    }
+  
+  }, [])
 
   return (
     <div className='h-full bg-primary w-full relative overflow-y-hidden overflow-x-hidden'>
-      <Button className='absolute top-2 right-2' onClick={() => { getRemoveToken(); router.push("/") }} ><LuLogOut className='text-black size-5' /></Button>
+      <Button className='absolute top-2 right-2' onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
       <div className='lg:w-1/2 mx-auto flex flex-col space-y-4 h-2/3 bg-primary'>
         <h1 className=' font-extrabold w-full h-10 items-center flex justify-center'>{user?.userName ? user.userName : "User"}</h1>
-        <div className='flex  justify-between space-x-2 items-center w-full lg:mx-auto px-6'>
+      <div className='flex  justify-between  space-x-2 items-center w-full lg:mx-auto  pl-2 pr-4'>
 
 
           <div className='flex flex-col items-center justify-center space-y-2  '>

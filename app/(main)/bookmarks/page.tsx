@@ -11,22 +11,23 @@ const BookMarksPage = () => {
     const {user} =  useAuthContext()
     useEffect(()=>{
 
-        const fetchBookMarks = async () => {    
-            const id = user?.id
-            if(!id){
-                
-                return;
-            }
-
-            const res= await getBookmarks(id)
-            
-            if(res.success){
-                setBookmarksList(res.data)
-            }
-          
-        }
+     
         fetchBookMarks()
     },[user?.id])
+    const fetchBookMarks = async () => {    
+        const id = user?.id
+        if(!id){
+            
+            return;
+        }
+
+        const res= await getBookmarks(id)
+        
+        if(res.success){
+            setBookmarksList(res.data)
+        }
+      
+    }
     if(!user?.id){
         return(
             <div className='w-full bg-primary h-full flex items-center justify-center'>
@@ -40,7 +41,7 @@ const BookMarksPage = () => {
     else
   return (
     <section className="h-full w-full light py-14 md:py-24 overflow-y-auto bg-primary dark:bg-[#0b1727] text-zinc-900 dark:text-white">
-    <div className="container px-4 mx-auto ">
+    <div className="container px-4 lg:px-6 mx-auto ">
         <div className="flex items-center justify-center mb-6 sm:mb-12">
             <div className="w-full max-w-xl text-center">
                 <h2 className="text-3xl leading-none md:text-[45px] font-bold mb-4">

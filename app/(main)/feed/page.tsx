@@ -109,10 +109,10 @@ const FeedPage = () => {
 
   return (
     <div className='py-32 pt-2 bg-zinc-900 w-full '>
-      <h1 className='w-full text-center specialtext h-18 '>TSTALL</h1>
-      <div className='flex w-full items-center justify-center my-2'>
+      <h1 className='bg-gradient-to-r from-yellow-900 via-yellow-600 to-yellow-800 inline-block text-transparent bg-clip-text text-3xl font-extrabold text-center w-full '>TSTALL <br /> Feed</h1>
+      <div className='flex w-full flex-col items-center justify-center mb-2 gap-2'>
 
-        <h1 className=' bg-gradient-to-r from-yellow-900 via-yellow-600 to-yellow-800 inline-block text-transparent bg-clip-text text-3xl font-extrabold text-center '>Feed</h1>
+        
         <FeedCategorySelect onValueChanging={onValueChange}/>
       </div>
       <section className=" py-12 px-6 grid grid-cols-1 gap-6 h-full overflow-y-scroll snap-y snap-mandatory text-stone-800 m-0">

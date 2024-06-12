@@ -6,7 +6,7 @@ const Loading = () => {
   return (
     <div className='h-full w-full flex justify-center items-center absolute '>
       Loading
-      <Coffee className='ml-2 text-dark'/>
+      <Coffee className='my-2 size-5 text-dark'/>
     </div>
   )
 }

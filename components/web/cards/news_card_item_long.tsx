@@ -4,7 +4,7 @@ import React from 'react'
 import NewsCardInteractions from './news_card_interactions'
 import Link from 'next/link'
 
-const NewsCardItemLong = ({ id, title, content, src ,userLiked, userDisliked }: { id: string, title: string, src: string, content: string, userLiked: string[] , userDisliked : string[]}) => {
+const NewsCardItemLong = ({ id, title, content, src ,userLiked, userDisliked, LastArticleRef }: { id: string, title: string, src: string, content: string, userLiked: string[] , userDisliked : string[], LastArticleRef:  React.LegacyRef<HTMLDivElement> | null}) => {
 
   return (
 
@@ -26,7 +26,7 @@ const NewsCardItemLong = ({ id, title, content, src ,userLiked, userDisliked }: 
     //     <NewsCardInteractions />
     //   </Link>
     // </div>
-    <article className='relative'>
+    <article className='relative' ref={LastArticleRef}>
 		<Link href={"article/" + id}>
 			<div className="grid grid-cols-12  bg-gray-200  border-4 items-center gap-6">
 				<div className="col-span-12 lg:col-span-7 lg:order-2">

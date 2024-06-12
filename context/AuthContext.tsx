@@ -11,22 +11,22 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
     fetchUser: ()=>Promise<void>
+    logout: ()=>void
     user : UserType | null
 }
 
 export const AuthContext = createContext<AuthContextType>({
     fetchUser: async()=>{},
+    logout: ()=>{},
     user: null
 })
 
 const AuthState = ({children}:{children:React.ReactNode})=>{
     const [user, setuser] = useState<UserType | null>(null)
     const router = useRouter()
-    const pathname = usePathname()
+
     const fetchUser=async()=>{
-        if(PublicRoutes.includes(pathname)){
-            return;
-        }
+
         const token =getGetToken()
         if( !token){
             router.push("/auth/login")
@@ -35,18 +35,24 @@ const AuthState = ({children}:{children:React.ReactNode})=>{
         const user: UserType | null= await getUserByToken({token})
         if(!user){
             getRemoveToken()
-            router.push("/auth/login")
+
             return;
         }
        
      
         setuser((value)=>user)
     }
+    const logout=()=>{
+        getRemoveToken()
+        router.push("/auth/login")
+        setuser(null)
+    
+    }
     useEffect(()=>{
         fetchUser()
     },[])
     return(
-        <AuthContext.Provider value={{fetchUser,user}}>
+        <AuthContext.Provider value={{fetchUser,user, logout}}>
             {children}
         </AuthContext.Provider>
     )

@@ -25,7 +25,13 @@ const NewsCard = () => {
     }
   }, [inView])
 
-
+  if(articles.length==0){
+    return(
+      <div className='h-full w-full flex items-center justify-center'>
+        <Loading/>
+      </div>
+    )
+  }
   return (
     <div className='flex flex-col p-2  lg:p-10 h-full overflow-y-auto'>
       {articles.map((item, index) => {
@@ -48,12 +54,12 @@ const NewsCard = () => {
         else{ 
           return (
             
-            <NewsCardItemLong id={item.id} userLiked={item.usersLiked} userDisliked= {item.usersDisliked} title={item.title} src={item.urlToImage ? item.urlToImage :"https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} key={index} content={item.content ?  item.content : ""} />
+            <NewsCardItemLong LastArticleRef={index==articles.length-1 ? ref : null} id={item.id} userLiked={item.usersLiked} userDisliked= {item.usersDisliked} title={item.title} src={item.urlToImage ? item.urlToImage :"https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} key={index} content={item.content ?  item.content : ""} />
 
           )
         }
       })}
-      <div ref={ref} className='relative h-full w-full'><Loading/></div>
+      
     </div>
   )
 }
