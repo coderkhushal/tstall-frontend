@@ -38,9 +38,11 @@ export const likeArticle = async({articleId, userId}: {articleId: string, userId
         }
     )
     const data = await res.text()
-    console.log(data)
-    if(res.status === 200){
-        return {success: true, error: false}
+    if(data==="User have already reacted to the article"){
+        return {success:false, error: data}
+    }
+    else if(res.status === 200){
+        return {success: true, error: null}
 
     }
     else{
@@ -55,9 +57,11 @@ export const dislikeArticle = async({articleId, userId}: {articleId: string, use
         }
     )
     const data = await res.text()
-    console.log(data)
+    if(data=="User have already reacted to the article"){
+        return {success: false, error: data}
+    }
     if(res.status === 200){
-        return {success: true, error: false}
+        return {success: true, error: null}
 
     }
     else{

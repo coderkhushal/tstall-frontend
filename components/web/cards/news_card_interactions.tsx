@@ -34,7 +34,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
   const handleClick = async ({ type }: { type: "LIKE" | "DISLIKE" | "BOOKMARK" }) => {
 
     let userId = getUserId()
-    console.log(userId, articleid)
+
     if (!userId) {
       alert("user id not found");
       return;
@@ -43,6 +43,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
     switch (type) {
       case "LIKE":
         result = await likeArticle({ articleId: articleid, userId: userId })
+        console.log(result)
         if (result.success) {
           setliked(true)
           setnumLiked(value=>(value+1))
