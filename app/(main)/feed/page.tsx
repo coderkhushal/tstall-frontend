@@ -4,9 +4,11 @@ import FeedCard from '@/components/web/feed/feed_card'
 import { useFeedContext } from '@/context/FeedContext'
 import { ArticleType, CategoryType } from '@/types'
 import { useInView } from 'react-intersection-observer'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useId, useState } from 'react'
 import Loading from '@/components/ui/loading'
 import FeedCategorySelect from '@/components/web/feed/feed_category_select'
+import { cn } from '@/lib/utils'
+import DottedBg from '@/components/web/style/dotted_bg'
 
 const FeedPage = () => {
   // states 
@@ -106,24 +108,24 @@ const FeedPage = () => {
     }
 
   }
-
+  
   return (
-    <div className='py-32 pt-2 bg-gray-200 w-full overflow-y-hidden '>
+    <div className='py-32 pt-2  w-full relative overflow-y-hidden '>
+     <DottedBg/>
+      <div className='flex  w-full flex-col  px-6 py-4 lg:justify-center lg:items-center '>
 
-      <div className='flex w-full flex-col px-6 py-4 lg:justify-center lg:items-center '>
 
-        
-        <FeedCategorySelect onValueChanging={onValueChange}/>
+        <FeedCategorySelect onValueChanging={onValueChange} />
       </div>
       <section className=" py-12 pt-6 px-6 grid grid-cols-1 gap-6 h-full overflow-y-scroll snap-y snap-mandatory text-stone-800 m-0">
 
 
         {currentArticles?.map((article, index) => {
-          return <FeedCard LastArticleRef={index==currentArticles.length-1 ? ref: null} key={index} article={article} />
+          return <FeedCard LastArticleRef={index == currentArticles.length - 1 ? ref : null} key={index} article={article} />
         })}
         <div className='relative'>
 
-        <Loading/>
+          <Loading />
         </div>
       </section>
 

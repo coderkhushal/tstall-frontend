@@ -81,7 +81,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
   return (
     <Suspense>
 
-      <div className={` ${classname} flex  bg-secondary  justify-around  py-2 `}>
+      <div className={` ${classname} flex   justify-around  py-2 `}>
       <div className="flex items-center justify-center space-x-1">
 
         <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />

@@ -29,7 +29,7 @@ const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked , 
       </Link>
       <div className='absolute w-full left-0 bottom-1 text-xl'>
 
-        <NewsCardInteractions articleid={id} userLiked={userLiked } userDisliked={userDisliked}  />
+        <NewsCardInteractions articleid={id} userLiked={userLiked } userDisliked={userDisliked} classname='bg-secondary'  />
       </div>
     </div>
    

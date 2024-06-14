@@ -51,7 +51,7 @@ const NewsCardItemLong = ({ id, title, content, src ,userLiked, userDisliked, La
       
 
 						</Link>
-      <NewsCardInteractions articleid={id} userLiked={userLiked} userDisliked={userDisliked}/>
+      <NewsCardInteractions articleid={id} userLiked={userLiked} userDisliked={userDisliked} classname='bg-secondary'/>
       
 		</article>
 
