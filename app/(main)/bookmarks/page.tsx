@@ -50,7 +50,7 @@ const BookMarksPage = () => {
             
             </div>
         </div>
-        <div className="grid grid-cols-2 h-full overflow-y-auto   w-full gap-10 mt-12  ">
+        <div className="grid grid-cols-2 h-full overflow-y-auto overflow-x-hidden  w-full gap-10 mt-12  ">
             {BookmarksList.map((bookMark, i) => (
                 <div className="col-span-2 md:col-span-1" key={i}>
                     <BookMarkItem article={bookMark} />
