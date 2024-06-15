@@ -41,7 +41,7 @@ const BookMarksPage = () => {
     else
   return (
     <section className="h-full w-full light py-14 md:py-24 overflow-y-auto  bg-primary dark:bg-[#0b1727] text-zinc-900 dark:text-white">
-    <div className="container px-4 lg:px-6 mx-auto ">
+    <div className="container px-4 w-full lg:px-6 mx-auto flex flex-col ">
         <div className="flex items-center justify-center mb-6 sm:mb-12">
             <div className="w-full max-w-xl text-center">
                 <h2 className="text-3xl leading-none md:text-[45px] font-bold mb-4">
@@ -50,7 +50,7 @@ const BookMarksPage = () => {
             
             </div>
         </div>
-        <div className="grid grid-cols-2 h-full overflow-y-auto overflow-x-hidden w-full gap-6 mt-12 max-w-8xl ">
+        <div className="grid grid-cols-2 h-full overflow-y-auto   w-full gap-10 mt-12  ">
             {BookmarksList.map((bookMark, i) => (
                 <div className="col-span-2 md:col-span-1" key={i}>
                     <BookMarkItem article={bookMark} />
