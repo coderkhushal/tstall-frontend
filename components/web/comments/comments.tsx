@@ -70,7 +70,7 @@ const Comments = ({ articleId }: { articleId: string }) => {
     return (
         <DrawerContent className='h-3/4 bg-secondary'>
 
-            <div className="mx-auto lg:mx-20 w-full  h-full px-2 overflow-y-auto">
+            <div className="mx-auto lg:mx-10 w-full  h-full px-2 overflow-y-auto">
                 <DrawerHeader>
                     <div className="flex items-center justify-start">
                         <Input
@@ -83,7 +83,7 @@ const Comments = ({ articleId }: { articleId: string }) => {
                             <SendHorizonal/>
                         </Button>
                     </div>
-                    <DrawerTitle className=' text-3xl'>Comments</DrawerTitle>
+                    <DrawerTitle className=' text-3xl mt-2'>Comments</DrawerTitle>
                 </DrawerHeader>
 
                 {

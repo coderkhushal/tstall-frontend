@@ -9,7 +9,7 @@ const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, ha
   const [inputhidden, setinputhidden] = useState<boolean> (true)
   return (
            
-    <div className="media flex pb-4">
+    <div className="media flex p-10 pb-4 shadow-xl">
       <a className="mr-4" href="#">
         <img className="rounded-full max-w-none w-12 h-12" src={Imagesrc? Imagesrc: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} />
       </a>
