@@ -2,6 +2,7 @@ import { replyInfoType } from '@/types'
 import React, { useState } from 'react'
 import CommentReplyItem from './comment_reply_item'
 import { Input } from '@/components/ui/input'
+import { SendHorizonal } from 'lucide-react'
 
 const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, handleCommentReply}:{id: string,articleId: string, userName: string,  content: string, Imagesrc?: string, replyInfo: replyInfoType[], handleCommentReply: ({content,commentId}:{content: string, commentId :string})=>void}) => {
   const [replycontent, setreplycontent] = useState<string> ("")
@@ -28,13 +29,14 @@ const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, ha
           className={`w-full ${inputhidden ? 'hidden' : 'block'}`}
           />
 
-        <button className={`py-2 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-medium rounded-lg ${inputhidden ? 'hidden' : 'block'}`} onClick={()=>handleCommentReply({content:replycontent, commentId: id })}>
-            Post
+        <button className={`py-2 px-4  font-medium rounded-lg ${inputhidden ? 'hidden' : 'block'}`} onClick={()=>handleCommentReply({content:replycontent, commentId: id })}>
+        <SendHorizonal/>
           </button>
           </div>
-        <button className="pb-4 px-4 font-medium rounded-lg" onClick={()=>setinputhidden(false)} >
+        {inputhidden &&<button className="pb-4 px-4 font-medium rounded-lg" onClick={()=>setinputhidden(false)} >
             Reply 
           </button>
+}
           <div className='flex flex-col'>
 
           {replyInfo.map((reply, index) => (

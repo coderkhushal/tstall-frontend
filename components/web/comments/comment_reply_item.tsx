@@ -3,6 +3,7 @@
 import { getRepliesForReply } from '@/actions/comments'
 import { Input } from '@/components/ui/input'
 import { CommentType } from '@/types'
+import { SendHorizonal } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
 const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentReply, reference }: { reference: string, replyId: string, userName: string, content: string, Imagesrc?: string, handleCommentReply: ({ content, commentId }: { content: string, commentId: string }) => void }) => {
@@ -26,14 +27,14 @@ const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentR
         </a>
         <div className="media-body">
           <div>
-            <div className="inline-block text-base font-bold mr-2" >
+            <div className="inline-block text-base font-extrabold mr-2" >
               {userName}
               </div>
-              <div className='font-medium'>
+              <div className='font-bold italic '>
                 Reply to {reference}
               </div>
           </div>
-          <p>{content}</p>
+          <p className=' font-medium'>{content}</p>
           <div className='flex flex-col'>
 
           <div className="mt-2 flex   items-center">
@@ -42,20 +43,21 @@ const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentR
               onChange={(e) => setreplycontent(e.target.value)}
               className={`w-full ${inputhidden ? 'hidden' : 'block'}`}
               />
-            <button className={`py-2 px-4 bg-zinc-900 hover:bg-zinc-800 text-white font-medium rounded-lg ${inputhidden ? 'hidden' : 'block'}`} onClick={() => handleCommentReply({ content: replycontent, commentId: replyId })}>
-              Reply
+            <button className={`py-2 px-4  font-medium rounded-lg ${inputhidden ? 'hidden' : 'block'}`} onClick={() => handleCommentReply({ content: replycontent, commentId: replyId })} >
+              <SendHorizonal/>
             </button>
               </div>
           </div>
-            <button className=" px-4 font-medium rounded-lg" onClick={()=>setinputhidden(false)} >
+            {inputhidden && <button className=" px-4 font-medium rounded-lg" onClick={()=>setinputhidden(false)} >
             Reply 
           </button>
+}
         </div>
       </div>
       {/* reply of replies  */}
       
       {replies.map((reply, index) => (
-        <CommentReplyItem key={index} replyId={reply.id} userName={"replying user"} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
+        <CommentReplyItem key={index} replyId={reply.id} userName={reply.userName} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
       ))}
     </>
   )

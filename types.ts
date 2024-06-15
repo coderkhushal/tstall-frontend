@@ -63,3 +63,7 @@ export type StoryDataType={
 
 export type FeedType= ArticleType
 export type replyInfoType = Pick<CommentType, "id" | "userName" | "content" | "urlToImage">;
+export type LanguageType={
+    code:string;
+    language:string;
+}

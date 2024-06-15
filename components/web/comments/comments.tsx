@@ -18,6 +18,7 @@ import CommentItem from './comment_item'
 import { getUserId } from '@/hooks/getUserId'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { SendHorizonal } from 'lucide-react'
 const Comments = ({ articleId }: { articleId: string }) => {
     const [comments, setcomments] = useState<CommentType[]>([])
     const [content, setcontent] = useState<string>("")
@@ -78,8 +79,8 @@ const Comments = ({ articleId }: { articleId: string }) => {
                             className='w-3/4'
                             placeholder='Write a comment...'
                         />
-                        <Button className="py-2 px-4 font-medium rounded-lg bg-zinc-900 hover:bg-zinc-800" onClick={() => handleComment(content)}>
-                            Comment
+                        <Button className="py-2 px-4 font-medium rounded-lg text-black" onClick={() => handleComment(content)} variant={"secondary"}>
+                            <SendHorizonal/>
                         </Button>
                     </div>
                     <DrawerTitle className=' text-3xl'>Comments</DrawerTitle>

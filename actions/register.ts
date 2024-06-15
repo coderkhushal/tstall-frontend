@@ -23,7 +23,7 @@ export const  register = async (values: z.infer<typeof RegisterSchema>) => {
   
   const data = await res.text();
 
-  if (res.status !== 200) {
+  if (res.status !== 200 || data=="Email already exists" || data=="UserName already exists") {
     return { error: data };
   }
    

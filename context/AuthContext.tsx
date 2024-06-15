@@ -33,6 +33,7 @@ const AuthState = ({children}:{children:React.ReactNode})=>{
             return;
         }
         const user: UserType | null= await getUserByToken({token})
+        console.log(user)
         if(!user){
             getRemoveToken()
 

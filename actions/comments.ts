@@ -47,7 +47,7 @@ export const postCommentReply = async({articleId,  commentId,userId, content,url
     }
 }
 export const getRepliesForReply = async({commentId}: {commentId: string})=>{
-    const res = await fetch(`${BASE_URL}/newsapp/auth/getRepliesForComment?commentId=${commentId}`,
+    const res = await fetch(`${BASE_URL}/newsapp/auth/getRepliesForComment2?commentId=${commentId}`,
         {
             method: 'GET',
             headers: getGetAuthHeaders()

@@ -24,3 +24,14 @@ export const RegisterSchema = z.object({
   })
   
 })
+
+
+export const ProfileSchema = z.object({
+
+  dateOfBirth: z.string(),
+  gender: z.string(),
+  languages: z.array(z.string()),
+  region: z.array(z.string()),
+  topicsOfInterest: z.array(z.string())
+
+})
