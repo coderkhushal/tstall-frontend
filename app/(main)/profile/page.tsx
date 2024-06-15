@@ -67,10 +67,10 @@ const ProfilePage = () => {
         </div>
         <h1 className='px-4 font-extrabold'>Interests</h1>
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-2  px-2 '>
-          {user?.topicsOfInterest.map((e) => {
+          {user?.topicsOfInterest.map((e, index) => {
 
             return (
-              <Button variant={"outline"} className='w-full' >{e}</Button>
+              <Button key={index} variant={"outline"} className='w-full' >{e}</Button>
             )
           })}
 
