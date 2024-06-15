@@ -85,7 +85,7 @@ const Comments = ({ articleId }: { articleId: string }) => {
                     </div>
                     <DrawerTitle className=' text-3xl mt-2'>Comments</DrawerTitle>
                 </DrawerHeader>
-
+                
                 {
                     comments.map((comment, index) => (
                         <CommentItem key={index} id={comment.id} articleId={articleId} Imagesrc={comment.urlToImage} userName={comment.userName} content={comment.content} replyInfo={comment.replyInfo} handleCommentReply={handleCommentReply} />

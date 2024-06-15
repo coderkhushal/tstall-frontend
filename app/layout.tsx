@@ -7,6 +7,7 @@ import MobileNavigation from "@/components/web/navigation/mobile_navigation";
 import ArticleState from "@/context/ArticlesContext";
 import AuthState from "@/context/AuthContext";
 import FeedState from "@/context/FeedContext";
+import { Toaster } from "@/components/ui/toaster";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -31,6 +32,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="cantata-one-regular overflow-x-hidden">
         
+        <Toaster />
         {children}
         <MobileNavigation />
         </body>

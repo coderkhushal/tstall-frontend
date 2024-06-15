@@ -14,6 +14,9 @@ import { getIsTokenExpired } from '@/hooks/getIsTokenExpired'
 import { getGetToken } from '@/hooks/getGetToken'
 import { useRouter } from 'next/navigation'
 import NewsCardInteractions from '@/components/web/cards/news_card_interactions'
+import ShareList from '@/components/web/functionalities/share_button'
+import { Dialog } from '@/components/ui/dialog'
+import { DialogTrigger, DialogContent } from '@/components/ui/dialog'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [article, setarticle] = useState<ArticleType | null>(null)
@@ -117,7 +120,16 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
 
                         <NewsCardInteractions articleid={params.id} userDisliked={article.usersDisliked} userLiked={article.usersLiked} classname='space-x-4  lg:space-x-8 lg:text-3xl' />
                       </div>
-                      <FaShare className='cursor-pointer transition-all hover:scale-110 lg:text-3xl' />
+                      <Dialog>
+                        <DialogTrigger>
+
+                          <FaShare className='cursor-pointer transition-all hover:scale-110 lg:text-3xl' />
+
+                        </DialogTrigger>
+
+                        <ShareList />
+
+                      </Dialog>
 
                       <DrawerTrigger>
 
