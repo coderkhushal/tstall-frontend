@@ -28,12 +28,12 @@ const NewsCardItemLong = ({ id, title, content, src ,userLiked, userDisliked, La
     // </div>
     <article className='relative' ref={LastArticleRef}>
 		<Link href={"article/" + id}>
-			<div className="grid grid-cols-12  bg-gray-200  border-4 items-center gap-6">
-				<div className="col-span-12 lg:col-span-7 lg:order-2">
+			<div className="grid grid-cols-12 bg-gray-200 border-4 items-center gap-6">
+				<div className="col-span-12 lg:col-span-7 lg:order-2 justify-end ">
 					<img
 						src={src}
 						alt={title.substring(0, 10) + "..."}
-						className="max-w-full h-auto rounded "
+						className="w-full h-auto bg-cover rounded  "
 						/>
 				</div>
 				<div className="col-span-12 lg:col-span-5 lg:order-1 relative">
