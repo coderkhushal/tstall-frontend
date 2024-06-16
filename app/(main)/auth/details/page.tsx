@@ -23,12 +23,14 @@ import { Languages, topicsOfInterest } from '@/constants'
 import ProfileLanguageItem from '@/components/web/profile/profile_language_item'
 import ProfileTopicsItem from '@/components/web/profile/profile_topics_item'
 import { updateProfile } from '@/actions/user'
+import { useRouter } from 'next/navigation'
 
 
 
 
 const ProfileEditCard = () => {
     const [page, setpage] = useState(1)
+    const router= useRouter()
     const [userInfo, setUserInfo] = useState<Pick<UserType, "id" | "dateOfBirth" | "gender" | "urlToImage" | "languages" | "region" | "topicsOfInterest">>({
         id: "",
         dateOfBirth: "",
@@ -69,8 +71,15 @@ const ProfileEditCard = () => {
 
     }
     const handleSubmit = async()=>{
-        const res =await updateProfile(userInfo)
-        
+        const isUpdated=await updateProfile(userInfo)
+        if(isUpdated){
+            alert("Profile Updated")
+            router.push("/auth/login")
+        }
+        else{
+            alert("Error Occured While Updating Proile")
+        }
+
     }
     if (page == 1)
         return (
@@ -78,7 +87,7 @@ const ProfileEditCard = () => {
             <div className="flex flex-col bg-gradient-to-b  from-orange-300 to-slate-50 items-center p-5 lg:py-20 w-full h-full">
                 <h1 className='text-zinc-900 font-bold text-3xl overflow-y-scroll'>Languages</h1>
                 <div className='grid grid-cols-1  lg:grid-cols-2 lg:gap-6 lg:mt-20 w-4/5 py-8  items-center space-y-4'>
-                    {Languages.map((language) => <ProfileLanguageItem label={language.language} code={language.code} userInfo={userInfo} onClicked={handleValueChange} />)}
+                    {Languages.map((language, index) => <ProfileLanguageItem key={index} label={language.language} code={language.code} userInfo={userInfo} onClicked={handleValueChange} />)}
                 </div>
 
 
@@ -99,7 +108,7 @@ const ProfileEditCard = () => {
                     General
                 </div>
                 <div className='grid grid-cols-2  gap-3 pb-4 px-2 mb-10 mt-3 lg:gap-20 lg:grid-cols-3   '>
-                    {topicsOfInterest.map((topic) => <ProfileTopicsItem topic={topic} userInfo={userInfo} onClicked={handleValueChange} />)}
+                    {topicsOfInterest.map((topic, index) => <ProfileTopicsItem key={index} topic={topic} userInfo={userInfo} onClicked={handleValueChange} />)}
                 </div>
                 <div className='flex space-x-4 w-1/2 mx-auto  justify-center'>
 

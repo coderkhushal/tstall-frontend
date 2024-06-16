@@ -51,7 +51,7 @@ const RegisterPage = () => {
             setsuccess(result.success)
             setPending(false)
             if(result.success){
-                router.push("/auth/login")
+                router.push("/auth/details")
             }
 
         }
