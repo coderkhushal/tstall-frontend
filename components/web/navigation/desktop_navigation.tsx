@@ -8,9 +8,10 @@ const DeskTopNavigation = () => {
   return (
     <aside className="bg-gray-800 hidden lg:block text-white w-64 min-h-screen p-4">
     <nav>
-        <Link href="/">
+        <Link href="/" className='flex space-x-2 my-3 mb-6 items-center justify-center'>
 
-    <Image src="/assets/logo.jpeg" alt="logo" width={150} height={50} className='mb-7 mx-auto  rounded-xl' />
+    <Image src="/assets/logo.jpeg" alt="logo" width={50} height={50} className=' mx-auto  rounded-xl' />
+    <h1 className='w-full text-center specialtext h-full py-2'>TSTALL</h1>
         </Link>
       <ul className="space-y-4">
      {routes.map((e, index)=>
