@@ -152,7 +152,7 @@ const TopbarStories = () => {
                         <DialogHeader className='w-full text-center  text-2xl font-extrabold text-zinc-900 bg-primary'>
 
                             <DialogDescription className='w-full h-full flex items-center justify-between flex-1 '>
-                                <h1 className='px-2 z-30 absolute top-10  py-4 text-2xl text-zinc-900 bg-white text-center flex itemce justify-center opacity-65 '>
+                                <h1 className='px-2 z-30 absolute bottom-12  py-4 text-2xl text-zinc-900 bg-white text-center flex itemce justify-center opacity-65 '>
 
                                     {storydata.length > StoryDataNumber ? storydata[StoryDataNumber].stories[storyNumber].title.substring(0, 130) + "..." : ""}
                                 </h1>
