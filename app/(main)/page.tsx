@@ -7,9 +7,9 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div className="w-full h-4/5 flex flex-col">
+    <div className="w-full h-4/5 lg:h-[90%] flex flex-col">
       <Topbar />
-      <div className='h-[98%] relative w-full'>
+      <div className='h-[98%]  relative w-full'>
         <DottedBg/>
         <NewsCard />
       </div>
