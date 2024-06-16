@@ -1,16 +1,12 @@
 "use client"
 import { Button } from '@/components/ui/button'
-import { Dialog } from '@/components/ui/dialog'
-import ProfileEditCard from '@/components/web/profile/profile_edit_cad'
+
 import { useAuthContext } from '@/context/AuthContext'
-import { getRemoveToken } from '@/hooks/getRemoveToken'
-import { DialogTrigger } from '@radix-ui/react-dialog'
 
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
-import { FaEdit } from 'react-icons/fa'
 import { LuLogOut } from 'react-icons/lu'
 
 const ProfilePage = () => {
@@ -24,9 +20,9 @@ const ProfilePage = () => {
   }, [])
 
   return (
-    <div className='h-full bg-primary w-full relative overflow-y-hidden overflow-x-hidden'>
+    <div className='h-full bg-gradient-to-b from-orange-300 to-slate-50 w-full relative overflow-y-hidden overflow-x-hidden'>
       <Button className='absolute top-2 right-2' onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
-      <div className='lg:w-1/2 mx-auto flex flex-col space-y-4 h-2/3 bg-primary'>
+      <div className='lg:w-1/2 mx-auto flex flex-col space-y-4 h-2/3 '>
         <h1 className=' font-extrabold w-full h-10 items-center flex justify-center'>{user?.userName ? user.userName : "User"}</h1>
         <div className='flex  justify-between  space-x-2 items-center w-full lg:mx-auto  pl-2 pr-4'>
 

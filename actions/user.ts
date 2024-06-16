@@ -1,6 +1,7 @@
 import { getGetAuthHeaders } from "@/hooks/getGetAuthHeaders"
 import { getUserId } from "@/hooks/getUserId"
-import { ProfileSchema } from "@/schemas"
+import { UserType } from "@/types"
+
 import { User } from "lucide-react"
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL as string
 import { z } from "zod"
@@ -46,8 +47,8 @@ catch(err){
 
 }
 }
-
-export const updateProfile = async(data: z.infer<typeof ProfileSchema>)=>{
+type UpdateProfileType =Pick<UserType, "id" | "dateOfBirth" | "gender" | "urlToImage" | "languages" | "region" | "topicsOfInterest">
+export const updateProfile = async(data:UpdateProfileType)=>{
     try{
         const res = await fetch(`${BASE_URL}/newsapp/auth/editUserProfile`,
         {
@@ -56,6 +57,8 @@ export const updateProfile = async(data: z.infer<typeof ProfileSchema>)=>{
             body: JSON.stringify({...data, id: getUserId()})
         }
     )
+    const result: UpdateProfileType  = await res.json()
+    console.log(result)
     if(res.status === 200){
         return true
     }

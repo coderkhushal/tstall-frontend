@@ -116,7 +116,7 @@ const LoginPage = () => {
 
                         <FormError message={error} />
                         <FormSuccess message={success} />
-                        <div className='w-full text-center text-base font-light my-0'>or continue with</div>
+                        {/* <div className='w-full text-center text-base font-light my-0'>or continue with</div> */}
 
                         {/* <Social /> */}
                         <Button type="submit" className='w-full bg-orange-300' variant={"secondary"} disabled={Pending}>Submit</Button>

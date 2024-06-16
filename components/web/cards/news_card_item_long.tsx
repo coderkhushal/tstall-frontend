@@ -38,8 +38,11 @@ const NewsCardItemLong = ({ id, title, content, src ,userLiked, userDisliked, La
 				</div>
 				<div className="col-span-12 lg:col-span-5 lg:order-1 relative">
 					<div className="mt-6 lg:mt-0 lg:pl-6">
-						<h4 className="font-medium text-2xl md:text-[40px] md:leading-[50px] mb-2">
+						<h4 className="font-bold text-2xl md:text-[40px] md:leading-[50px] mb-2 lg:hidden">
 							{title.substring(0,120)}
+						</h4>
+						<h4 className="font-bold text-2xl md:text-[40px] md:leading-[50px] mb-2 hidden lg:flex">
+							{title.substring(0,200)+"..."}
 						</h4>
 						<p className="md:text-lg opacity-60 mt-3 mb-6">
 							{content.substring(0,300)}

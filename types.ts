@@ -27,7 +27,7 @@ export type UserType ={
     "id": string,
     "mailId": string,
     "dateOfBirth": string,
-    "gender": "male" | "female",
+    "gender": "male" | "female" | "others",
     "userName": string,
     "urlToImage":string,
     "languages": string[],

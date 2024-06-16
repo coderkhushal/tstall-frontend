@@ -15,8 +15,11 @@ const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked , 
       
       <Link href={"article/" + id}>
 
-        <h1 className='h-1/4 p-2 w-full lg:text-3xl overflow-x-auto font-extrabold'>
+        <h1 className='h-1/4 p-2 w-full font-bold lg:text-2xl lg:hidden  overflow-x-auto '>
           {title.substring(0, 30)+"..."}
+        </h1>
+        <h1 className='h-1/4 p-2 w-full font-bold lg:text-2xl lg:block hidden overflow-x-auto '>
+          {title.substring(0, 300)+"..."}
         </h1>
         <img alt={title.substring(0, 10) + "..."} src={src} className='h-1/2 w-full' />
         <div className='h-2/5  flex overflow-x-hidden my-2 lg:hidden md:flex '>

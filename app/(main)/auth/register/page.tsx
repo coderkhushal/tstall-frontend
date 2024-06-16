@@ -20,17 +20,16 @@ import { Input } from "@/components/ui/input"
 
 import FormSuccess from '@/components/web/auth/form_success'
 import FormError from '@/components/web/auth/form_error'
-import Social from '@/components/web/auth/social'
+
+import { register } from '@/actions/register'
 
 import { useRouter } from 'next/navigation'
-import { login } from '@/actions/login'
-import { register } from '@/actions/register'
 const RegisterPage = () => {
 
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
     const [Pending, setPending] = useState(false)
-
+    const router= useRouter()
 
 
     const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -51,6 +50,9 @@ const RegisterPage = () => {
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)
+            if(result.success){
+                router.push("/auth/login")
+            }
 
         }
         catch (err) {
@@ -129,7 +131,7 @@ const RegisterPage = () => {
 
                         <FormError message={error} />
                         <FormSuccess message={success} />
-                        <div className='w-full text-center text-base font-light my-0'>or continue with</div>
+                       
 
                         {/* <Social /> */}
                         <Button type="submit" className='w-full bg-orange-300' variant={"secondary"} disabled={Pending}>Submit</Button>
