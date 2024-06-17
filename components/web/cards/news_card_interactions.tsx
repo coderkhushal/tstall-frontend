@@ -1,5 +1,5 @@
 "use client"
-import { bookmarkArticle, dislikeArticle, likeArticle } from '@/actions/articles'
+import { bookmarkArticle, dislikeArticle, likeArticle, removeReaction } from '@/actions/articles'
 import { useAuthContext } from '@/context/AuthContext'
 import { getUserId } from '@/hooks/getUserId'
 import React, { Suspense, useEffect, useState } from 'react'
@@ -42,25 +42,50 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
     let result;
     switch (type) {
       case "LIKE":
-        result = await likeArticle({ articleId: articleid, userId: userId })
-        console.log(result)
-        if (result.success) {
-          setliked(true)
-          setnumLiked(value=>(value+1))
-        }
-        else {
-          alert(result.error)
+        if(liked){
+          result = await removeReaction({ articleId: articleid, userId: userId })
+          if (result.success) {
+            setliked(false)
+            setnumLiked(value=>(value-1))
+          }
+          else {
+            alert(result.error)
+          }
+        } 
+        else{
+
+          result = await likeArticle({ articleId: articleid, userId: userId })
+          console.log(result)
+          if (result.success) {
+            setliked(true)
+            setnumLiked(value=>(value+1))
+          }
+          else {
+            alert(result.error)
+          }
         }
         break;
         case "DISLIKE":
-          result = await dislikeArticle({ articleId: articleid, userId: userId })
-          if (result.success) {
-            setdisliked(true)
-            setnumDisliked(value=>(value+1))
-          
-        }
-        else {
-          alert(result.error)
+          if(disliked){
+            result = await removeReaction({ articleId: articleid, userId: userId })
+            if (result.success) {
+              setdisliked(false)
+              setnumDisliked(value=>(value-1))
+            }
+            else {
+              alert(result.error)
+            }
+          } 
+          else{
+            result = await dislikeArticle({ articleId: articleid, userId: userId })
+            if (result.success) {
+              setdisliked(true)
+              setnumDisliked(value=>(value+1))
+            
+          }
+          else {
+            alert(result.error)
+          }
         }
         break;
 
