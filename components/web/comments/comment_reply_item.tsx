@@ -2,11 +2,12 @@
 "use client"
 import { getRepliesForReply } from '@/actions/comments'
 import { Input } from '@/components/ui/input'
+import { getRelativeTime } from '@/hooks/getRelativeTime'
 import { CommentType } from '@/types'
 import { SendHorizonal } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 
-const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentReply, reference }: { reference: string, replyId: string, userName: string, content: string, Imagesrc?: string, handleCommentReply: ({ content, commentId }: { content: string, commentId: string }) => void }) => {
+const CommentReplyItem = ({ replyId,timeStamp,  userName, Imagesrc, content, handleCommentReply, reference }: { reference: string, timeStamp?: string,  replyId: string, userName: string, content: string, Imagesrc?: string, handleCommentReply: ({ content, commentId }: { content: string, commentId: string }) => void }) => {
   const [replies, setreplies] = useState<CommentType[]>([])
   const [replycontent, setreplycontent] = useState<string>("")
   const [inputhidden, setinputhidden] = useState<boolean> (true)
@@ -28,7 +29,9 @@ const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentR
         <div className="media-body">
           <div>
             <div className="inline-block text-base font-extrabold mr-2" >
-              {userName}
+              {userName} <br /> <div className='font-medium'>
+              {timeStamp ? getRelativeTime(timeStamp)+" ago" : ""} 
+                </div>
               </div>
               <div className='font-bold italic '>
                 Reply to {reference}
@@ -57,7 +60,7 @@ const CommentReplyItem = ({ replyId, userName, Imagesrc, content, handleCommentR
       {/* reply of replies  */}
       
       {replies.map((reply, index) => (
-        <CommentReplyItem key={index} replyId={reply.id} userName={reply.userName} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
+        <CommentReplyItem key={index} timeStamp={reply.timeStamp} replyId={reply.id} userName={reply.userName} content={reply.content} Imagesrc={reply.urlToImage} handleCommentReply={handleCommentReply} reference={userName} />
       ))}
     </>
   )

@@ -19,6 +19,7 @@ import { getUserId } from '@/hooks/getUserId'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { SendHorizonal } from 'lucide-react'
+
 const Comments = ({ articleId }: { articleId: string }) => {
     const [comments, setcomments] = useState<CommentType[]>([])
     const [content, setcontent] = useState<string>("")
@@ -59,6 +60,7 @@ const Comments = ({ articleId }: { articleId: string }) => {
     const fetchComments = async () => {
         
         let newcomments = await getArticlesComments({ articleId: articleId })
+    
         
         setcomments([ ...newcomments])
     }
@@ -88,7 +90,7 @@ const Comments = ({ articleId }: { articleId: string }) => {
                 
                 {
                     comments.map((comment, index) => (
-                        <CommentItem key={index} id={comment.id} articleId={articleId} Imagesrc={comment.urlToImage} userName={comment.userName} content={comment.content} replyInfo={comment.replyInfo} handleCommentReply={handleCommentReply} />
+                        <CommentItem key={index} id={comment.id} timeStamp= {comment.timeStamp} articleId={articleId} Imagesrc={comment.urlToImage} userName={comment.userName} content={comment.content} replyInfo={comment.replyInfo} handleCommentReply={handleCommentReply} />
                     ))
                 }
 

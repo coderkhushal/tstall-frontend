@@ -43,6 +43,7 @@ export type CommentType = {
     urlToImage?: string;
     content: string;
     replyInfo: replyInfoType[]
+    timeStamp:string
    
 }
 
@@ -62,7 +63,7 @@ export type StoryDataType={
 }
 
 export type FeedType= ArticleType
-export type replyInfoType = Pick<CommentType, "id" | "userName" | "content" | "urlToImage">;
+export type replyInfoType = Pick<CommentType, "id" | "userName" | "content" | "urlToImage" | "timeStamp">;
 export type LanguageType={
     code:string;
     language:string;

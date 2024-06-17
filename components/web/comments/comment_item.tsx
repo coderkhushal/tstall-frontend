@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import CommentReplyItem from './comment_reply_item'
 import { Input } from '@/components/ui/input'
 import { SendHorizonal } from 'lucide-react'
+import { getRelativeTime } from '@/hooks/getRelativeTime'
 
-const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, handleCommentReply}:{id: string,articleId: string, userName: string,  content: string, Imagesrc?: string, replyInfo: replyInfoType[], handleCommentReply: ({content,commentId}:{content: string, commentId :string})=>void}) => {
+const CommentItem = ({id, articleId,timeStamp,   userName, Imagesrc, content, replyInfo, handleCommentReply}:{id: string,articleId: string,timeStamp: string,  userName: string,  content: string, Imagesrc?: string, replyInfo: replyInfoType[], handleCommentReply: ({content,commentId}:{content: string, commentId :string})=>void}) => {
   const [replycontent, setreplycontent] = useState<string> ("")
   const [inputhidden, setinputhidden] = useState<boolean> (true)
   return (
@@ -14,8 +15,10 @@ const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, ha
         <img className="rounded-full max-w-none w-12 h-12" src={Imagesrc? Imagesrc: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} />
       </a>
       <div className="media-body">
-        <div>
+        <div className='flex flex-col'>
+
           <a className="inline-block text-base font-bold mr-2" href="#">{userName}</a>
+          <div>{getRelativeTime(timeStamp)} ago</div>
         </div>
         <p>{content}</p>
 
@@ -40,7 +43,7 @@ const CommentItem = ({id, articleId,  userName, Imagesrc, content, replyInfo, ha
           <div className='flex flex-col'>
 
           {replyInfo.map((reply, index) => (
-            <CommentReplyItem key={index} replyId={reply.id} userName={reply.userName} content={reply.content} handleCommentReply={handleCommentReply} Imagesrc={reply.urlToImage} reference={userName} />
+            <CommentReplyItem key={index} replyId={reply.id} timeStamp={reply.timeStamp} userName={reply.userName} content={reply.content} handleCommentReply={handleCommentReply} Imagesrc={reply.urlToImage} reference={userName} />
           ))}
           </div>
         </div>
