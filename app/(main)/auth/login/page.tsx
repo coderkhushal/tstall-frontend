@@ -27,17 +27,13 @@ import { login } from '@/actions/login'
 import { getSetToken } from '@/hooks/getSetToken'
 import { useAuthContext } from '@/context/AuthContext'
 const LoginPage = () => {
-    const {fetchUser, user} = useAuthContext()
+    const {fetchUser} = useAuthContext()
     const router = useRouter()
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
     const [Pending, setPending] = useState(false)
 
-    useEffect(() => {
-        if(user){
-            router.back()
-        }
-    }, [])
+ 
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
