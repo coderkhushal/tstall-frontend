@@ -25,4 +25,16 @@ export const RegisterSchema = z.object({
   
 })
 
-
+export const ResetPasswordSchema = z.object({
+  userName: z.string().min(1,{
+    message: "UserName cannot be empty",
+  }),
+  existingPassword: z.string().min(1,{
+    message: "Password cannot be empty",
+  }),
+  password: z.string().min(1,{
+    message: "Password cannot be empty",
+  }),
+  
+  
+})

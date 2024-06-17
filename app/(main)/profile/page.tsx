@@ -1,21 +1,25 @@
 "use client"
-import { getUserNameById } from '@/actions/comments'
-import { getUser, getUserByToken } from '@/actions/user'
+import { getUserByToken } from '@/actions/user'
 import { Button } from '@/components/ui/button'
+
 
 import { useAuthContext } from '@/context/AuthContext'
 import { getGetToken } from '@/hooks/getGetToken'
-import { getUserId } from '@/hooks/getUserId'
+
 import { UserType } from '@/types'
-import { Verified } from 'lucide-react'
-
-
-import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
+import { Verified } from 'lucide-react'
 import { LuLogOut } from 'react-icons/lu'
-
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 const ProfilePage = () => {
   const router = useRouter()
   const { user, logout } = useAuthContext()
@@ -37,7 +41,9 @@ const ProfilePage = () => {
   }
   return (
 
-    <div className='w-full relative lg:py-20 flex h-full bg-gradient-to-b from-orange-300 to-slate-50 justify-center'>
+
+
+    <div className='w-full  lg:py-20 flex h-full bg-gradient-to-b from-orange-300 to-slate-50 justify-center'>
       <Button className='absolute top-2 right-2' variant={"secondary"} onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
       <header >
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
@@ -58,14 +64,46 @@ const ProfilePage = () => {
                   <span className='lg:mt-1'>
                     <Verified />
                   </span>
-                  
-                    <Button variant={"secondary"} className='bg-dark p-4 hover:bg-zinc-600 text-white'>
-                      <Link href="/auth/details">
-                      Edit Profile
-                      </Link>
 
-                      </Button>
-                  
+              
+                  <Sheet >
+                    <SheetTrigger>
+                    <svg
+                  className="h-8 w-8"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
+                  />
+                  <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                    </SheetTrigger>
+                    <SheetContent className='bg-primary'>
+                      <SheetHeader>
+                        <SheetTitle className='mb-4 w-full text-center'>{userProfile?.userName ? userProfile.userName : ""}</SheetTitle>
+                        <SheetDescription className='flex flex-col space-y-4 '>
+                          <Link href="/auth/details" className='w-full'>
+                          <Button className='w-full ' variant={"outline"}>
+                            Edit Profile
+                          </Button>
+                          </Link>
+                          <Link href="/auth/changepass" className='w-full'>
+                          <Button className='w-full ' variant={"outline"}>
+                            Change Password
+                          </Button>
+                          </Link>
+                        </SheetDescription>
+                      </SheetHeader>
+                    </SheetContent>
+                  </Sheet>
+
+
+
                 </div>
 
                 <div className="flex items-center w-full justify-center space-x-2 lg:items-start">

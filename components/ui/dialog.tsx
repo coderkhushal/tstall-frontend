@@ -2,10 +2,9 @@
 
 import * as React from "react"
 import * as DialogPrimitive from "@radix-ui/react-dialog"
-import { X, XCircle } from "lucide-react"
-import { IoClose } from "react-icons/io5"
+import { X } from "lucide-react"
+
 import { cn } from "@/lib/utils"
-import { FaCross } from "react-icons/fa"
 
 const Dialog = DialogPrimitive.Root
 
@@ -46,7 +45,7 @@ const DialogContent = React.forwardRef<
     >
       {children}
       <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-        <IoClose className="h-6 w-6 bg-white text-zinc-900 font-extrabold " />
+        <X className="h-8 w-8 bg-white opacity-70 " />
         <span className="sr-only">Close</span>
       </DialogPrimitive.Close>
     </DialogPrimitive.Content>
