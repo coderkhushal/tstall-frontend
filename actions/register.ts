@@ -21,12 +21,12 @@ export const  register = async (values: z.infer<typeof RegisterSchema>) => {
     body: JSON.stringify({mailId , userName, password }),
   });
   
-  const data = await res.text();
+  const data = await res.json();
 
-  if (res.status !== 200 || data=="Email already exists" || data=="UserName already exists") {
-    return { error: data };
+  if (res.status !== 200 || data.error) {
+    return { error: data.error };
   }
    
   // TODO: send verification email token
-  return { success: "User Created" , id : data };
+  return { success: "User Created" , token : data.token };
 };

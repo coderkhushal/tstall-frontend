@@ -24,13 +24,15 @@ import FormError from '@/components/web/auth/form_error'
 import { register } from '@/actions/register'
 
 import { useRouter } from 'next/navigation'
+import { useAuthContext } from '@/context/AuthContext'
+import { getSetToken } from '@/hooks/getSetToken'
 const RegisterPage = () => {
 
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
     const [Pending, setPending] = useState(false)
     const router= useRouter()
-
+    const {fetchUser} = useAuthContext()
 
     const form = useForm<z.infer<typeof RegisterSchema>>({
         resolver: zodResolver(RegisterSchema),
@@ -51,6 +53,8 @@ const RegisterPage = () => {
             setsuccess(result.success)
             setPending(false)
             if(result.success){
+                getSetToken(result.token)
+                await fetchUser();
                 router.push("/auth/details")
             }
 

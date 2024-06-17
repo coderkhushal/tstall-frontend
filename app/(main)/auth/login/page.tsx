@@ -51,7 +51,7 @@ const LoginPage = () => {
         try {
             let result = await login({userName: values.userName , password: values.password})
             getSetToken(result.token)
-            fetchUser()
+            await fetchUser()
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)

@@ -36,51 +36,7 @@ const ProfilePage = () => {
     setUserProfile(value => data)
   }
   return (
-    // <div className='h-full bg-gradient-to-b from-orange-300 to-slate-50 w-full relative overflow-y-hidden overflow-x-hidden'>
-    //   <Button className='absolute top-2 right-2' onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
-    //   <div className='lg:w-1/2 mx-auto flex flex-col space-y-4 h-2/3 '>
-    //     <div className="flex space-x-6 justify-center items-center">
-    //     <h1 className=' font-extrabold '>{userProfile?.userName ? userProfile.userName : "User"}</h1>
-    //       <Button variant='outline' className='bg-dark hover:bg-white border-none hover:border-none text-white hover:text-black' >
-    //     <Link href="/auth/details">
-    //         Edit Profile
-    //     </Link>
-    //         </Button>
-    //     </div>
-    //     <div className='flex  justify-between  space-x-2 items-center w-full lg:mx-auto  pl-2 pr-4'>
 
-
-    //       <div className='flex flex-col items-center justify-center space-y-2  '>
-
-    //         <div className='rounded-full  h-24 w-24 bg-white'>
-    //           <Image src={userProfile?.urlToImage ? userProfile.urlToImage : "https://images.news18.com/ibnlive/uploads/2024/06/reuters-devils-comet-pons-brooks-2024-06-9b96acd16c54d0c2088f9a608989ad40-16x9.jpg?impolicy=website&width=1200&height=675"} height={40} width={40} alt='profile' className='w-full bg-contain h-full rounded-full' />
-    //         </div>
-    //         <div className='flex space-x-2 items-center '>
-
-    //         <h1 className='font-bold text-center'>{userProfile?.userName ? userProfile.userName : "User"}</h1>
-
-    //         </div>
-    //         <h1>{userProfile?.mailId ? userProfile.mailId : "user@gmail.com"}</h1>
-    //       </div>
-
-
-    //       <div className='flex text-center flex-col'>
-    //         <span>
-    //           {userProfile?.followers.length}
-    //         </span>
-    //         <h2>Followers</h2>
-    //       </div>
-    //       <div className='flex text-center flex-col'>
-    //         <span>
-    //           {userProfile?.following.length}
-    //         </span>
-    //         <h2>Following</h2>
-    //       </div>
-
-    //     </div>
-
-    //   </div>
-    // </div>
     <div className='w-full relative lg:py-20 flex h-full bg-gradient-to-b from-orange-300 to-slate-50 justify-center'>
       <Button className='absolute top-2 right-2' variant={"secondary"} onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
       <header >
@@ -103,13 +59,18 @@ const ProfilePage = () => {
                     <Verified />
                   </span>
                   
-                    {/* <Button variant={"secondary"}>Follow</Button> */}
+                    <Button variant={"secondary"} className='bg-dark p-4 hover:bg-zinc-600 text-white'>
+                      <Link href="/auth/details">
+                      Edit Profile
+                      </Link>
+
+                      </Button>
                   
                 </div>
 
                 <div className="flex items-center w-full justify-center space-x-2 lg:items-start">
 
-                  <h1 className='font-semibold leading-6  lg:leading-7 '>{userProfile?.dateOfBirth.split("T")[0]}</h1>
+                  <h1 className='font-semibold tracking-widest '>{userProfile?.dateOfBirth && userProfile?.dateOfBirth.split("T")[0]}</h1>
                 </div>
 
               </div>

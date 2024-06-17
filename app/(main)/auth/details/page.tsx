@@ -74,7 +74,7 @@ const ProfileEditCard = () => {
         const isUpdated=await updateProfile(userInfo)
         if(isUpdated){
             alert("Profile Updated")
-            router.push("/auth/login")
+            router.push("/")
         }
         else{
             alert("Error Occured While Updating Proile")
