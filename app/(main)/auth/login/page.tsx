@@ -1,6 +1,6 @@
 "use client"
 import CardWrapper from '@/components/web/auth/card_wrapper'
-import React, { useEffect, useState } from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { LoginSchema } from '@/schemas/index'
@@ -27,13 +27,17 @@ import { login } from '@/actions/login'
 import { getSetToken } from '@/hooks/getSetToken'
 import { useAuthContext } from '@/context/AuthContext'
 const LoginPage = () => {
-    const {fetchUser} = useAuthContext()
+    const {fetchUser, user} = useAuthContext()
     const router = useRouter()
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
     const [Pending, setPending] = useState(false)
 
-
+    useEffect(() => {
+        if(user){
+            router.back()
+        }
+    }, [])
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),

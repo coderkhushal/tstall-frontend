@@ -1,10 +1,16 @@
 "use client"
+import { getUserNameById } from '@/actions/comments'
+import { getUser, getUserByToken } from '@/actions/user'
 import { Button } from '@/components/ui/button'
 
 import { useAuthContext } from '@/context/AuthContext'
+import { getGetToken } from '@/hooks/getGetToken'
+import { getUserId } from '@/hooks/getUserId'
+import { UserType } from '@/types'
 
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { LuLogOut } from 'react-icons/lu'
@@ -12,18 +18,34 @@ import { LuLogOut } from 'react-icons/lu'
 const ProfilePage = () => {
   const router = useRouter()
   const { user, logout } = useAuthContext()
+  const [userProfile, setUserProfile] = React.useState<UserType | null>(user)
   useEffect(() => {
-    if (!user) {
-      router.push('/auth/login')
+   
+    fetchuserProfile()
+
+  }, [user])
+
+  const fetchuserProfile = async () => {
+    const token = getGetToken()
+    if(!token){
+      router.push("/auth/login")
+      return;
     }
-
-  }, [])
-
+    const data= await getUserByToken({token});
+    setUserProfile(value=>data)
+  }
   return (
     <div className='h-full bg-gradient-to-b from-orange-300 to-slate-50 w-full relative overflow-y-hidden overflow-x-hidden'>
       <Button className='absolute top-2 right-2' onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
       <div className='lg:w-1/2 mx-auto flex flex-col space-y-4 h-2/3 '>
-        <h1 className=' font-extrabold w-full h-10 items-center flex justify-center'>{user?.userName ? user.userName : "User"}</h1>
+        <div className="flex space-x-6 justify-center items-center">
+        <h1 className=' font-extrabold '>{user?.userName ? user.userName : "User"}</h1>
+          <Button variant='outline' className='bg-dark hover:bg-white border-none hover:border-none text-white hover:text-black' >
+        <Link href="/auth/details">
+            Edit Profile
+        </Link>
+            </Button>
+        </div>
         <div className='flex  justify-between  space-x-2 items-center w-full lg:mx-auto  pl-2 pr-4'>
 
 
