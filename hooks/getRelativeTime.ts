@@ -2,6 +2,7 @@ export function getRelativeTime(timestamp: string): string {
     const now = new Date();
     const past = new Date(timestamp);
     const deltaMilliseconds = now.getTime() - past.getTime();
+console.log(deltaMilliseconds)
     
     const minutes = deltaMilliseconds / 1000 / 60;
     const hours = minutes / 60;
