@@ -1,5 +1,6 @@
 import { getGetAuthHeaders } from "@/hooks/getGetAuthHeaders"
 import { getUserId } from "@/hooks/getUserId"
+import { ChangePassSchema } from "@/schemas"
 import { UserType } from "@/types"
 
 import { User } from "lucide-react"
@@ -66,5 +67,27 @@ export const updateProfile = async(data:UpdateProfileType)=>{
 }
 catch(err){
     return false
+}
+}
+export const changePassword= async(data: z.infer<typeof ChangePassSchema>)=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/onboard/changePassword`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders(),
+            body: JSON.stringify(data)
+        }
+    )
+    
+    
+    if(res.status === 200){
+        return {success: "Password Changed Successfully"}
+    }
+    return { error: "Invalid Username or Password"}
+}
+catch(err){
+    console.log(err)
+    return { error:"Internal Server Error"}
+
 }
 }

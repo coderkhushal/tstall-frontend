@@ -25,7 +25,7 @@ export const RegisterSchema = z.object({
   
 })
 
-export const ResetPasswordSchema = z.object({
+export const ChangePassSchema = z.object({
   userName: z.string().min(1,{
     message: "UserName cannot be empty",
   }),
