@@ -14,7 +14,7 @@ const FeedCard = ({ article, LastArticleRef }: {
 	React.LegacyRef<HTMLDivElement>
 }) => {
 	return (
-		<article className="rounded-lg shadow-lg z-10 snap-always snap-center  flex-col w-full lg:w-1/2 mx-auto bg-gray-100 pb-3 " ref={LastArticleRef}>
+		<article className="rounded-lg shadow-lg z-10 snap-always snap-center  flex-col w-full lg:w-1/2 mx-auto bg-primary pb-3 " ref={LastArticleRef}>
 			<div className="relative ">
 				<img src={(article.urlToImage && article.urlToImage != "") ? article.urlToImage : "https://images.pexels.com/photos/1369476/pexels-photo-1369476.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"} alt={"article image"} className="text-center flex items-center justify-center h-40 lg:h-64 w-full" />
 

@@ -111,7 +111,7 @@ const FeedPage = () => {
   
   return (
     <div className='py-32 pt-2  w-full relative overflow-y-hidden '>
-     <DottedBg/>
+   
       <div className='flex  w-full flex-col  px-6 py-4 lg:justify-center lg:items-center '>
 
 

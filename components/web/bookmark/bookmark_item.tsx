@@ -5,7 +5,7 @@ import React from 'react'
 const BookMarkItem = ({article}:{article: ArticleType}) => {
   return (
     <Link href={`/article/${article.id}`} >
-    <div className="flex p-4 xl:p-6 hover:scale-110 shadow-md bg-tertiary   transition-all">
+    <div className="flex p-4 xl:p-6 hover:scale-110 shadow-md bg-primary rounded-xl    transition-all">
     <div className="mr-4">
         <span
             className={`w-[60px] h-[60px] rounded-full text-3xl inline-flex justify-center items-center  text-white mb-6`}
