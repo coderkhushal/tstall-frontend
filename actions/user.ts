@@ -91,3 +91,42 @@ catch(err){
 
 }
 }
+export const getUserByName= async({Username}:{Username:string})=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/auth/getUsersByName?userName=${Username}`,
+        {
+            method: 'GET',
+            headers: getGetAuthHeaders()
+        }
+    )
+    const data = await res.json()
+    if(res.status === 200){
+        return data
+    }
+    return []
+}
+catch(err){
+    return []
+
+}
+}
+
+export const getUserById= async({id }: {id: string})=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/auth/getUsersById?userIds=${id}`,
+        {
+            method: 'GET',
+            headers: getGetAuthHeaders()
+        }
+    )
+    const data = await res.json()
+    if(res.status === 200){
+        return data[0]
+    }
+    return null
+}
+catch(err){
+    return null
+
+}
+}

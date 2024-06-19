@@ -1,4 +1,4 @@
-import { routes } from '@/constants'
+import { MobileRoutes } from '@/constants'
 import React from 'react'
 import MobileNavigationItem from './mobile_navigation_item'
 
@@ -14,7 +14,7 @@ const MobileNavigation = () => {
                 <div className="flex">
 
 
-                    {routes.map((e, index) =>
+                    {MobileRoutes.map((e, index) =>
                         <MobileNavigationItem key={index} Icon={e.Icon} href={e.href} />
                     )}
 

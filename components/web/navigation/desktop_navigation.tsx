@@ -1,4 +1,4 @@
-import { routes } from '@/constants'
+import { DesktopRoutes } from '@/constants'
 import React from 'react'
 import DeskTopNavigationItem from './desktop_navigationitem'
 import Image from 'next/image'
@@ -14,7 +14,7 @@ const DeskTopNavigation = () => {
     <h1 className='w-full text-center specialtext h-full py-2'>TSTALL</h1>
         </Link>
       <ul className="space-y-4">
-     {routes.map((e, index)=>
+     {DesktopRoutes.map((e, index)=>
         <DeskTopNavigationItem name= {e.name} key= {index} Icon={e.Icon} href={e.href}/>
     )}
         

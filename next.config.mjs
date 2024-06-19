@@ -5,6 +5,10 @@ const nextConfig = {
             {
                 hostname:"**",
                 protocol:"https"
+            },
+            { 
+                hostname:"**",
+                protocol:"http"
             }
 
         ]

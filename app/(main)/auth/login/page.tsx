@@ -118,11 +118,11 @@ const LoginPage = () => {
                         <FormError message={error} />
                         <FormSuccess message={success} />
                         {/* <div className='w-full text-center text-base font-light my-0'>or continue with</div> */}
-                        <Link href={"/auth/forgetpass"} className='mt-1' >
+                        {/* <Link href={"/auth/forgetpass"} className='mt-1' >
                             <Button variant={"link"} className='text-orange-800'>
                                 Forget Password?
                             </Button>
-                        </Link>
+                        </Link> */}
                         {/* <Social /> */}
                         <Button type="submit" className='w-full bg-orange-300' variant={"secondary"} disabled={Pending}>Submit</Button>
 
