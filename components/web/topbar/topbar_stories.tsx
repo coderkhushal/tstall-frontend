@@ -96,12 +96,15 @@ const TopbarStories = () => {
     }
     if (!storydata) {
         return (
-            <div className='h-32 w-full  bg-primary flex items-center justify-center'>
-
-                <Suspense>
+            <div className='h-32 w-full relative lg:flex lg:w-36  lg:h-full    bg-tertiary flex items-center lg:flex-col  justify-start'>
+                <h1 className='text-2xl py-2 font-bold tracking-wider text-primary h-20  hidden lg:flex'>Stories</h1>
+                <Suspense >
                     {
-                        user ? null : <TopAuthBar />
-                    }
+                        user ? null :
+
+                            <TopAuthBar />
+
+                        }
 
                 </Suspense>
             </div>
@@ -127,13 +130,15 @@ const TopbarStories = () => {
     };
     return (
         <div>
-            <div className="stories bg-secondary p-5 py-2 h-28 relative rounded-b-2xl w-full overflow-x-auto flex ">
+            <div className="stories bg-tertiary p-5 py-2 h-28 relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 ">
                 <Suspense>
                     {
                         user ? null : <TopAuthBar />
                     }
 
                 </Suspense>
+                    <h1 className='text-3xl py-2 font-bold tracking-wider text-primary h-20  hidden lg:flex items-center justify-center w-full '>Stories</h1>
+
                 <Dialog >
 
 

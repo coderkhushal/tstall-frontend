@@ -108,7 +108,8 @@ const ProfilePage = () => {
 
                 <div className="flex items-center w-full justify-center space-x-2 lg:items-start">
 
-                  <h1 className='font-semibold tracking-widest '>{userProfile?.dateOfBirth && userProfile?.dateOfBirth.split("T")[0]}</h1>
+                  <h1 className='font-semibold tracking-widest '>{userProfile?.dateOfBirth && userProfile?.dateOfBirth.split("T")[0]} </h1>
+                  
                 </div>
 
               </div>

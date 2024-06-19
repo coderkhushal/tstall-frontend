@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 const DeskTopNavigation = () => {
   return (
-    <aside className="bg-gray-800 hidden lg:block text-white w-64 min-h-screen p-4">
+    <aside className="bg-dark hidden lg:block text-white w-64 min-h-screen p-4">
     <nav>
         <Link href="/" className='flex space-x-2 my-3 mb-6 items-center justify-center'>
 

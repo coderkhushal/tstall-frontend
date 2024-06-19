@@ -11,7 +11,7 @@ const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked , 
   return (
 
 
-    <div className={` border-2 pb-10   border-black rounded-sm p-2 relative bg-gray-200 "w-full flex-1 h-[70vh] " `}>
+    <div className={` border-2 pb-10    rounded-sm p-2 relative bg-primary "w-full flex-1 h-[70vh] " `}>
       
       <Link href={"article/" + id}>
 
@@ -32,7 +32,7 @@ const NewsCardItemShort = ({ id, title, content, src , publishTime, userLiked , 
       </Link>
       <div className='absolute w-full left-0 bottom-1 text-xl'>
 
-        <NewsCardInteractions articleid={id} userLiked={userLiked } userDisliked={userDisliked} classname='bg-secondary'  />
+        <NewsCardInteractions articleid={id} userLiked={userLiked } userDisliked={userDisliked} classname='bg-tertiary text-primary'  />
       </div>
     </div>
    

@@ -7,11 +7,12 @@ import React from 'react'
 
 const HomePage = () => {
   return (
-    <div className="w-full h-4/5 lg:h-[90%] flex flex-col">
-      <Topbar />
-      <div className='h-[98%]  relative w-full'>
-        <DottedBg/>
+    <div className="w-full h-4/5 lg:h-full flex flex-col">
+      <Topbar classname='justify-end w-full lg:hidden relative h-82 flex flex-col' />
+      <div className='h-[98%] lg:h-full flex relative w-full'>
+        
         <NewsCard />
+        <Topbar classname="h-full hidden lg:flex lg:flex-col "/>
       </div>
     </div>
   )

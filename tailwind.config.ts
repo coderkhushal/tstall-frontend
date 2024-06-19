@@ -25,22 +25,22 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#f3dfc1",
+          DEFAULT: "#f0eae7",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
-          DEFAULT: "#f3cea1",
+          DEFAULT: "#E0E0E0",
           foreground: "hsl(var(--secondary-foreground))",
         },
         tertiary:{
-          DEFAULT:"#e0c9a6"
+          DEFAULT:"#895b4a"
       
         },
         quarternary:{
-          DEFAULT: 	"#e0c9a6"
+          DEFAULT: 	"#3b2621"
         },
         dark:{
-          DEFAULT: "#1a1c1a"
+          DEFAULT: "#000000"
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

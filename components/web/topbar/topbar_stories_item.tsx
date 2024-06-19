@@ -14,7 +14,7 @@ const TopbarStoriesItem = ({storyNumber, handleOpenStory, src , title}: {storyNu
       </div>
     </div>
     <div className="user-name text-center pt-1  w-18">
-      <div className="text-gray-700  text-sm w-18">
+      <div className="text-[#f0eae7] tracking-widest  text-sm w-18">
         {title}
         
       </div>

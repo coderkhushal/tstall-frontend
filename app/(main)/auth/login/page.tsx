@@ -26,14 +26,15 @@ import { useRouter } from 'next/navigation'
 import { login } from '@/actions/login'
 import { getSetToken } from '@/hooks/getSetToken'
 import { useAuthContext } from '@/context/AuthContext'
+import Link from 'next/link'
 const LoginPage = () => {
-    const {fetchUser} = useAuthContext()
+    const { fetchUser } = useAuthContext()
     const router = useRouter()
     const [error, seterror] = useState<string | undefined>(undefined)
     const [success, setsuccess] = useState<string | undefined>(undefined)
     const [Pending, setPending] = useState(false)
 
- 
+
 
     const form = useForm<z.infer<typeof LoginSchema>>({
         resolver: zodResolver(LoginSchema),
@@ -49,13 +50,13 @@ const LoginPage = () => {
         setPending(true)
 
         try {
-            let result = await login({userName: values.userName , password: values.password})
+            let result = await login({ userName: values.userName, password: values.password })
             getSetToken(result.token)
             await fetchUser()
             seterror(result.error)
             setsuccess(result.success)
             setPending(false)
-            if(result.success){
+            if (result.success) {
                 router.push('/')
             }
 
@@ -113,11 +114,15 @@ const LoginPage = () => {
 
                             )}
                         />
-
+                        
                         <FormError message={error} />
                         <FormSuccess message={success} />
                         {/* <div className='w-full text-center text-base font-light my-0'>or continue with</div> */}
-
+                        <Link href={"/auth/forgetpass"} className='mt-1' >
+                            <Button variant={"link"} className='text-orange-800'>
+                                Forget Password?
+                            </Button>
+                        </Link>
                         {/* <Social /> */}
                         <Button type="submit" className='w-full bg-orange-300' variant={"secondary"} disabled={Pending}>Submit</Button>
 
