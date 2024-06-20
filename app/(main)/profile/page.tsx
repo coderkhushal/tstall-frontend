@@ -20,6 +20,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { SlCalender } from 'react-icons/sl'
 const ProfilePage = () => {
   const router = useRouter()
   const { user, logout } = useAuthContext()
@@ -71,9 +72,9 @@ const ProfilePage = () => {
                     <svg
                   className="h-8 w-8"
                   fill="none"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -106,9 +107,15 @@ const ProfilePage = () => {
 
                 </div>
 
-                <div className="flex items-center w-full justify-center space-x-2 lg:items-start">
-
-                  <h1 className='font-semibold tracking-widest '>{userProfile?.dateOfBirth && userProfile?.dateOfBirth.split("T")[0]} </h1>
+                <div className="flex items-center flex-col space-y-2 w-full justify-center space-x-2 lg:items-start">
+                  
+                  <h1 className='font-semibold tracking-widest '>{userProfile?.mailId && userProfile?.mailId} </h1>
+                  {userProfile?.dateOfBirth && 
+                  <div className="flex space-x-2 items-center">
+                <SlCalender/>
+                  <h1 className='font-semibold tracking-widest '>{ userProfile?.dateOfBirth.split("T")[0]} </h1>
+                  </div>
+                  }
                   
                 </div>
 

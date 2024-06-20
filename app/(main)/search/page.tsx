@@ -41,7 +41,12 @@ const SearchPage = () => {
                 </div>
                 
 
-                {loading && <Loading/>}
+                {loading && 
+                <div className="h-full w-full items-center justify-center border-none">
+
+                <Loading/>
+                </div>
+                }
                 {
                     !loading && ( SearchedUsers.length==0 ? <h1 className='text-center mt-10'>No Users Found</h1> : 
                     <div className="flow-root w-4/5  h-[60rem]  overflow-y-scroll">

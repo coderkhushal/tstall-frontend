@@ -1,5 +1,5 @@
 "use client"
-import { getUserById, getUserByToken } from '@/actions/user'
+import { followUser, getUserById, getUserByToken, unfollowUser } from '@/actions/user'
 import { Button } from '@/components/ui/button'
 
 
@@ -10,17 +10,8 @@ import { UserType } from '@/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
-import { Verified } from 'lucide-react'
-import { LuLogOut } from 'react-icons/lu'
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
-import { getUserNameById } from '@/actions/comments'
+import { ReceiptPoundSterling, Verified } from 'lucide-react'
+
 const PublicProfilePage = ({params}: {params: {id: string}}) => {
   const router = useRouter()
   const { user, logout } = useAuthContext()
@@ -41,6 +32,27 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
     
     setUserProfile(value => data)
   }
+
+  const handleFollow= async(VARIANT:"Follow" | "Unfollow")=>{
+    if(!userProfile || !user){
+      return;
+    }
+    if(VARIANT === "Follow"){
+
+      let result = await followUser({id: userProfile?.id})
+      if(result.success){
+        setUserProfile({...userProfile, followers: [...userProfile.followers, user.id]})
+        
+      }
+    }
+    else{
+      let result = await unfollowUser({id: userProfile?.id})
+      if(result.success){
+        setUserProfile({...userProfile, followers: userProfile.followers.filter(e=>e!=user.id)})
+        
+      }
+    }
+  }
   return (
 
 
@@ -60,15 +72,20 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
             <div className="mb-5">
 
               <div className="flex flex-col space-y-1 ">
-                <div className="flex items-center w-full justify-center space-x-2 lg:items-start">
+                <div className="flex items-center w-full justify-center space-x-3 lg:items-start">
 
                   <h2 className="text-2xl font-light  text-center">{userProfile?.userName ? userProfile.userName : "username"}</h2>
                   <span className='lg:mt-1'>
                     <Verified />
                   </span>
+                  <br className="lg:hidden"  />
 
-              
-                
+                  {(user && userProfile &&  user.id!=userProfile.id) &&
+                   <Button className={` tracking-wide font-bold text-mds w-24 ${userProfile.followers.includes(user.id) ? "" : "shadow-lg"}`} variant={"secondary"} onClick={()=>{
+                    handleFollow(userProfile?.followers.includes(user?.id) ? "Unfollow" : "Follow")
+                   }}>
+                    {(user?.id && userProfile?.followers.includes(user?.id)) ? "Unfollow" : "Follow"}
+                  </Button>}
 
 
 
@@ -88,13 +105,13 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
                 <span className="font-semibold lg:font-semibold  block">
                   {"followers"}
                 </span>
-                {/* {userProfile?.followers.length} */} 0
+                {userProfile?.followers.length} 
               </li>
               <li className="text-base font-normal  list-none lg:text-sm lg:font-normal lg:text-gray-600 lg:leading-6 lg:text-center text-center lg:mr-0">
                 <span className="font-semibold lg:font-semibold  block">
                   {"following"}
                 </span>
-                {/* {userProfile?.following.length} 0 */} 0
+                {userProfile?.following.length} 
               </li>
 
             </div>

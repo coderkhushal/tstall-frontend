@@ -130,3 +130,45 @@ catch(err){
 
 }
 }
+
+export const followUser= async({id}:{id:string})=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/auth/followUser?followerId=${getUserId()}&followingId=${id}`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders(),
+
+        }
+    )
+    const data= await res.json()
+    if(res.status === 200){
+        return {success: true, error:null}
+    }
+    return {success: false, error:data.error}
+}
+catch(err){
+    return {success: false, error:"Internal Server Error"}
+
+}
+}
+
+export const unfollowUser= async({id}:{id:string})=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/auth/unfollowUser?followerId=${getUserId()}&followingId=${id}`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders(),
+
+        }
+    )
+    const data= await res.json()
+    if(res.status === 200){
+        return {success: true, error:null}
+    }
+    return {success: false, error:data.error}
+}
+catch(err){
+    return {success: false, error:"Internal Server Error"}
+
+}
+}

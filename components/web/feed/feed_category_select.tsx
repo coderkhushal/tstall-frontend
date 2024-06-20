@@ -12,7 +12,7 @@ import { CategoryType } from '@/types'
 const FeedCategorySelect = ({ onValueChanging }: { onValueChanging: (value: CategoryType) => void }) => {
     return (
         <Select onValueChange={onValueChanging}  >
-            <SelectTrigger className="w-[180px] z-10 bg-secondary border-black text-center ">
+            <SelectTrigger className="w-[180px] z-10 bg-primary border-black text-center ">
                 <SelectValue placeholder="General "/>
             </SelectTrigger>
             <SelectContent className='bg-primary '>
