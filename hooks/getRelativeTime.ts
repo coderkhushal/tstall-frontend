@@ -1,15 +1,22 @@
 export function getRelativeTime(timestamp: string): string {
-    const now = new Date();
+    // Parse the input timestamp as GMT/UTC
     const past = new Date(timestamp);
-    const deltaMilliseconds = now.getTime() - past.getTime();
-console.log(deltaMilliseconds)
-    
-    const minutes = deltaMilliseconds / 1000 / 60;
-    const hours = minutes / 60;
-    const days = hours / 24;
-    const months = days / 30; // Rough approximation
-    const years = days / 365; // Rough approximation
-    
+
+    // Get the current time in IST
+    const now = new Date();
+
+    // Convert current IST time to GMT
+    const nowInGMT = new Date(now.getTime() - (5.5 * 60 * 60 * 1000));
+
+    const deltaMilliseconds = nowInGMT.getTime() - past.getTime();
+
+    // Ensure we don't have negative values in case of future timestamps
+    const minutes = Math.max(deltaMilliseconds / 1000 / 60, 0);
+    const hours = Math.max(minutes / 60, 0);
+    const days = Math.max(hours / 24, 0);
+    const months = Math.max(days / 30, 0); // Rough approximation
+    const years = Math.max(days / 365, 0); // Rough approximation
+
     if (years >= 1) {
         return `${Math.floor(years)} year${Math.floor(years) > 1 ? 's' : ''}`;
     } else if (months >= 1) {
