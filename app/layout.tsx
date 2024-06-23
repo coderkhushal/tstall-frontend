@@ -8,6 +8,7 @@ import ArticleState from "@/context/ArticlesContext";
 import AuthState from "@/context/AuthContext";
 import FeedState from "@/context/FeedContext";
 import { Toaster } from "@/components/ui/toaster";
+import Script from "next/script";
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +36,9 @@ export default function RootLayout({
         <Toaster />
         {children}
         <MobileNavigation />
+        <Script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5202156720176142"
+        crossOrigin="anonymous"
+     />
         </body>
     </html>
       </FeedState>
