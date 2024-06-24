@@ -1,6 +1,6 @@
 "use client"
 import { bookmarkArticle, dislikeArticle, likeArticle, removeReaction } from '@/actions/articles'
-import { ConfettiButton } from '@/components/magicui/confetti'
+import  ConfettiButton  from '@/components/magicui/confetti'
 import { useAuthContext } from '@/context/AuthContext'
 import { getUserId } from '@/hooks/getUserId'
 import React, { Suspense, useEffect, useState } from 'react'
