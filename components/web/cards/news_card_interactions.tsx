@@ -122,21 +122,25 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
 
       <div className={` ${classname} flex   justify-around  py-2 `}>
       <div className="flex items-center justify-center space-x-1">
-      <ConfettiButton >
+      {(!liked && !disliked) ?  <ConfettiButton >
 
 
         <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
-      </ConfettiButton>
+      </ConfettiButton> : 
+        <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
+      }
         <span>
 
         {numLiked}
         </span>
       </div>
       <div className="flex items-center justify-center">
-      <ConfettiButton>
+      {!bookmarked ? <ConfettiButton>
 
         <FaBookmark className={`cursor-pointer transition-all hover:scale-110 ${bookmarked && " text-yellow-700"}`}  onClick={() => handleClick({ type: "BOOKMARK" })} />
-      </ConfettiButton>
+      </ConfettiButton>:
+        <FaBookmark className={`cursor-pointer transition-all hover:scale-110 ${bookmarked && " text-yellow-700"}`}  onClick={() => handleClick({ type: "BOOKMARK" })} />
+      }
       </div>
       <div className="flex items-center justify-center space-x-1">
 
