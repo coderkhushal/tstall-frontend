@@ -1,5 +1,6 @@
 "use client"
 import { bookmarkArticle, dislikeArticle, likeArticle, removeReaction } from '@/actions/articles'
+import { ConfettiButton } from '@/components/magicui/confetti'
 import { useAuthContext } from '@/context/AuthContext'
 import { getUserId } from '@/hooks/getUserId'
 import React, { Suspense, useEffect, useState } from 'react'
@@ -108,16 +109,21 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
 
       <div className={` ${classname} flex   justify-around  py-2 `}>
       <div className="flex items-center justify-center space-x-1">
+      <ConfettiButton >
+
 
         <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
+      </ConfettiButton>
         <span>
 
         {numLiked}
         </span>
       </div>
       <div className="flex items-center justify-center">
+      <ConfettiButton>
 
         <FaBookmark className={`cursor-pointer transition-all hover:scale-110 ${bookmarked && " text-yellow-700"}`}  onClick={() => handleClick({ type: "BOOKMARK" })} />
+      </ConfettiButton>
       </div>
       <div className="flex items-center justify-center space-x-1">
 
