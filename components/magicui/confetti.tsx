@@ -115,7 +115,7 @@ function ConfettiButton({ options, children, ...props }: ConfettiButtonProps) {
   };
 
   return (
-    <button onClick={handleClick} {...props} className="bg-transparent text-2xl hover:bg-transparent">
+    <button onClick={handleClick} {...props} className="bg-transparent text-xl lg:text-2xl hover:bg-transparent">
       {children}
     </button>
   );
