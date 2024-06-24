@@ -6,9 +6,11 @@ import { getBookmarks } from '@/actions/articles'
 import { useAuthContext } from '@/context/AuthContext'
 import { ArticleType } from '@/types'
 import Loading from '@/components/ui/loading'
+import { useRouter } from 'next/navigation'
 const BookMarksPage = () => {
     const [BookmarksList, setBookmarksList] = useState<ArticleType[]>([])
     const {user} =  useAuthContext()
+    const router= useRouter()
     useEffect(()=>{
 
      
@@ -16,8 +18,8 @@ const BookMarksPage = () => {
     },[user?.id])
     const fetchBookMarks = async () => {    
         const id = user?.id
-        if(!id){
-            
+        if(!user || !id){
+            router.push("/auth/login")
             return;
         }
 

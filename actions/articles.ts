@@ -128,3 +128,20 @@ export const getBookmarks = async (userId: string) => {
 
 
 }
+export const unBookmarkArticle = async({articleId, userId}: {articleId: string, userId: string})=>{
+    const res = await fetch(`${BASE_URL}/newsapp/auth/deleteBookmark?userId=${userId}&bookmarkId=${articleId}`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders()
+        }
+    )
+    const data = await res.json()
+    console.log(data)
+    if(res.status === 200){
+        return {success: true, error: null}
+
+    }
+    else{
+        return {error: data.error, success: false}
+    }
+}

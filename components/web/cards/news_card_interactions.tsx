@@ -1,8 +1,9 @@
 "use client"
-import { bookmarkArticle, dislikeArticle, likeArticle, removeReaction } from '@/actions/articles'
+import { bookmarkArticle, dislikeArticle, likeArticle, removeReaction, unBookmarkArticle } from '@/actions/articles'
 import  ConfettiButton  from '@/components/magicui/confetti'
 import { useAuthContext } from '@/context/AuthContext'
 import { getUserId } from '@/hooks/getUserId'
+import { BookMarked } from 'lucide-react'
 import React, { Suspense, useEffect, useState } from 'react'
 import { FaBookmark, FaThumbsDown, FaThumbsUp } from 'react-icons/fa'
 import { set } from 'zod'
@@ -91,15 +92,27 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
         break;
 
       case "BOOKMARK":
-        result = await bookmarkArticle({ articleId: articleid, userId: userId })
-        // console.log(result)
-        if (result.success) {
-          setbookmarked(true)
+        if(bookmarked){
+          result = await unBookmarkArticle({ articleId: articleid, userId: userId })
+          if (result.success) {
+            setbookmarked(false)
+          }
+          else {
+            alert(result.error)
+          }
+
         }
-        else {
-          alert(result.error)
+        else{
+          result = await bookmarkArticle({ articleId: articleid, userId: userId })
+          // console.log(result)
+          if (result.success) {
+            setbookmarked(true)
+          }
+          else {
+            alert(result.error)
+          }
         }
-        break;
+          break;
     }
 
   }
