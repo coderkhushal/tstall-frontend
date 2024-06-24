@@ -70,22 +70,22 @@ const Comments = ({ articleId }: { articleId: string }) => {
     }, [])
     
     return (
-        <DrawerContent className='h-3/4 bg-secondary'>
+        <DrawerContent className='h-3/4 bg-primary'>
 
             <div className="mx-auto lg:mx-10 w-full  h-full px-2 overflow-y-auto">
                 <DrawerHeader>
-                    <div className="flex items-center justify-start">
+                    <div className="flex items-center justify-start space-x-2">
                         <Input
                             value={content}
                             onChange={(e) => setcontent(e.target.value)}
                             className='w-3/4'
                             placeholder='Write a comment...'
                         />
-                        <Button className="py-2 px-4 font-medium rounded-lg text-black" onClick={() => handleComment(content)} variant={"secondary"}>
+                        <Button className="py-2 px-4 font-medium rounded-lg text-black " onClick={() => handleComment(content)} variant={"secondary"}>
                             <SendHorizonal/>
                         </Button>
                     </div>
-                    <DrawerTitle className=' text-3xl mt-2'>Comments</DrawerTitle>
+                    <DrawerTitle className=' text-3xl mt-2 text-start'>Comments</DrawerTitle>
                 </DrawerHeader>
                 
                 {

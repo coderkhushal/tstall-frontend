@@ -28,12 +28,12 @@ const CommentReplyItem = ({ replyId,timeStamp,  userName, Imagesrc, content, han
         </a>
         <div className="media-body">
           <div>
-            <div className="inline-block text-base font-extrabold mr-2" >
-              {userName} <br /> <div className='font-medium'>
+            <div className="flex flex-col lg:flex-row lg:space-x-2 text-base font-semibold mr-2" >
+              <span>{userName}</span><div className='text-gray-700 font-medium'>
               {timeStamp ? getRelativeTime(timeStamp)+" ago" : ""} 
                 </div>
               </div>
-              <div className='font-bold italic '>
+              <div className=' font-medium text-gray-500  rounded-lg  italic '>
                 Reply to {reference}
               </div>
           </div>
