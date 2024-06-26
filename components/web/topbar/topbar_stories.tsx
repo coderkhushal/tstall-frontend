@@ -17,16 +17,19 @@ import { Button } from '@/components/ui/button'
 import { ArrowLeft, ArrowRight, Forward } from 'lucide-react'
 import Link from 'next/link'
 import { useAuthContext } from '@/context/AuthContext'
+import TopBarStoriesTrackerItem from './topbar_stories_tracker_item'
 
 const TopbarStories = () => {
 
     const [storydata, setstorydata] = useState<StoryDataType[] | null>(null)
     const [StoryDataNumber, setStoryDataNumber] = useState<number>(0)
     const [storyNumber, setstoryNumber] = useState<number>(0)
+    const [storyInterval, setstoryInterval] = useState<NodeJS.Timeout | null>(null)
+    const [IntervalStarted, setIntervalStarted]= useState<boolean> (false)
     const { user } = useAuthContext()
     useEffect(() => {
-        if (user) {
-            fetchStories()
+        if (user && !storydata) {
+            fetchStories().then(()=>{setIntervalStarted(true)})
         }
     }, [user])
     const fetchStories = async () => {
@@ -59,6 +62,7 @@ const TopbarStories = () => {
             return
         }
         if (storyNumber < storydata[StoryDataNumber].stories.length - 1) {
+            console.log(storyNumber)
             setstoryNumber(value => (storyNumber + 1))
         }
         else {
@@ -94,6 +98,32 @@ const TopbarStories = () => {
             handleMoveStoryDatabackward()
         }
     }
+    // add a timer to move the story forward
+    useEffect(() => {
+        if (!storydata) {
+            return
+        }
+        if (!IntervalStarted) {
+            
+            return
+        }
+        const interval = setInterval(() => {
+            if (storyNumber < storydata[StoryDataNumber].stories.length - 1) {
+                setstoryNumber(value => (value + 1))
+            }
+            else {
+                setstoryNumber(0)
+                handleMoveStoryDataforward()
+            }
+        }, 3000)
+
+        setstoryInterval(interval)
+        setIntervalStarted(true)
+        return () => {
+            clearInterval(interval)
+        }
+    }, [storydata, storyNumber, StoryDataNumber])
+
     if (!storydata) {
         return (
             <div className='h-32 w-full relative lg:flex lg:w-36  lg:h-full    bg-tertiary flex items-center lg:flex-col  justify-start'>
@@ -128,6 +158,7 @@ const TopbarStories = () => {
             handleMoveStoryforward();
         }
     };
+
     return (
         <div>
             <div className="stories bg-tertiary p-5 py-2 h-28 relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 ">
@@ -153,21 +184,23 @@ const TopbarStories = () => {
 
                     <DialogContent className="h-full w-full p-0 border-black " onClick={handleClick}>
 
+                        <div className={`absolute top-0 flex w-full gap-1 z-20 pt-1`}>
+                            { Array.from({length: storydata[StoryDataNumber].stories.length}).map((e , index)=><TopBarStoriesTrackerItem current={index==storyNumber} highlight={index<=storyNumber}/>)}
+                        </div>
+                        <DialogHeader className='w-full text-center  text-2xl font-extrabold text-zinc-900 bg-black'>
 
-                        <DialogHeader className='w-full text-center  text-2xl font-extrabold text-zinc-900 bg-primary'>
-
-                            <DialogDescription className='w-full h-full flex items-center justify-between flex-1 '>
-                                <h1 className='px-2 z-30 absolute bottom-12  py-4 text-2xl text-zinc-900 bg-white text-center flex itemce justify-center opacity-65 '>
+                            <DialogDescription className='w-full h-full flex items-center flex-col justify-between flex-1 '>
+                                <h1 className='px-2 z-30 absolute bottom-56 font-medium py-4 text-2xl text-white bg-zinc-950 text-center flex itemce justify-center '>
 
                                     {storydata.length > StoryDataNumber ? storydata[StoryDataNumber].stories[storyNumber].title.substring(0, 130) + "..." : ""}
                                 </h1>
-                                <img src={storydata.length > StoryDataNumber ? storydata[StoryDataNumber].stories[storyNumber].urlToImage : "https://media.assettype.com/sentinelassam-english%2F2024-06%2Fbd7021c0-5cc6-4de0-a725-d01b905f4b0c%2Fwomen.png?w=120"} className='bg-cover h-full  w-full absolute top-0' />
+                                <img src={storydata.length > StoryDataNumber ? storydata[StoryDataNumber].stories[storyNumber].urlToImage : "https://media.assettype.com/sentinelassam-english%2F2024-06%2Fbd7021c0-5cc6-4de0-a725-d01b905f4b0c%2Fwomen.png?w=120"} className='bg-cover h-full  w-full rounded-b-3xl ' />
 
                                 {/* <Button className='z-40' variant={"outline"} onClick={handleMoveStorybackward}><ArrowLeft/></Button>
                                 <Button className='z-40' variant={"outline"} onClick={handleMoveStoryforward}><ArrowRight/></Button> */}
 
 
-                                <Button className='w-full absolute bottom-2 z-50 bg-dark text-white' variant={"outline"}>
+                                <Button className='w-full  z-50 bg-dark text-white' variant={"outline"}>
                                     <Link href={(storydata && storydata.length > 0) ? "/article/" + storydata[StoryDataNumber].stories[storyNumber].id : "/"} className='flex justify-center w-full items-center ' >
                                         Read More <Forward className='mx-3' />
                                     </Link>
