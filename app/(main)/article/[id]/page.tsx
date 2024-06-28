@@ -24,7 +24,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [listening, setlistening] = useState(false)
   const router = useRouter()
   const handleSpeaking = ()=>{
-    if(!article?.content){
+    if(!article){
       return;
     }
     if(listening){
@@ -32,7 +32,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
     }
     else{
 
-      Speaker.getInstance().speak(article.content)
+      Speaker.getInstance().speak(article.title + "." + article.description + "." + article.content)
     }
     setlistening(!listening)
 
@@ -151,7 +151,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
                         <FaComment className='cursor-pointer transition-all hover:scale-110  lg:text-3xl' />
                       </DrawerTrigger>
                       <Comments articleId={params.id} />
-                      <div className="flex justify-center py-2 cursor-pointer text-xl items-center space-x-2 border-2 border-black px-2 rounded-3xl w-32" onClick={()=>handleSpeaking()}>
+                      <div className="flex justify-center  cursor-pointer text-xl items-center space-x-2 border-2 border-black lg:p-2 rounded-3xl lg:w-32 w-28" onClick={()=>handleSpeaking()}>
 
                       <span>{!listening ? "Listen" : "Stop"}</span>
                       {!listening ? <Volume2/> : <Pause/>}

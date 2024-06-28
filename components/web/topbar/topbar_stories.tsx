@@ -172,7 +172,7 @@ const TopbarStories = () => {
 
                 <Dialog >
 
-                    <div className='hidden lg:flex flex-col overflow-y-auto h-[80vh] space-y-6'>
+                    <div className='flex lg:flex-col lg:overflow-y-auto lg:h-[80vh] lg:space-y-6'>
 
 
                     {
@@ -183,6 +183,7 @@ const TopbarStories = () => {
                     }
 
                     </div>
+                    
 
                     <DialogContent className="h-full w-full p-0 border-black " onClick={handleClick}>
 
