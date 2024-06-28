@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react'
 import { FaBookmark, FaComment, FaShare, FaThumbsDown, FaThumbsUp } from 'react-icons/fa'
 import { SlCalender } from 'react-icons/sl'
 import { Drawer } from "@/components/ui/drawer"
-
+import { Speaker } from '@/lib/speaker'
 import { getIsTokenExpired } from '@/hooks/getIsTokenExpired'
 import { getGetToken } from '@/hooks/getGetToken'
 import { useRouter } from 'next/navigation'
@@ -17,11 +17,26 @@ import NewsCardInteractions from '@/components/web/cards/news_card_interactions'
 import ShareList from '@/components/web/functionalities/share_button'
 import { Dialog } from '@/components/ui/dialog'
 import { DialogTrigger, DialogContent } from '@/components/ui/dialog'
+import { Pause,  Volume2 } from 'lucide-react'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [article, setarticle] = useState<ArticleType | null>(null)
+  const [listening, setlistening] = useState(false)
   const router = useRouter()
+  const handleSpeaking = ()=>{
+    if(!article?.content){
+      return;
+    }
+    if(listening){
+      Speaker.getInstance().stop()
+    }
+    else{
 
+      Speaker.getInstance().speak(article.content)
+    }
+    setlistening(!listening)
+
+  }
   useEffect(() => {
     const getSingleArticle = async () => {
       const article = await getArticleById(params.id)
@@ -136,7 +151,11 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
                         <FaComment className='cursor-pointer transition-all hover:scale-110  lg:text-3xl' />
                       </DrawerTrigger>
                       <Comments articleId={params.id} />
+                      <div className="flex justify-center py-2 cursor-pointer text-xl items-center space-x-2 border-2 border-black px-2 rounded-3xl w-32" onClick={()=>handleSpeaking()}>
 
+                      <span>{!listening ? "Listen" : "Stop"}</span>
+                      {!listening ? <Volume2/> : <Pause/>}
+                      </div>
 
                     </div>
                   </div>

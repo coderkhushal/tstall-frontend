@@ -161,7 +161,7 @@ const TopbarStories = () => {
 
     return (
         <div>
-            <div className="stories bg-tertiary p-5 py-2 h-28 relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 ">
+            <div className="stories bg-tertiary p-5 py-2 overflow-y-auto  relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 ">
                 <Suspense>
                     {
                         user ? null : <TopAuthBar />
@@ -172,15 +172,17 @@ const TopbarStories = () => {
 
                 <Dialog >
 
+                    <div className='hidden lg:flex flex-col overflow-y-auto h-[80vh] space-y-6'>
 
 
                     {
                         storydata.map((storydataitem, index) => (
-
+                            
                             <TopbarStoriesItem key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={storydataitem.urlToImage} title={storydataitem.title} />
                         ))
                     }
 
+                    </div>
 
                     <DialogContent className="h-full w-full p-0 border-black " onClick={handleClick}>
 
