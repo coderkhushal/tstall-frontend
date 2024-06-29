@@ -1,5 +1,5 @@
 "use client"
-import { translate } from '@vitalets/google-translate-api';
+
 export class Speaker{
     private static instance : Speaker
     private content: string;
