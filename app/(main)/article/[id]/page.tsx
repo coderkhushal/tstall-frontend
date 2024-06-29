@@ -32,7 +32,7 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
     }
     else{
 
-      Speaker.getInstance().speak(article.title + "." + article.description + "." + article.content)
+      Speaker.getInstance().speak(article.title + "." + article.description + "." + article.content, "hi")
     }
     setlistening(!listening)
 
