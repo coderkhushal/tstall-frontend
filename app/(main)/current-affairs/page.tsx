@@ -37,6 +37,7 @@ const CurrentAffairPage = () => {
     <div className='h-full w-full light flex flex-col space-y-6  p-2 lg:px-5 overflow-y-auto   bg-gray-200 '>
       <h1 className='text-center font-bold tracking-widest text-2xl lg:text-3xl pt-2 '>Current Affairs</h1>
       <h1 className=' text-2xl lg:text-3xl font-bold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent '>Hot Topics</h1>
+      
       <div className="flex flex-col lg:grid lg:grid-cols-3  lg:gap-6 space-y-4 lg:space-y-0 pb-10 lg:pb-0">
 
     {topics && Object.keys(topics).map((topic, index) => (
