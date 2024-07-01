@@ -1,3 +1,5 @@
+import { string } from "zod";
+
 export type RoutesType = {
     Icon: any;
     name:string;
@@ -6,7 +8,10 @@ export type RoutesType = {
 export type CategoryType = "health" | "general" | "business" | "entertainment" | "science" | "sports" | "technology";
 export type ArticleType={
     id: string; 
-    source : string[];
+    source ?: {
+        id: string, 
+        name : string
+    };
     publishTime : string;
     category : CategoryType;
     author:string;
@@ -68,3 +73,5 @@ export type LanguageType={
     code:string;
     language:string;
 }
+
+export type CurrentAffairTopicsType= Record<string, string>

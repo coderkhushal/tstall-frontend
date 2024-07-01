@@ -14,9 +14,9 @@ const TopBarStoriesTrackerItem = ({highlight, current}: {highlight: boolean, cur
   // }, [current]);
 
   return (
-    <div className={`border-2 flex-1 h-2 border-black ${(highlight && !current) && "bg-white"} `}>
+    <div className={` border-[1px] rounded-sm  border-black  flex-1 h-2 ${(highlight && !current) && "bg-white"} `}>
       {current && 
-      <div className={`flex bg-white h-full`}   style={{
+      <div className={`flex bg-white h-full rounded-sm`}   style={{
         width: `100%`,
         transition: 'width 0.1s linear',
       }}></div>

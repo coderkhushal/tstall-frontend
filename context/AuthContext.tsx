@@ -6,7 +6,7 @@ import { getGetToken } from "@/hooks/getGetToken";
 import { getRemoveToken } from "@/hooks/getRemoveToken";
 import { getUserId } from "@/hooks/getUserId";
 import { UserType } from "@/types";
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type AuthContextType = {
@@ -24,8 +24,12 @@ export const AuthContext = createContext<AuthContextType>({
 const AuthState = ({children}:{children:React.ReactNode})=>{
     const [user, setuser] = useState<UserType | null>(null)
     const router = useRouter()
-
+    const pathname = usePathname()
     const fetchUser=async()=>{
+        // check if public or not
+        if(PublicRoutes.includes(pathname)){
+            return;
+        }
 
         const token =getGetToken()
         if( !token){

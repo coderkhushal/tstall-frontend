@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { articles as BookmarksList } from '@/constants'
+
 import BookMarkItem from '@/components/web/bookmark/bookmark_item'
 import { getBookmarks } from '@/actions/articles'
 import { useAuthContext } from '@/context/AuthContext'

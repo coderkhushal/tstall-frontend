@@ -28,10 +28,18 @@ const config = {
           DEFAULT: "#f0eae7",
           foreground: "hsl(var(--primary-foreground))",
         },
+        primarydark:{
+          DEFAULT: "#D9D0BE"
+        },
         secondary: {
           DEFAULT: "#E0E0E0",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        secondarydark: {
+          DEFAULT: "#DACCBA",
+          foreground: "hsl(var(--secondary-foreground))",
+        },
+
         tertiary:{
           DEFAULT:"#895b4a"
       
