@@ -1,7 +1,7 @@
 "use client"
 
 import { getUser, getUserByToken } from "@/actions/user";
-import { PublicRoutes } from "@/constants";
+import { CheckRoutes } from "@/constants";
 import { getGetToken } from "@/hooks/getGetToken";
 import { getRemoveToken } from "@/hooks/getRemoveToken";
 import { getUserId } from "@/hooks/getUserId";
@@ -27,11 +27,9 @@ const AuthState = ({children}:{children:React.ReactNode})=>{
     const pathname = usePathname()
     const fetchUser=async()=>{
         // check if public or not
-        if(PublicRoutes.includes(pathname)){
-            return;
-        }
-
+        
         const token =getGetToken()
+        console.log(token)
         if( !token){
             router.push("/auth/login")
             return;

@@ -9,6 +9,7 @@ import Loading from '@/components/ui/loading'
 import FeedCategorySelect from '@/components/web/feed/feed_category_select'
 import { cn } from '@/lib/utils'
 import DottedBg from '@/components/web/style/dotted_bg'
+import { AuthContext, useAuthContext } from '@/context/AuthContext'
 
 const FeedPage = () => {
   // states 
@@ -16,7 +17,7 @@ const FeedPage = () => {
   const [currentArticles, setcurrentArticles] = useState<ArticleType[]>()
   const [currentCategory, setcurrentCategory] = useState<CategoryType>("general")
   const { ref, inView } = useInView()
-
+  const {user , fetchUser}  = useAuthContext()
   //  useeffects 
 
   useEffect(() => {
@@ -60,8 +61,12 @@ const FeedPage = () => {
 
 
   //functions
-  const LoadMore = () => {
-
+  const LoadMore = async () => {
+    if(!user){
+      await fetchUser()
+    }
+    if(user)
+      
     fetchArticles({ pageNo: offset, category: currentCategory })
   }
   const onValueChange = async (value: CategoryType) => {

@@ -15,20 +15,22 @@ const CurrentAffairPage = () => {
     useEffect(()=>{
 
         fetchCurrentAffairTopics()
-    }, [])
+    }, [user])
     const fetchCurrentAffairTopics = async () => {
-        await fetchUser()
-        if(!user || !user.id){
-            router.push("/auth/login")
-        }
-        const data= await getCurrentAffairTopcics()
-        if(data?.success){
-          console.log(data.data)
-          settopics((value)=>(data.data))
-        }
-        else{
-          alert(data?.error)
-          settopics({})
+        if(!user)
+          await fetchUser()
+        if(user){
+
+         
+          const data= await getCurrentAffairTopcics()
+          if(data?.success){
+            console.log(data.data)
+            settopics((value)=>(data.data))
+          }
+          else{
+            alert(data?.error ? data.error : "Some Error Occured")
+            settopics({})
+          }
         }
     }
   return (

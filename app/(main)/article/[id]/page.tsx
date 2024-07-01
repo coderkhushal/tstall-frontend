@@ -18,9 +18,11 @@ import ShareList from '@/components/web/functionalities/share_button'
 import { Dialog } from '@/components/ui/dialog'
 import { DialogTrigger, DialogContent } from '@/components/ui/dialog'
 import { Pause,  Volume2 } from 'lucide-react'
+import { useAuthContext } from '@/context/AuthContext'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
   const [article, setarticle] = useState<ArticleType | null>(null)
+const {fetchUser, user} = useAuthContext()
   const [listening, setlistening] = useState(false)
   const router = useRouter()
   const handleSpeaking = ()=>{
@@ -38,39 +40,31 @@ const SingleArticle = ({ params }: { params: { id: string } }) => {
 
   }
   useEffect(() => {
-    const getSingleArticle = async () => {
-      const article = await getArticleById(params.id)
-
-      setarticle(article[0])
-    }
-    const token = getGetToken()
-    if (!token) {
-      router.push("/auth/login")
-      return;
-    }
-    const isExpired = getIsTokenExpired(token)
-
-    const usecheckTokenAndRefresh = async () => {
 
 
-      if (token && isExpired) {
-
-        router.push("/auth/login")
-
-
-      }
-      else if (!token) {
-        router.push("/auth/login")
-      }
-      else {
-        getSingleArticle()
-      }
-    }
+ 
 
     usecheckTokenAndRefresh()
 
 
-  }, [])
+  }, [user])
+  const usecheckTokenAndRefresh = async () => {
+
+    if(!user){
+
+      await fetchUser()
+    }
+    if(user){
+
+      await getSingleArticle()
+    }
+    
+  }
+  const getSingleArticle = async () => {
+    const article = await getArticleById(params.id)
+
+    setarticle(article[0])
+  }
   if (!article) {
     return <Loading />
   }

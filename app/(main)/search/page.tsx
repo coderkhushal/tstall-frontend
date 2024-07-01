@@ -14,16 +14,19 @@ const SearchPage = () => {
     const [SearchedUsers, setSearchedUsers,] = useState<UserType[]>([])
     const [loading, setloading] = useState<boolean>(false)
     const [Username, setUsername] = useState<string>("")
-    const {user} =useAuthContext()
-    const router= useRouter()
+    const {user, fetchUser} =useAuthContext()
+    
     useEffect(() => {
 
-        if(!user){
-            router.push('/auth/login')
-
-        }
+        checkUser()
         
       }, [user])
+      const checkUser = async()=>{
+        if(!user){
+            await fetchUser()
+            
+        }
+      }
       const handleSearch=async()=>{
             setloading(true)
             

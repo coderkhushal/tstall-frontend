@@ -80,10 +80,10 @@ export const MobileRoutes:RoutesType[] = [
   },
 
 ]
-export const PublicRoutes= [
+export const CheckRoutes= [
   
-  "/current-affairs",
-  "/current-affairs/*"
+  "/",
+  
   
 ]
 
