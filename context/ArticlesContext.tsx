@@ -2,7 +2,7 @@
 import { getArticles } from "@/actions/articles";
 import { ArticleType } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
-import { articles as a } from "@/constants";
+
 import { set } from "zod";
 type ArticleContextType = {
     articles: ArticleType[]
