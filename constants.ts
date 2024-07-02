@@ -10,11 +10,11 @@ export const DesktopRoutes:RoutesType[] = [
         href:"/"
     }
     ,
-    // {
-    //   Icon: Newspaper ,
-    //   name: "Citizen Insights",
-    //   href:"/citizen-insights"
-    // },
+    {
+      Icon: Newspaper ,
+      name: "Citizen Insights",
+      href:"/citizen-insights"
+    },
 
   {
     Icon: Zap ,
@@ -62,11 +62,11 @@ export const MobileRoutes:RoutesType[] = [
       name:"Feed",
       href:"/feed"
   },
-  // {
-  //   Icon: Newspaper ,
-  //   name: "Citizen Insights",
-  //   href:"/citizen-insights"
-  // },
+  {
+    Icon: Newspaper ,
+    name: "Citizen Insights",
+    href:"/citizen-insights"
+  },
 
   {
     Icon: Zap ,

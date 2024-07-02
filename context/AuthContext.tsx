@@ -29,7 +29,7 @@ const AuthState = ({children}:{children:React.ReactNode})=>{
         // check if public or not
         
         const token =getGetToken()
-        console.log(token)
+        
         if( !token){
             router.push("/auth/login")
             return;
