@@ -185,7 +185,7 @@ const TopbarStories = () => {
                     </div>
                     
 
-                    <DialogContent className="h-full w-full p-0 border-black " onClick={handleClick}>
+                    <DialogContent className="h-full max-w-lg w-full p-0 border-black " onClick={handleClick}>
 
                         <div className={`absolute top-0 flex w-full gap-1 z-20 pt-1`}>
                             { Array.from({length: storydata[StoryDataNumber].stories.length}).map((e , index)=><TopBarStoriesTrackerItem current={index==storyNumber} highlight={index<=storyNumber} key={index}/>)}

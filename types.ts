@@ -9,7 +9,7 @@ export type CategoryType = "health" | "general" | "business" | "entertainment" |
 export type ArticleType={
     id: string; 
     source ?: {
-        id: string, 
+        id?: string, 
         name : string
     };
     publishTime : string;
