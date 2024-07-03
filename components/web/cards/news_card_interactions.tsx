@@ -8,7 +8,7 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { FaBookmark, FaThumbsDown, FaThumbsUp } from 'react-icons/fa'
 import { set } from 'zod'
 
-const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}: {classname?:string,  articleid: string, userLiked: string[], userDisliked: string[] }) => {
+const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname, variant}: {classname?:string,  articleid: string, userLiked: string[], userDisliked: string[], variant?: string }) => {
   const {user} = useAuthContext()
   const [liked, setliked] = useState(false)
   const [disliked, setdisliked] = useState(false)
@@ -120,7 +120,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
   return (
     <Suspense>
 
-      <div className={` ${classname} flex   justify-around  py-2 `}>
+      <div className={`justify-around  ${classname} flex    py-2 `}>
       <div className="flex items-center justify-center space-x-1">
       {(!liked && !disliked) ?  <ConfettiButton >
 
@@ -134,6 +134,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
         {numLiked}
         </span>
       </div>
+      {variant!="INSIGHTS" &&
       <div className="flex items-center justify-center">
       {!bookmarked ? <ConfettiButton>
 
@@ -142,6 +143,8 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
           <FaBookmark className={`cursor-pointer transition-all hover:scale-110 ${bookmarked && " text-yellow-700"}`}  onClick={() => handleClick({ type: "BOOKMARK" })} />
       }
       </div>
+      }
+      {variant!="INSIGHTS" &&
       <div className="flex items-center justify-center space-x-1">
 
         <FaThumbsDown className={`cursor-pointer transition-all hover:scale-110 ${disliked && " text-red-400"}`} onClick={() => handleClick({ type: "DISLIKE" })} />
@@ -149,6 +152,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname}:
         {numDisliked}
           </span>
       </div>
+}
       </div>
     </Suspense>
   )

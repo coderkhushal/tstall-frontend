@@ -44,7 +44,7 @@ export const UploadImage =async(data: File)=>{
     try{
         
         const formData = new FormData()
-        formData.append('file', data, "image.jpg")
+        formData.append('file', data)
         const response = await fetch(`${BASE_URL}/newsapp/auth/upload`, {
             method: 'POST',
             headers:{

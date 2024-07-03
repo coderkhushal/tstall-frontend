@@ -94,7 +94,7 @@ const InsightCreationForm = () => {
         {/* <div className="w-full"> */}
 
         <Button className='bg-quarternary w-full my-4' onClick={handleSubmit}>
-          Submit
+          Post
         </Button>
         {/* </div> */}
       </div>
