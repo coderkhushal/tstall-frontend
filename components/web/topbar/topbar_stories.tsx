@@ -195,16 +195,16 @@ const TopbarStories = () => {
                             <DialogDescription className='w-full h-full flex items-center flex-col justify-between flex-1 '>
                                 <h1 className='px-2 z-30 absolute bottom-56 font-medium py-4 text-2xl text-white bg-zinc-950 text-center flex itemce justify-center '>
 
-                                    {storydata.length > StoryDataNumber ? storydata[StoryDataNumber].stories[storyNumber].title.substring(0, 130) + "..." : ""}
+                                    {(storydata.length > StoryDataNumber && storydata[StoryDataNumber].stories.length>0) ? storydata[StoryDataNumber].stories[storyNumber].title.substring(0, 130) + "..." : ""}
                                 </h1>
-                                <img src={storydata.length > StoryDataNumber ? storydata[StoryDataNumber].stories[storyNumber].urlToImage : "https://media.assettype.com/sentinelassam-english%2F2024-06%2Fbd7021c0-5cc6-4de0-a725-d01b905f4b0c%2Fwomen.png?w=120"} className='bg-cover h-full  w-full rounded-b-3xl ' />
+                                <img src={(storydata.length > StoryDataNumber && storydata[StoryDataNumber].stories.length>0) ? storydata[StoryDataNumber].stories[storyNumber].urlToImage : "https://media.assettype.com/sentinelassam-english%2F2024-06%2Fbd7021c0-5cc6-4de0-a725-d01b905f4b0c%2Fwomen.png?w=120"} className='bg-cover h-full  w-full rounded-b-3xl ' />
 
                                 {/* <Button className='z-40' variant={"outline"} onClick={handleMoveStorybackward}><ArrowLeft/></Button>
                                 <Button className='z-40' variant={"outline"} onClick={handleMoveStoryforward}><ArrowRight/></Button> */}
 
 
                                 <Button className='w-full  z-50 bg-dark text-white' variant={"outline"}>
-                                    <Link href={(storydata && storydata.length > 0) ? "/article/" + storydata[StoryDataNumber].stories[storyNumber].id : "/"} className='flex justify-center w-full items-center ' >
+                                    <Link href={(storydata && storydata.length > 0 && storydata[StoryDataNumber].stories.length>0 ) ? "/article/" + storydata[StoryDataNumber].stories[storyNumber].id : "/"} className='flex justify-center w-full items-center ' >
                                         Read More <Forward className='mx-3' />
                                     </Link>
                                 </Button>
