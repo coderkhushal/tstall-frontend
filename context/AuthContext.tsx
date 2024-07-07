@@ -27,7 +27,7 @@ export const AuthContext = createContext<AuthContextType>({
 
 const AuthState = ({children}:{children:React.ReactNode})=>{
     const [user, setuser] = useState<UserType | null>(null)
-    const [showCitizenInsights, setShowCitizenInsights] = useState<boolean>(false)
+    const [showCitizenInsights, setShowCitizenInsights] = useState<boolean>(true)
     const router = useRouter()
     const pathname = usePathname()
     const fetchUser=async()=>{
