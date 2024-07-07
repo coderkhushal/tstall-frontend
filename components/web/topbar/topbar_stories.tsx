@@ -178,7 +178,7 @@ const TopbarStories = () => {
                     {
                         storydata.map((storydataitem, index) => (
                             
-                            <TopbarStoriesItem key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={storydataitem.urlToImage} title={storydataitem.title} />
+                            <TopbarStoriesItem key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={storydataitem.title=="technology" ? storydataitem.urlToImage : "/assets/"+storydataitem.title+".jpeg"} title={storydataitem.title} />
                         ))
                     }
 
