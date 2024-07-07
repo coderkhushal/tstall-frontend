@@ -1,9 +1,11 @@
+"use client"
 import { MobileRoutes } from '@/constants'
 import React from 'react'
 import MobileNavigationItem from './mobile_navigation_item'
+import { useAuthContext } from '@/context/AuthContext'
 
 const MobileNavigation = () => {
-
+    const {showCitizenInsights} = useAuthContext()
     return (
         <div className='lg:hidden fixed bottom-0 w-full '>
 
@@ -15,7 +17,15 @@ const MobileNavigation = () => {
 
 
                     {MobileRoutes.map((e, index) =>
-                        <MobileNavigationItem key={index} Icon={e.Icon} href={e.href} />
+                    {
+                        if(e.name==="Citizen Insights"){
+                            if(showCitizenInsights)
+                            return <MobileNavigationItem key={index} Icon={e.Icon} href={e.href} />
+                        }
+                        else{
+                            return <MobileNavigationItem key={index} Icon={e.Icon} href={e.href} />
+                        }
+                    }
                     )}
 
                 </div>

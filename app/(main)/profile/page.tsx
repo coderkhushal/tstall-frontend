@@ -21,9 +21,12 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet"
 import { SlCalender } from 'react-icons/sl'
+import { Switch } from '@/components/ui/switch'
+
 const ProfilePage = () => {
   const router = useRouter()
-  const { user, logout } = useAuthContext()
+  const { user, logout ,showCitizenInsights, setShowCitizenInsights} = useAuthContext()
+  
   const [userProfile, setUserProfile] = React.useState<UserType | null>(user)
   useEffect(() => {
 
@@ -89,15 +92,19 @@ const ProfilePage = () => {
                         <SheetTitle className='mb-4 w-full py-2 text-center font-bold text-2xl'>{userProfile?.userName ? userProfile.userName : ""}</SheetTitle>
                         <SheetDescription className='flex flex-col space-y-4 '>
                           <Link href="/auth/details" className='w-full'>
-                            <Button className='w-full shadow-md rounded-2xl font-semibold' variant={"outline"}>
+                            <Button className='w-full shadow-md rounded-xl font-semibold' variant={"outline"}>
                               Edit Profile
                             </Button>
                           </Link>
                           <Link href="/auth/changepass" className='w-full'>
-                            <Button className='w-full shadow-md rounded-2xl font-semibold' variant={"outline"}>
+                            <Button className='w-full shadow-md rounded-xl font-semibold' variant={"outline"}>
                               Change Password
                             </Button>
                           </Link>
+                          <div className="flex">
+<h1 className='font-semibold text-lg mr-2'>Show Citizen Insights</h1>
+                          <Switch checked={showCitizenInsights}  onCheckedChange={(e)=>{setShowCitizenInsights(e)}} />
+                          </div>
                         </SheetDescription>
                       </SheetHeader>
                     </SheetContent>

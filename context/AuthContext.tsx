@@ -13,16 +13,21 @@ type AuthContextType = {
     fetchUser: ()=>Promise<void>
     logout: ()=>void
     user : UserType | null
+    setShowCitizenInsights : (value:boolean)=>void
+    showCitizenInsights: boolean
 }
 
 export const AuthContext = createContext<AuthContextType>({
     fetchUser: async()=>{},
     logout: ()=>{},
-    user: null
+    user: null,
+    setShowCitizenInsights: (value:boolean)=>{},
+    showCitizenInsights: false
 })
 
 const AuthState = ({children}:{children:React.ReactNode})=>{
     const [user, setuser] = useState<UserType | null>(null)
+    const [showCitizenInsights, setShowCitizenInsights] = useState<boolean>(false)
     const router = useRouter()
     const pathname = usePathname()
     const fetchUser=async()=>{
@@ -55,7 +60,7 @@ const AuthState = ({children}:{children:React.ReactNode})=>{
         fetchUser()
     },[])
     return(
-        <AuthContext.Provider value={{fetchUser,user, logout}}>
+        <AuthContext.Provider value={{fetchUser,user, logout, showCitizenInsights, setShowCitizenInsights}}>
             {children}
         </AuthContext.Provider>
     )
