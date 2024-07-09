@@ -65,7 +65,7 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
           <div className="flex justify-center items-center h-40 lg:h-auto">
             <img
-              src={userProfile?.urlToImage ? userProfile.urlToImage : "https://images.news18.com/ibnlive/uploads/2024/06/reuters-devils-comet-pons-brooks-2024-06-9b96acd16c54d0c2088f9a608989ad40-16x9.jpg?impolicy=website&width=1200&height=675"}
+              src={userProfile?.urlToImage ? userProfile.urlToImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}
               alt="profile-logo"
               className="w-40 h-40 lg:w-32 lg:h-32 rounded-full border border-primary"
             />
