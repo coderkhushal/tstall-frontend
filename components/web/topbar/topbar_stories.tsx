@@ -24,6 +24,7 @@ const TopbarStories = () => {
     const [storydata, setstorydata] = useState<StoryDataType[] | null>(null)
     const [StoryDataNumber, setStoryDataNumber] = useState<number>(0)
     const [storyNumber, setstoryNumber] = useState<number>(0)
+    const [expanded, setexpanded] = useState<boolean>(false)
     const [storyInterval, setstoryInterval] = useState<NodeJS.Timeout | null>(null)
     const [IntervalStarted, setIntervalStarted]= useState<boolean> (false)
     const { user } = useAuthContext()
@@ -127,7 +128,7 @@ const TopbarStories = () => {
     if (!storydata) {
         return (
             <div className='h-32 w-full relative lg:flex lg:w-36  lg:h-full    bg-tertiary flex items-center lg:flex-col  justify-start'>
-                <h1 className='text-2xl py-2 font-bold tracking-wider text-primary h-20  hidden lg:flex'>Stories</h1>
+                <h1 className='text-2xl py-2 font-bold tracking-wider text-primary h-20  hidden lg:flex'>Catchup</h1>
                 <Suspense >
                     {
                         user ? null :
@@ -161,24 +162,25 @@ const TopbarStories = () => {
 
     return (
         <div>
-            <div className="stories bg-tertiary p-5 py-2 overflow-y-auto  relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 ">
+            <div className="stories bg-tertiary p-5 py-2 lg:p-0 hover:lg:p-5 transition-all  overflow-y-auto  relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 " onMouseEnter={()=>{setexpanded(true)}} onMouseLeave={()=>{setexpanded(false)}}>
                 <Suspense>
                     {
                         user ? null : <TopAuthBar />
                     }
 
                 </Suspense>
-                    <h1 className='text-3xl py-2 font-bold tracking-wider text-primary h-20  hidden lg:flex items-center justify-center w-full '>Stories</h1>
+                    <h1 className={`${expanded ? "lg:flex" :"lg:hidden"} text-3xl py-2 font-bold tracking-wider text-primary h-20  hidden  items-center justify-center w-full `}>Catchup</h1>
+                    {!expanded && <div className='h-16 w-full'></div>}
 
                 <Dialog >
 
-                    <div className='flex lg:flex-col lg:overflow-y-auto lg:h-[80vh] lg:space-y-6'>
+                    <div className='flex lg:flex-col lg:overflow-y-auto lg:h-[80vh] lg:space-y-3 '>
 
 
                     {
                         storydata.map((storydataitem, index) => (
                             
-                            <TopbarStoriesItem key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={storydataitem.title=="technology" ? storydataitem.urlToImage : "/assets/"+storydataitem.title+".jpeg"} title={storydataitem.title} />
+                            <TopbarStoriesItem isExpanded={expanded} key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={storydataitem.title=="technology" ? storydataitem.urlToImage : "/assets/"+storydataitem.title+".jpeg"} title={storydataitem.title} />
                         ))
                     }
 
