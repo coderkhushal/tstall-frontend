@@ -12,7 +12,7 @@ const Topbar = ({classname}:{classname?:string}) => {
 
 
   return (
-    <div className={`${classname}  bg-tertiary shadow-md rounded-b-xl   `}>
+    <div className={`${classname}  bg-dark shadow-md rounded-b-xl   `}>
       <div className='flex px-3 h-full items-center  justify-between lg:hidden'>
         <Link href="/search">
         <SearchIcon className='size-8 text-primary' />

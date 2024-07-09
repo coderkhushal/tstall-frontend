@@ -162,7 +162,7 @@ const TopbarStories = () => {
 
     return (
         <div>
-            <div className="stories bg-tertiary p-5 py-2 lg:p-1 lg:w-20 hover:lg:w-40  transition-all  overflow-y-auto  relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 " onMouseEnter={()=>{setexpanded(true)}} onMouseLeave={()=>{setexpanded(false)}}>
+            <div className="stories bg-dark p-5 py-2 lg:p-1 lg:w-20 hover:lg:w-40  transition-all  overflow-y-auto  relative rounded-b-2xl w-full overflow-x-auto flex lg:flex-col lg:h-full lg:space-y-6 " onMouseEnter={()=>{setexpanded(true)}} onMouseLeave={()=>{setexpanded(false)}}>
                 <Suspense>
                     {
                         user ? null : <TopAuthBar />
