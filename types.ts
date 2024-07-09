@@ -19,6 +19,7 @@ export type ArticleType={
     title: string;
     titleAndAuthor: string;
     url:string;
+    postType: "FunSection" | "Article"
     urlToImage?: string;
     content: string;
     usersLiked: string[]

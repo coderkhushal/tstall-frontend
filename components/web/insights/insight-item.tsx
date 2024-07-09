@@ -13,7 +13,7 @@ const InsightItem = ({LastPostRef, post}: {LastPostRef: React.LegacyRef<HTMLDivE
   return (
     
     <div ref={LastPostRef} className='lg:w-3/5 lg:mx-auto  flex flex-col space-y-4  bg-[#bdb1aa] rounded-3xl p-4'>
-      <Link href={`artcles/${post.id}`} className=' w-full h-full'>
+      <Link href={`article/${post.id}`} className=' w-full h-full'>
       <div className="flex w-full items-center space-x-2 lg:w-5/6 mx-auto ">
         <img src={"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="profile" className='h-8 w-8 rounded-full' />
         <div className="flex flex-col ">
@@ -29,12 +29,12 @@ const InsightItem = ({LastPostRef, post}: {LastPostRef: React.LegacyRef<HTMLDivE
         <p className={` ${showContent && "hidden"} tracking-tightest lg:w-4/5 lg:mx-auto lg:tracking-normal text-sm text-gray-800`}>{(post.content).substring(0,200)} </p>
         <p className={` ${!showContent && "hidden"} tracking-tightest lg:tracking-normal text-sm text-gray-800 lg:w-4/5 lg:mx-auto`}>{(post.content)} </p>
         {post.content.length > 200 && <div className='w-full font-light text-xs text-center text-white underline cursor-pointer' onClick={handleShowContent}>show {showContent ? "Less" : "More"}</div>}
-        {/* <div className="flex justify-start lg:w-5/6 mx-auto">
+        <div className="flex justify-start lg:w-5/6 mx-auto">
 
-        <NewsCardInteractions articleid={post.id} userDisliked={post.usersDisliked} userLiked={post.usersLiked}  variant={"INSIGHTS"} />
-        </div> */}
+        </div>
       </div>
     </Link>
+        <NewsCardInteractions articleid={post.id} userDisliked={post.usersDisliked} userLiked={post.usersLiked} classname=' justify-around w-full text-2xl'  />
     </div>
 
   )

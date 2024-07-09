@@ -72,7 +72,7 @@ const {fetchUser, user} = useAuthContext()
     return (
       <Drawer>
         <section className=" light relative  py-14 md:py-24 bg-secondary  text-zinc-900 h-full w-full overflow-y-auto  ">
-          <div className='rounded-2xl bg-orange-400 p-2 absolute lg:left-32   lg:text-2xl lg:top-7 top-2 left-2'>{article.category}</div>
+          <div className='rounded-2xl bg-orange-400 text-tertiary p-2 absolute lg:left-32   lg:text-2xl lg:top-7 top-2 left-2'>{article.postType=="FunSection" ? "FunSection Post" : article.category}</div>
           <div className="container px-4 w-full">
             <div className="grid grid-cols-12 w-full">
 

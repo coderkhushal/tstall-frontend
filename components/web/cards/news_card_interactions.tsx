@@ -125,7 +125,7 @@ const NewsCardInteractions = ({ articleid, userLiked, userDisliked , classname, 
       {(!liked && !disliked) ?  <ConfettiButton >
 
 
-        <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
+        <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110  ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
       </ConfettiButton> : 
         <FaThumbsUp className={`cursor-pointer transition-all hover:scale-110 ${liked && " text-red-400"}`} onClick={() => handleClick({ type: "LIKE" })} />
       }
