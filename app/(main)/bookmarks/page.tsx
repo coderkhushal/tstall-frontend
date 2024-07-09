@@ -48,7 +48,7 @@ const BookMarksPage = () => {
         <div className="flex items-center justify-center mb-6 sm:mb-12">
             <div className="w-full max-w-xl text-center">
                 <h2 className="text-3xl tracking-wider leading-none md:text-[45px] font-extrabold mb-4">
-                    BookMarks
+                    Bookmarks
                 </h2>
             
             </div>
