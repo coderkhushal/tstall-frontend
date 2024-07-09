@@ -11,7 +11,7 @@ const TopAuthBar = () => {
       
     <div className=' w-full lg:h-full lg:mr-0 m-auto '>
 
-        <div className="px-7  bg-quarternary shadow-lg h-24 lg:h-full  opacity-80 rounded-2xl mb-2 lg:mb-0 lg:w-full">
+        <div className="px-7  bg-dark shadow-lg h-24 lg:h-full  opacity-80 rounded-2xl mb-2 lg:mb-0 lg:w-full">
             <div className="flex lg:flex-col lg:justify-around justify-between items-center h-full">
 
               <Link href="/auth/register">
