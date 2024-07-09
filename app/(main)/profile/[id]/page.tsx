@@ -11,6 +11,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 import { ReceiptPoundSterling, Verified } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
+import ProfileSkeleton from '@/components/web/profile/profile_skeleton'
 
 const PublicProfilePage = ({params}: {params: {id: string}}) => {
   const router = useRouter()
@@ -57,9 +59,9 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
 
 
 
-    <div className='w-full  lg:py-20 flex h-full bg-gradient-to-b from-orange-300 to-slate-50 justify-center'>
+    <div className='w-full  lg:py-20 flex h-full bg-secondary justify-center'>
       
-      <header >
+      {userProfile ? <header >
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
           <div className="flex justify-center items-center h-40 lg:h-auto">
             <img
@@ -74,14 +76,14 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
               <div className="flex flex-col space-y-1 ">
                 <div className="flex items-center w-full justify-center space-x-3 lg:items-start">
 
-                  <h2 className="text-2xl font-light  text-center">{userProfile?.userName ? userProfile.userName : "username"}</h2>
+                  <h2 className="text-xl lg:text-2xl font-light  text-center">{userProfile?.userName ? userProfile.userName : "username"}</h2>
                   <span className='lg:mt-1'>
                     <Verified />
                   </span>
                   <br className="lg:hidden"  />
 
                   {(user && userProfile &&  user.id!=userProfile.id) &&
-                   <Button className={` tracking-wide font-bold text-mds w-24 ${userProfile.followers.includes(user.id) ? "" : "shadow-lg"}`} variant={"secondary"} onClick={()=>{
+                   <Button className={` tracking-wide font-bold hover:bg-tertiary bg-tertiary text-secondarydark text-md w-24 ${userProfile.followers.includes(user.id) ? "" : "shadow-lg bg-tertiary text-secondarydark"}`} variant={"secondary"} onClick={()=>{
                     handleFollow(userProfile?.followers.includes(user?.id) ? "Unfollow" : "Follow")
                    }}>
                     {(user?.id && userProfile?.followers.includes(user?.id)) ? "Unfollow" : "Follow"}
@@ -134,7 +136,11 @@ const PublicProfilePage = ({params}: {params: {id: string}}) => {
 
           </div>
         </div>
-      </header>
+      </header> :<div className="flex w-full justify-center items-start py-20 h-full">
+      <ProfileSkeleton/>
+      </div> }
+      
+
     </div>
   )
 }
