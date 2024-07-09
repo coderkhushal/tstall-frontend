@@ -22,11 +22,13 @@ import {
 } from "@/components/ui/sheet"
 import { SlCalender } from 'react-icons/sl'
 import { Switch } from '@/components/ui/switch'
+import ProfileSkeleton from '@/components/web/profile/profile_skeleton'
+import FunsectionPosts from '@/components/web/profile/funsection_posts'
 
 const ProfilePage = () => {
   const router = useRouter()
-  const { user, logout ,showCitizenInsights, setShowCitizenInsights} = useAuthContext()
-  
+  const { user, logout, showCitizenInsights, setShowCitizenInsights } = useAuthContext()
+
   const [userProfile, setUserProfile] = React.useState<UserType | null>(user)
   useEffect(() => {
 
@@ -49,11 +51,12 @@ const ProfilePage = () => {
 
     <div className='w-full  lg:py-20 flex h-full bg-secondary justify-center'>
       <Button className='absolute top-2 right-2' variant={"secondary"} onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
-      <header >
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
+      {userProfile ? 
+      <header className='w-full overflow-y-scroll' >
+        <div className="grid grid-cols-1 w-1/2 mx-auto lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
           <div className="flex justify-center items-center h-40 lg:h-auto">
             <img
-              src={userProfile?.urlToImage ? userProfile.urlToImage : "https://images.news18.com/ibnlive/uploads/2024/06/reuters-devils-comet-pons-brooks-2024-06-9b96acd16c54d0c2088f9a608989ad40-16x9.jpg?impolicy=website&width=1200&height=675"}
+              src={userProfile?.urlToImage ? userProfile.urlToImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}
               alt="profile-logo"
               className="w-40 h-40 lg:w-32 lg:h-32 rounded-full border border-primary"
             />
@@ -102,8 +105,8 @@ const ProfilePage = () => {
                             </Button>
                           </Link>
                           <div className="flex">
-<h1 className='font-semibold text-lg mr-2'>Show Citizen Insights</h1>
-                          <Switch checked={showCitizenInsights}  onCheckedChange={(e)=>{setShowCitizenInsights(e)}} />
+                            <h1 className='font-semibold text-lg mr-2'>Show Citizen Insights</h1>
+                            <Switch checked={showCitizenInsights} onCheckedChange={(e) => { setShowCitizenInsights(e) }} />
                           </div>
                         </SheetDescription>
                       </SheetHeader>
@@ -151,8 +154,8 @@ const ProfilePage = () => {
 
         <div>
 
-          <h1 className='px-4 my-2 font-extrabold'>Interests</h1>
-          <div className='grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-2  px-2 '>
+          <h1 className='px-4 my-2 w-full lg:w-2/5 lg:mx-auto font-extrabold'>Interests</h1>
+          <div className='grid grid-cols-2 w-full lg:w-3/5 lg:mx-auto lg:grid-cols-4 gap-x-2 gap-y-2  px-2 '>
             {userProfile?.topicsOfInterest && userProfile?.topicsOfInterest.length > 0 && user?.topicsOfInterest.map((e, index) => {
 
               return (
@@ -163,7 +166,13 @@ const ProfilePage = () => {
 
           </div>
         </div>
-      </header>
+        <div className="w-full  py-2 flex flex-col">
+            
+          <FunsectionPosts />
+        </div>
+      </header> : <div className="flex w-full justify-center items-start py-20 h-full">
+        <ProfileSkeleton />
+      </div>}
     </div>
   )
 }

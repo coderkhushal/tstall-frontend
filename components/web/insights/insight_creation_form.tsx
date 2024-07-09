@@ -18,8 +18,10 @@ const InsightCreationForm = () => {
     content: "",
     source: {
       name: user?.userName ? user.userName : "Anonymous",
+      id: user?.id ? user.id : ""
     },
-    urlToImage: ""
+    urlToImage: "",
+    author: user?.id ? user.id : ""
   })
   useEffect(()=>{
     if(user){
@@ -53,8 +55,10 @@ const InsightCreationForm = () => {
       setFormData({
         title: "",
         content: "",
+        author : "",
         source: {
           name: user?.userName ? user.userName : "Anonymous",
+          id: ""
         },
         urlToImage: ""
       })

@@ -64,3 +64,22 @@ export const UploadImage =async(data: File)=>{
         return {success: false, error: "Internal Server Error"}
     }
     }
+
+export const getFunsectionPostByUser= async(page: number)=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/auth/getFunSectionArticlesByUserPaginated?page=${page}&size=10`, {
+            method: 'GET',
+            headers:getGetAuthHeaders()
+        })
+        const data= await res.json()
+        if(res.status==200){
+            return{success: true, data: data}
+        }
+        return {success: false, error: "Internal Server Error"}
+    }
+    catch(err){
+        console.log(err)
+        return{success: false, error: "Internal Server Error"}
+    }
+    
+}
