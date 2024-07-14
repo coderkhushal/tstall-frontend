@@ -10,7 +10,7 @@ import { UserType } from '@/types'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
-import { Verified } from 'lucide-react'
+import { Camera, Verified } from 'lucide-react'
 import { LuLogOut } from 'react-icons/lu'
 import {
   Sheet,
@@ -24,9 +24,12 @@ import { SlCalender } from 'react-icons/sl'
 import { Switch } from '@/components/ui/switch'
 import ProfileSkeleton from '@/components/web/profile/profile_skeleton'
 import FunsectionPosts from '@/components/web/profile/funsection_posts'
+import { IoIosCloseCircle } from 'react-icons/io'
+import ChangeProilePictureForm from '@/components/web/profile/change_profile_picture_form'
 
 const ProfilePage = () => {
   const router = useRouter()
+  const [showProfilePicutreForm, setshowProfilePicutreForm] = React.useState<boolean>(false)
   const { user, logout, showCitizenInsights, setShowCitizenInsights } = useAuthContext()
 
   const [userProfile, setUserProfile] = React.useState<UserType | null>(user)
@@ -43,23 +46,38 @@ const ProfilePage = () => {
       return;
     }
     const data = await getUserByToken({ token });
+    console.log(data)
     setUserProfile(value => data)
   }
   return (
 
 
 
-    <div className='w-full  lg:py-20 flex h-full bg-secondary justify-center'>
+    <div className='w-full  lg:py-20 flex h-full bg-secondary justify-center relative'>
+      <div className={` bg-secondarydark   ${showProfilePicutreForm ? "flex" : "hidden"} w-full  mx-auto absolute flex-col top-0 left-0 rounded-2xl p-4 lg:flex-col h-1/2  z-50  `}>
+        <div className={` ${showProfilePicutreForm ? "flex" : "hidden"}  flex-col w-full h-full relative`}>
+          <div className="  justify-end flex w-full">
+
+            <IoIosCloseCircle onClick={() => setshowProfilePicutreForm(false)} className='size-7 cursor-pointer  ' />
+          </div>
+
+          <ChangeProilePictureForm />
+        </div>
+      </div>
       <Button className='absolute top-2 right-2' variant={"secondary"} onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
       {userProfile ?
         <header className='w-full overflow-y-scroll' >
           <div className="grid grid-cols-1 w-1/2 mx-auto lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
-            <div className="flex justify-center items-center h-40 lg:h-auto">
+            <div className="flex justify-center items-center h-40 lg:h-auto relative">
               <img
                 src={userProfile?.urlToImage ? userProfile.urlToImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}
                 alt="profile-logo"
                 className="w-40 h-40 lg:w-32 lg:h-32 rounded-full border border-primary"
               />
+              <div className="flex h-full justify-end flex-col ">
+
+                <Camera className=' size-8  text-black cursor-pointer ' onClick={() => setshowProfilePicutreForm(true)} />
+              </div>
             </div>
             <div>
               <div className="mb-5">
@@ -104,6 +122,7 @@ const ProfilePage = () => {
                                 Change Password
                               </Button>
                             </Link>
+
                             <div className="flex">
                               <h1 className='font-semibold text-lg mr-2'>Show Citizen Insights</h1>
                               <Switch checked={showCitizenInsights} onCheckedChange={(e) => { setShowCitizenInsights(e) }} />
