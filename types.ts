@@ -41,7 +41,10 @@ export type UserType ={
     "topicsOfInterest": string [],
     "followers": string[],
     "following": string[],
-    "bookmarks": string[]
+    "bookmarks": string[],
+    "reportedUsers": string[],
+    "reportedByUsers":string[],
+    "status":"ACTIVE" | "BLOCKED"
 }
 export type CommentType = {
     id: string; 

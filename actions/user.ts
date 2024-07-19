@@ -172,3 +172,26 @@ catch(err){
 
 }
 }
+
+export const reportUser = async({id}: {id: string})=>{
+    try{
+        
+        const res = await fetch(`${BASE_URL}/newsapp/auth/reportUser?reportingId=${id}&reportedId=${getUserId()}`,
+        {
+            method: 'POST',
+            headers: getGetAuthHeaders(),
+
+        }
+    )
+    const data= await res.json()
+
+    if(res.status === 200){
+        return {success: true, error:null}
+    }
+    return {success: false, error:"Internal Server Error"}
+}
+catch(err){
+    return {success: false, error:"Internal Server Error"}
+
+}
+}
