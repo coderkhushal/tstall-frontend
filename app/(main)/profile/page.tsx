@@ -54,14 +54,14 @@ const ProfilePage = () => {
 
 
     <div className='w-full  lg:py-20 flex h-full bg-secondary justify-center relative'>
-      <div className={` bg-secondarydark   ${showProfilePicutreForm ? "flex" : "hidden"} w-full  mx-auto absolute flex-col top-0 left-0 rounded-2xl p-4 lg:flex-col h-1/2  z-50  `}>
+      <div className={` bg-secondarydark   ${showProfilePicutreForm ? "flex" : "hidden"} w-full  mx-auto absolute flex-col top-0 left-0 rounded-2xl p-4 lg:flex-col h-1/3  z-50  `}>
         <div className={` ${showProfilePicutreForm ? "flex" : "hidden"}  flex-col w-full h-full relative`}>
           <div className="  justify-end flex w-full">
 
             <IoIosCloseCircle onClick={() => setshowProfilePicutreForm(false)} className='size-7 cursor-pointer  ' />
           </div>
 
-          <ChangeProilePictureForm />
+          <ChangeProilePictureForm user={user} setshowProfilePicutreForm={setshowProfilePicutreForm}/>
         </div>
       </div>
       <Button className='absolute top-2 right-2' variant={"secondary"} onClick={logout} ><LuLogOut className='text-black size-5' /></Button>
