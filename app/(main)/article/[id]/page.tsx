@@ -17,7 +17,8 @@ import NewsCardInteractions from '@/components/web/cards/news_card_interactions'
 import ShareList from '@/components/web/functionalities/share_button'
 import { Dialog } from '@/components/ui/dialog'
 import { DialogTrigger, DialogContent } from '@/components/ui/dialog'
-import { Pause,  Volume2 } from 'lucide-react'
+import { Link as LinkIcon, Pause,  Volume2 } from 'lucide-react'
+import Link from 'next/link'
 import { useAuthContext } from '@/context/AuthContext'
 
 const SingleArticle = ({ params }: { params: { id: string } }) => {
@@ -145,6 +146,10 @@ const {fetchUser, user} = useAuthContext()
                         <FaComment className='cursor-pointer transition-all hover:scale-110  lg:text-3xl' />
                       </DrawerTrigger>
                       <Comments articleId={params.id} />
+                      {article.url && <Link href={article.url} >
+                      <LinkIcon />
+                      </Link>
+}
                       <div className="flex justify-center  cursor-pointer text-xl items-center space-x-2 border-2 border-black lg:p-2 rounded-3xl lg:w-32 w-28" onClick={()=>handleSpeaking()}>
 
                       <span>{!listening ? "Listen" : "Stop"}</span>

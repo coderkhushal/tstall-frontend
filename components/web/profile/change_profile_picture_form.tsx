@@ -26,7 +26,7 @@ const ChangeProilePictureForm = ({user, setshowProfilePicutreForm}:{user: UserTy
 
           }
           else {
-            alert("Image Upload Failed")
+            alert(JSON.stringify(uploadedData))
           }
     
     
