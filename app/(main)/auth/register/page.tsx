@@ -26,6 +26,7 @@ import { register } from '@/actions/register'
 import { useRouter } from 'next/navigation'
 import { useAuthContext } from '@/context/AuthContext'
 import { getSetToken } from '@/hooks/getSetToken'
+import Social from '@/components/web/auth/social'
 const RegisterPage = () => {
 
     const [error, seterror] = useState<string | undefined>(undefined)
