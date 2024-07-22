@@ -7,7 +7,7 @@ import React, { useEffect } from 'react'
 
 const RedirectedPage = () => {
   const {fetchUser} = useAuthContext()
-  const router = useRouter()
+  
   useEffect(()=>{
     fetchtokenAndRedirect()
 
