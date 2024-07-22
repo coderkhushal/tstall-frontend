@@ -180,7 +180,7 @@ const TopbarStories = () => {
                     {
                         storydata.map((storydataitem, index) => (
                             
-                            <TopbarStoriesItem isExpanded={expanded} key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={storydataitem.title=="technology" ? storydataitem.urlToImage : "/assets/"+storydataitem.title+".jpeg"} title={storydataitem.title} />
+                            <TopbarStoriesItem isExpanded={expanded} key={index} storyNumber={index} handleOpenStory={handleOpenStory} src={ "/assets/"+storydataitem.title+".jpeg"} title={storydataitem.title} />
                         ))
                     }
 
