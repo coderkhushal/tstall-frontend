@@ -137,7 +137,7 @@ const RegisterPage = () => {
                         <FormSuccess message={success} />
                        
 
-                        {/* <Social /> */}
+                        <Social />
                         <Button type="submit" className='w-full bg-orange-300' variant={"secondary"} disabled={Pending}>Submit</Button>
 
 
