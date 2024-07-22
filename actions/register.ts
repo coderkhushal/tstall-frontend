@@ -30,3 +30,12 @@ export const  register = async (values: z.infer<typeof RegisterSchema>) => {
   // TODO: send verification email token
   return { success: "User Created" , token : data.token };
 };
+
+export const fetchOauthLink = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/oauth/accessCode`);
+  const data = await res.text();
+  if (res.status !== 200 ) {
+    return null;
+  }
+  return data;
+}

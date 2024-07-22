@@ -124,6 +124,7 @@ const LoginPage = () => {
                             </Button>
                         </Link> */}
                         {/* <Social /> */}
+                <Social/>
                         <Button type="submit" className='w-full bg-orange-300' variant={"secondary"} disabled={Pending}>Submit </Button>
 
 

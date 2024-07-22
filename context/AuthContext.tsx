@@ -32,7 +32,9 @@ const AuthState = ({children}:{children:React.ReactNode})=>{
     const pathname = usePathname()
     const fetchUser=async()=>{
         // check if public or not
-        
+        if(pathname=="/redirect"){
+            return;
+        }
         const token =getGetToken()
         
         if( !token){
