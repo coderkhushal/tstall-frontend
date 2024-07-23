@@ -18,6 +18,7 @@ import { ArrowLeft, ArrowRight, Forward } from 'lucide-react'
 import Link from 'next/link'
 import { useAuthContext } from '@/context/AuthContext'
 import TopBarStoriesTrackerItem from './topbar_stories_tracker_item'
+import Image from 'next/image'
 
 const TopbarStories = () => {
 
@@ -128,7 +129,7 @@ const TopbarStories = () => {
     if (!storydata) {
         return (
             <div className='h-32 w-full relative lg:flex lg:w-36  lg:h-full    bg-tertiary flex items-center lg:flex-col  justify-start'>
-                <h1 className='text-2xl py-2 font-bold tracking-wider text-primary h-20  hidden lg:flex'>Catchup</h1>
+                <Image className='text-2xl py-2 font-bold tracking-wider text-primary h-20  hidden ' src={"/assets/catchup.jpeg"} alt="Catchup" height={20} width={20 }/>
                 <Suspense >
                     {
                         user ? null :
