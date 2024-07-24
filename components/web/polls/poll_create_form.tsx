@@ -29,9 +29,10 @@ const PollCreateForm = () => {
       <h1 className='text-2xl tracking-widest font-bold'>Create Poll</h1>
       <Input  placeholder="Title" value={poll.title} onChange={(e)=>setpoll({...poll, title: e.target.value})} className='w-full'/>
       {poll.options.map((option, i)=>(
-        <div className='flex space-x-2' key={i}>
+        <div className='flex space-x-2 items-center' key={i}>
         <Input  placeholder={`Option ${i+1}`} value={option} onChange={(e)=>setpoll({...poll, options: poll.options.map((value, index)=>index==i?e.target.value:value)})} className='w-full'/>
-        <Trash onClick={()=>setpoll({...poll, options: poll.options.filter((value, index)=>index!=i)})} className='cursor-pointer' />
+        {poll.options.length>1 && <Trash onClick={()=>setpoll({...poll, options: poll.options.filter((value, index)=>index!=i)})} className='cursor-pointer' /> }
+        
           </div>
       ))}
       <Button onClick={()=>setpoll({...poll, options: [...poll.options, ""]})} className='p-2 rounded' variant={"outline"} ><Plus/></Button>
