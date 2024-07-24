@@ -61,3 +61,26 @@ export const VoteForPoll= async(pollId: string, option: string)=>{
         return {success: false, error: "Internal Server Error"}
     }
 }
+export const createPoll = async({title, description, options}:{title: string, description: string, options:string[]})=>{
+    try{
+        const res = await fetch(`${BASE_URL}/newsapp/auth/savePolls`,{
+            method: 'POST',
+            headers: getGetAuthHeaders(),
+            body: JSON.stringify([{
+                title: title,
+                description: description,
+                options: options,
+                userId: getUserId()
+            }])
+        })
+        const data = await res.json()
+        if(res.status==200){
+            return {success: true, data: data}
+        }
+        return {success :false, error: "Internal server Error"}
+    }
+    catch(err){
+
+        return {success: false, error: "Internal Server Error"}
+    }
+}

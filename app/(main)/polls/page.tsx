@@ -10,6 +10,7 @@ import { getPolls } from '@/actions/polls'
 import { PollType } from '@/types'
 import Loading from '@/components/ui/loading'
 import { useInView } from 'react-intersection-observer'
+import PollCreateForm from '@/components/web/polls/poll_create_form'
 
 const PollingPage = () => {
   const [offset, setoffset] = useState<number>(0)
@@ -66,12 +67,12 @@ const PollingPage = () => {
         ))
         }
       </div>
-      {/* <div className={` bg-secondarydark transition-all hidden "w-1/3 p-4  lg:flex  rounded-2xl lg:flex-col relative `}>
+      <div className={` bg-[#F3CEA1] border border-black transition-all hidden "w-1/3 p-4  lg:flex  rounded-2xl lg:flex-col relative `}>
         <div className={`flex  flex-col w-full h-full relative`}>
 
-          <InsightCreationForm />
+          <PollCreateForm />
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }
