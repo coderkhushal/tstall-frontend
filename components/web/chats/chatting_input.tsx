@@ -28,7 +28,7 @@ const ChattingInput = ({recieverId}: {recieverId: string}) => {
   return (
     <div>
       <div className="flex w-full py-2">
-        <form action="" className='flex w-full items-center space-x-2' onSubmit={onsubmit}>
+        <form action="" className='flex w-full items-center space-x-2 px-2' onSubmit={onsubmit}>
 
         <input type="text" value={message} onChange={(e)=>setmessage(prev=>e.target.value)} placeholder="Type a message" className="w-full p-2 rounded-xl bg-secondarydark text-zinc-900" />
         <button className="p-2 rounded-xl bg-tertiary text-white font-bold" type='submit'>Send</button>

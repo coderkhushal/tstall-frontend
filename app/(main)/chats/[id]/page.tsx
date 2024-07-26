@@ -16,7 +16,7 @@ const ChattingPage = ({params}:{params: {id: string}}) => {
     fetchPrevChats(params.id)
   })
   return (
-    <div className='flex flex-col w-full'>
+    <div className='flex flex-col w-full pb-14 lg:pb-0'>
       <ChattingTopBar userId={params.id}/>
       <div className="flex flex-col space-y-4 p-2 px-4 overflow-y-scroll h-full">
     {prevchats.map((e, i)=>{
