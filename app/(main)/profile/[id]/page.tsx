@@ -13,8 +13,6 @@ import React, { useEffect, useState } from 'react'
 import { MessageCircleMore, ReceiptPoundSterling, UserRoundIcon, UserRoundX, Verified } from 'lucide-react'
 import { Skeleton } from '@/components/ui/skeleton'
 import ProfileSkeleton from '@/components/web/profile/profile_skeleton'
-import { AlertDialog, AlertDialogFooter, AlertDialogHeader } from '@/components/ui/alert-dialog'
-import { AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger } from '@radix-ui/react-alert-dialog'
 
 const PublicProfilePage = ({ params }: { params: { id: string } }) => {
   const router = useRouter()
@@ -84,10 +82,10 @@ const PublicProfilePage = ({ params }: { params: { id: string } }) => {
 
 
     <div className='w-full   lg:py-20 flex h-full bg-secondary justify-center'>
-      <Link href={`/chats/${params.id}`} className='absolute top-5 right-5 cursor-pointer'>
+      {(user && user.id!=params.id) &&<Link href={`/chats/${params.id}`} className='absolute top-5 right-5 cursor-pointer'>
 
       <MessageCircleMore />
-      </Link>
+      </Link> }
       {userProfile ? <header >
         <div className="grid grid-cols-1 lg:grid-cols-[2fr_2fr] gap-8 lg:gap-7 p-3.5 lg:p-0">
           <div className="flex justify-center items-center h-40 lg:h-auto">
