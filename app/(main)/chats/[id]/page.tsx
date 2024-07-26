@@ -14,7 +14,7 @@ const ChattingPage = ({params}:{params: {id: string}}) => {
   const {fetchPrevChats, prevchats} = useWebsocketContext()
   useEffect(()=>{
     fetchPrevChats(params.id)
-  })
+  },[user])
   return (
     <div className='flex flex-col w-full pb-14 lg:pb-0'>
       <ChattingTopBar userId={params.id}/>
