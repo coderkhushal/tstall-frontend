@@ -96,3 +96,12 @@ export type PollVoteType = {
         pollId: string;
     }[]
 }
+
+export type ChatType={
+    id :string
+    content: string
+    sentTime:string
+    sender: string
+    recipient : string
+    read: boolean
+}
