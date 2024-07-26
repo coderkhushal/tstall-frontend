@@ -187,7 +187,7 @@ const PublicProfilePage = ({ params }: { params: { id: string } }) => {
         <div>
 
           <h1 className='px-4 my-2 font-extrabold'>Interests</h1>
-          <div className='grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-2  px-2 '>
+          {/* <div className='grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-2  px-2 '>
             {(userProfile?.topicsOfInterest && userProfile?.topicsOfInterest.length > 0 )&& user?.topicsOfInterest.map((e, index) => {
 
               return (
@@ -196,7 +196,7 @@ const PublicProfilePage = ({ params }: { params: { id: string } }) => {
             })}
             {!userProfile?.topicsOfInterest && <h1 className='px-2'>No Interests</h1>}
 
-          </div>
+          </div> */}
         </div>
       </header> : <div className="flex w-full justify-center items-start py-20 h-full">
         <ProfileSkeleton />
