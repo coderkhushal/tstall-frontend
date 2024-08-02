@@ -8,23 +8,31 @@ import { useWebsocketContext } from '@/context/websocketContext'
 import { getUserId } from '@/hooks/getUserId'
 
 import React, { useEffect } from 'react'
+import { useInView } from 'react-intersection-observer'
 
 const ChattingPage = ({params}:{params: {id: string}}) => {
   const {user} = useAuthContext()
   const {fetchPrevChats, prevchats} = useWebsocketContext()
+  const lastMessageRef = React.useRef<HTMLDivElement>(null)
+  const { ref, inView } = useInView()
+  useEffect(() => {
+    if (inView) {
+      
+    }
+  }, [inView])
   useEffect(()=>{
     fetchPrevChats(params.id)
   },[user])
   return (
     <div className='flex flex-col w-full pb-14 lg:pb-0'>
       <ChattingTopBar userId={params.id}/>
-      <div className="flex flex-col space-y-4 p-2 px-4 overflow-y-scroll h-full">
+      <div className="flex flex-col space-y-8 p-2 px-4 overflow-y-scroll h-full">
     {prevchats.map((e, i)=>{
       if(e.sender==params.id){
-        return <RecievingChatItem key={i} message={e.content? e.content : ""} time={e.sentTime ? e.sentTime :""} />
+        return <RecievingChatItem  key={i} lastMessageRef={(i==prevchats.length-1 || i==prevchats.length-2)  ?  lastMessageRef: null} message={e.content? e.content : ""} time={e.sentTime ? e.sentTime :""} />
       }
       else{
-        return <SendingChatItem key={i} message={e.content? e.content : ""} time={e.sentTime ? e.sentTime :""} />
+        return <SendingChatItem read={e.read} key={i} message={e.content? e.content : ""} time={e.sentTime ? e.sentTime :""} />
       }
     })}
       </div>

@@ -3,6 +3,7 @@ import { getUserById } from '@/actions/user'
 import { useAuthContext } from '@/context/AuthContext'
 import { getGetToken } from '@/hooks/getGetToken'
 import { UserType } from '@/types'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useEffect } from 'react'
 
@@ -27,6 +28,8 @@ const ChattingTopBar = ({userId}:{userId: string}) => {
     }
   }
   return (
+    <Link href={"/profile/" + userId }>
+
     <div className='flex w-full bg-tertiary h-12 shadow-xl '>
       <div className='flex items-center justify-between w-full px-4'>
         <div className='flex items-center space-x-2'>
@@ -36,6 +39,7 @@ const ChattingTopBar = ({userId}:{userId: string}) => {
         
       </div>
     </div>
+    </Link> 
   )
 }
 

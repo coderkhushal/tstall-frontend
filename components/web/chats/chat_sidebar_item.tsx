@@ -1,13 +1,13 @@
+"use client"
 import { UserType } from '@/types'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const UserItem = ({user}:{user:UserType}) => {
+const ChatSidebarItem = ({user}:{user: UserType}) => {
   return (
-
-    <Link href={`/profile/${user.id}`}>
-    <li className="py-3 sm:py-4 w-full  hover:bg-primary px-4">
+  
+    <Link href={`/chats/${user.id}`}>
+    <div className="py-3 sm:py-4 w-full  hover:bg-primary px-4">
     <div className="flex items-center space-x-4 w-full">
         <div className="flex-shrink-0">
             <img className="w-8 h-8 rounded-full" src={user.urlToImage?  user.urlToImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="profile"/>
@@ -22,10 +22,10 @@ const UserItem = ({user}:{user:UserType}) => {
         </div>
        
     </div>
-</li>
+</div>
     </Link>
 
   )
 }
 
-export default UserItem
+export default ChatSidebarItem

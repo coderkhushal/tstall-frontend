@@ -1,4 +1,4 @@
-import { Bookmark, CloudLightning, FileText, Home, Newspaper, Zap } from "lucide-react";
+import { Bookmark, CloudLightning, FileText, Home, MessageCircle, Newspaper, Zap } from "lucide-react";
 import { FaPoll, FaSearch, FaUserCircle } from "react-icons/fa";
 import { ArticleType, CommentType, RoutesType, StoryDataType } from "./types";
 
@@ -26,7 +26,10 @@ export const DesktopRoutes: RoutesType[] = [
     name: "Search",
     href: "/search"
   },
-
+  { Icon: MessageCircle,
+    name: "Chats",
+    href: "/chats"
+  },
   {
     Icon: FileText,
     name: "Feed",

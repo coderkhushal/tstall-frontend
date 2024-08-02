@@ -1,6 +1,7 @@
+"use client"
 import React from 'react'
 
-const RecievingChatItem = ({ message, time }: { message: string, time: string }) => {
+const RecievingChatItem = ({ message, time , lastMessageRef }: { message: string, time: string, lastMessageRef: React.LegacyRef<HTMLDivElement> }) => {
   return (
 
     <div className='flex flex-col shadow-xl  bg-[#F3CEA1] max-w-60 lg:max-w-lg  rounded-xl space-x-2'>
